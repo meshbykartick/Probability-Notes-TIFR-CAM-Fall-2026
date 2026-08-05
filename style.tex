@@ -534,3 +534,11 @@ fonttitle=\bfseries
     \fancyfoot[C]{\thepage}
     \renewcommand{\headrulewidth}{0.4pt}
 }
+\newcommand{\boxfigure}[4][0.8\linewidth]{%
+\begin{center}
+    \includegraphics[width=#1]{#2}
+    \captionsetup{hypcap=false}
+    \captionof{figure}{#3}
+    \label{#4}
+\end{center}
+}
