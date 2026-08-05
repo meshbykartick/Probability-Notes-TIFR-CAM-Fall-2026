@@ -221,7 +221,13 @@ TIFR- CAM \\
 
 \newpage
 
+{
+\cleardoublepage
+\pagestyle{bibstyle}
+\phantomsection
+\pdfbookmark[0]{References}{references}
 \nocite{*}
 \printbibliography
-
-\end{document}
+\thispagestyle{bibstyle}
+\cleardoublepage
+}\end{document}
