@@ -1,0 +1,32 @@
+# LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.xdv
+*.lof
+*.lot
+*.lol
+*.bbl-SAVE-ERROR
+# Latexmk
+latexmkrc
+
+# macOS
+.DS_Store
+
+# Vim
+*.swp
+*.swo
+
+# Temporary
+*.tmp
+*.bak

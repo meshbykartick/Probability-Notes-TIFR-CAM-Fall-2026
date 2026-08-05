@@ -1,0 +1,527 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% style.tex
+%% Mathematics Notes Template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%% TOC PAGE STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancypagestyle{tocstyle}{
+    \fancyhf{}
+
+    \fancyhead[L]{\small\scshape \coursename}
+
+    \fancyhead[R]{\small\scshape Table of Contents}
+
+    \fancyfoot[C]{\roman{page}}
+
+    \renewcommand{\headrulewidth}{0.4pt}
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADER & FOOTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+
+\fancyhf{}
+
+\fancyhead[L]{\small\scshape \coursename}
+\fancyhead[R]{\small\scshape Lecture \lectureNumber}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\section}
+{\Huge\bfseries\sffamily\color{Primary}}
+{\thesection}
+{0.75em}
+{}
+
+\titlespacing*{\section}
+{0pt}
+{1.8em}
+{0.8em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\subsection}
+{\Large\bfseries\sffamily}
+{\thesubsection}
+{0.6em}
+{}
+
+\titlespacing*{\subsection}
+{0pt}
+{1.2em}
+{0.5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\subsubsection}
+{\large\bfseries}
+{\thesubsubsection}
+{0.5em}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{tocdepth}{2}
+
+\renewcommand{\contentsname}{Table of Contents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PARAGRAPH STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PAGE BREAK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LECTURE VARIABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\coursename}{Probability Theory}
+\newcommand{\lectureNumber}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture Counter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{lecture}
+\newcommand{\lectureTopic}{}
+\newcommand{\lectureDate}{}
+\newcommand{\lectureInstructor}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LECTURE COMMAND
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\lecture}{mmmm}
+{
+
+\renewcommand{\lectureNumber}{#1}
+
+\setcounter{lecture}{#1}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{definition}{0}
+\setcounter{theorem}{0}
+\setcounter{lemma}{0}
+\setcounter{proposition}{0}
+\setcounter{corollary}{0}
+\setcounter{example}{0}
+\setcounter{question}{0}
+% \addcontentsline{toc}{section}{Lecture #1: #3}
+\renewcommand{\lectureDate}{#2}
+\renewcommand{\lectureTopic}{#3}
+\renewcommand{\lectureInstructor}{#4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TOC Entry
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\phantomsection
+\pdfbookmark[0]{Lecture #1: #3}{lecture:#1}
+
+\vspace{1em}
+
+\begin{center}
+
+{\Huge\bfseries \coursename}
+
+\vspace{0.8em}
+
+{\Large\bfseries Lecture #1}
+
+\vspace{0.5em}
+
+{\Large #3}
+
+\vspace{1em}
+
+\begin{tabular}{ll}
+\textbf{Date:} & #2\\
+\textbf{Instructor:} & #4\\
+\end{tabular}
+
+\end{center}
+
+\vspace{1.5em}
+
+\hrule
+
+\vspace{1.2em}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBJECTIVES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newenvironment{objectives}
+%{
+%\subsection*{Objectives}
+%
+%\begin{itemize}
+%}
+%{
+%\end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{lecturesummary}
+{
+\subsection*{Summary}
+
+\begin{itemize}
+}
+{
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% QUESTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{questions}
+{
+\subsection*{Questions}
+
+\begin{itemize}
+}
+{
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% READING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\reading}[1]
+{
+
+\vspace{0.5em}
+
+\textbf{Suggested Reading}
+
+#1
+
+\vspace{0.5em}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% END OF LECTURE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lectureend}
+{
+
+\vspace{2em}
+
+\begin{center}
+
+\color{gray}
+
+\rule{0.4\linewidth}{0.5pt}
+
+End of Lecture
+
+\rule{0.4\linewidth}{0.5pt}
+
+\end{center}
+
+\newpage
+
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Number Sections by Lecture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\thesection}
+{\arabic{lecture}.\arabic{section}}
+
+\renewcommand{\thesubsection}
+{\thesection.\arabic{subsection}}
+
+\renewcommand{\thesubsubsection}
+{\thesubsection.\arabic{subsubsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Individual Counters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{definition}[lecture]
+
+\newcounter{theorem}[lecture]
+
+\newcounter{lemma}[lecture]
+
+\newcounter{proposition}[lecture]
+
+\newcounter{corollary}[lecture]
+\newcounter{question}[lecture]
+\newcounter{example}[lecture]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Definition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=definition
+]{definition}{Definition}{
+colback=DefBack,
+colframe=DefBorder,
+title filled=false,
+colbacktitle=DefBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{def}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Theorem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=theorem
+]{theorem}{Theorem}{
+colback=ThmBack,
+colframe=ThmBorder,
+title filled=false,
+colbacktitle=ThmBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lemma
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=lemma
+]{lemma}{Lemma}{
+colback=LemBack,
+colframe=LemBorder,
+title filled=false,
+colbacktitle=LemBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{lem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Proposition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=proposition
+]{proposition}{Proposition}{
+colback=PropBack,
+colframe=PropBorder,
+title filled=false,
+colbacktitle=PropBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{prop}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Corollary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=corollary
+]{corollary}{Corollary}{
+colback=CorBack,
+colframe=CorBorder,
+title filled=false,
+colbacktitle=CorBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{cor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Example
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=example
+]{example}{Example}{
+colback=ExBack,
+colframe=ExBorder,
+title filled=false,
+colbacktitle=ExBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Remark
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{remark}{
+colback=RemBack,
+colframe=RemBorder,
+title=Remark,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Observation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{observation}{
+colback=cyan!3,
+colframe=cyan!60!black,
+title=Observation,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Intuition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{intuition}{
+colback=green!4,
+colframe=green!50!black,
+title=Intuition,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Important
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{important}{
+colback=ImpBack,
+colframe=ImpBorder,
+title=Important,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Warning
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{warning}{
+colback=WarnBack,
+colframe=WarnBorder,
+title=Warning,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Exercise
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{exercise}{
+colback=brown!3,
+colframe=brown!60!black,
+title=Exercise,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcbtheorem[
+use counter=question
+]{question}{Question}{
+colback=QuesBack,
+colframe=QuesBorder,
+title filled=false,
+colbacktitle=QuesBack,
+fonttitle=\bfseries,
+separator sign={.},
+}{ques}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TODO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{todo}{
+colback=TodoBack,
+colframe=TodoBorder,
+title=TODO,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Professor Note
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{profnote}{
+colback=violet!4,
+colframe=violet!60!black,
+title=Professor's Note,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Historical Note
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{history}{
+colback=orange!4,
+colframe=orange!70!black,
+title=Historical Note,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Summary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{summary}{
+colback=cyan!3,
+colframe=cyan!60!black,
+title=Summary,
+fonttitle=\bfseries
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Exam Tip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcolorbox{examtip}{
+colback=red!2,
+colframe=red!50!black,
+title=Exam Tip,
+fonttitle=\bfseries
+}
+\renewcommand{\thedefinition}{\arabic{lecture}.\arabic{definition}}
+\renewcommand{\thetheorem}{\arabic{lecture}.\arabic{theorem}}
+\renewcommand{\thelemma}{\arabic{lecture}.\arabic{lemma}}
+\renewcommand{\theproposition}{\arabic{lecture}.\arabic{proposition}}
+\renewcommand{\thecorollary}{\arabic{lecture}.\arabic{corollary}}
+\renewcommand{\theexample}{\arabic{lecture}.\arabic{example}}
+\renewcommand{\thequestion}{\arabic{lecture}.\arabic{question}}

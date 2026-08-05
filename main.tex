@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% main.tex
+%% Mathematics Notes Template v1.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+11pt,
+a4paper,
+oneside
+]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{preamble}
+\input{commands}
+\input{style}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Course Information Course Information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\coursename}{Probability Theory}
+
+\newcommand{\semester}{Fall 2026}
+
+\newcommand{\university}{Tata Institute of Fundamental Research - CAM}
+
+\newcommand{\authorname}{Kartick Samanta}
+
+\newcommand{\instructor}{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\pdfbookmark[0]{Front Cover}{cover}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\thispagestyle{empty}
+
+%------------------------------------------------
+% Left colored strip
+%------------------------------------------------
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[Primary]
+    (current page.north west)
+    rectangle
+    ([xshift=2.2cm]current page.south west);
+\end{tikzpicture}
+
+%------------------------------------------------
+% Main content
+%------------------------------------------------
+
+\begin{center}
+
+\vspace*{1.8cm}
+
+{\fontsize{34}{40}\selectfont\bfseries Probability Theory}
+
+\vspace{0.5cm}
+
+{\Large\itshape Lecture Notes}
+
+\vspace{0.8cm}
+
+\rule{0.55\textwidth}{0.8pt}
+
+{\Large Instructor: Dr. Nishant Chandgotia} 
+
+\rule{0.55\textwidth}{0.8pt}
+\vfill
+
+%-------------------------------
+% University Logo
+%-------------------------------
+
+
+{\large  Written By-} 
+\vspace{0.8cm}
+
+{\Large\bfseries Kartick Samanta}
+
+\vspace{0.2cm}
+
+\includegraphics[width=0.7\textwidth]{figures/logo.png}
+
+
+\vfill
+\vspace{0.8cm}
+
+{\large Fall 2026}
+
+\vspace{0.2cm}
+
+
+\rule{0.35\textwidth}{0.5pt}
+
+\vspace{0.2cm}
+
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beautiful Cover Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pdfbookmark[0]{Title Page}{cover 2}
+
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+
+\vspace*{2cm}
+
+{\Huge\bfseries Probability Theory}
+
+\vspace{0.4cm}
+
+{\Large Lecture Notes}
+
+\vspace{0.8cm}
+
+\rule{0.8\linewidth}{1pt}
+
+\vspace{0.3cm}
+
+{\Large Fall 2026}
+
+\vspace{0.3cm}
+
+\rule{0.8\linewidth}{0.5pt}
+
+\vfill
+
+\begin{tabular}{rl}
+
+\textbf{Student} &
+Kartick Samanta \\[0.4cm]
+
+\textbf{Course} &
+Probability Theory \\[0.4cm]
+
+\textbf{Instructor} &
+Dr. Nishant Chandgotia \\[0.4cm]
+
+\textbf{University} &
+TIFR- CAM \\
+
+\end{tabular}
+
+\vfill
+
+%\includegraphics[width=0.18\textwidth]{figures/university_logo.png}
+
+\vspace{0.7cm}
+
+{\large\today}
+
+\end{center}
+
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Front Matter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\pagenumbering{roman}
+
+{
+\pagestyle{tocstyle}
+\phantomsection
+\pdfbookmark[0]{Contents}{contents}
+\tableofcontents
+\thispagestyle{tocstyle}
+\cleardoublepage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Main Matter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lectures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\input{lectures/lecture01}
+
+%\input{lectures/lecture03}
+
+%\input{lectures/lecture04}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\nocite{*}
+\printbibliography
+
+\end{document}

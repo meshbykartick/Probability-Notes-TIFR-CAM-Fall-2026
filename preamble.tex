@@ -1,0 +1,310 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% preamble.tex
+%% Mathematics Notes Template v1.0
+%% Author : Kartick Samanta
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ENCODING & FONT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LANGUAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[english]{babel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PAGE GEOMETRY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+a4paper,
+left=1in,
+right=1in,
+top=1in,
+bottom=1in,
+headheight=16pt,
+headsep=0.3in,
+footskip=0.45in
+]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MATHEMATICS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{physics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% GRAPHICS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TIKZ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{
+arrows.meta,
+calc,
+positioning,
+matrix,
+decorations.pathmorphing,
+shapes,
+patterns,
+fit,
+backgrounds
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[dvipsnames]{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TCOLORBOX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[most]{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ENUMERATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HYPERLINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{hyperref}
+\usepackage{bookmark}
+\hypersetup{
+colorlinks=true,
+linkcolor=RoyalBlue,
+citecolor=ForestGreen,
+urlcolor=MidnightBlue,
+pdfauthor={Kartick Samanta},
+pdfcreator={LaTeX},
+pdfproducer={pdfLaTeX}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CLEVER REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[nameinlink]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=nyt
+]{biblatex}
+
+\addbibresource{bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% QUOTES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{csquotes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADER & FOOTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE FORMAT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{titlesec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MINI TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{titletoc}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CODE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PDF INCLUSION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXTRA UTILITIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage{etoolbox}
+\usepackage{comment}
+\usepackage{datetime2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BETTER SPACING
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ENUM STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlist[itemize]{
+itemsep=0.25em,
+topsep=0.25em
+}
+
+\setlist[enumerate]{
+itemsep=0.25em,
+topsep=0.25em
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Main theme
+
+\definecolor{Primary}{HTML}{1F4E79}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Pastel theorem colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{DefBorder}{HTML}{3A7BD5}
+\definecolor{DefBack}{HTML}{EDF6FF}
+
+\definecolor{ThmBorder}{HTML}{4063D8}
+\definecolor{ThmBack}{HTML}{F3F6FF}
+
+\definecolor{LemBorder}{HTML}{7B5CB8}
+\definecolor{LemBack}{HTML}{F7F2FD}
+
+\definecolor{PropBorder}{HTML}{5E72E4}
+\definecolor{PropBack}{HTML}{F3F4FE}
+
+\definecolor{CorBorder}{HTML}{2A9D8F}
+\definecolor{CorBack}{HTML}{F0FBF8}
+
+\definecolor{ExBorder}{HTML}{4CAF50}
+\definecolor{ExBack}{HTML}{F2FBF3}
+
+\definecolor{RemBorder}{HTML}{8D99AE}
+\definecolor{RemBack}{HTML}{F8F9FA}
+
+\definecolor{WarnBorder}{HTML}{F4A261}
+\definecolor{WarnBack}{HTML}{FFF8F0}
+
+\definecolor{ImpBorder}{HTML}{0077B6}
+\definecolor{ImpBack}{HTML}{EEF8FF}
+
+\definecolor{TodoBorder}{HTML}{E9C46A}
+\definecolor{TodoBack}{HTML}{FFFBEA}
+
+\definecolor{QuesBorder}{HTML}{C06C84}
+\definecolor{QuesBack}{HTML}{FFF4F7}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\section}
+{\Large\bfseries\color{Primary}}
+{\thesection.}
+{0.5em}
+{}
+
+\titleformat{\subsection}
+{\large\bfseries}
+{\thesubsection}
+{0.5em}
+{}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries}
+{\thesubsubsection}
+{0.5em}
+{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% THEOREM STYLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tcbset{
+    enhanced,
+    breakable,
+    boxrule=0.6pt,
+    arc=2mm,
+    outer arc=2mm,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt,
+    before skip=10pt,
+    after skip=10pt,
+    fonttitle=\bfseries,
+    coltitle=black,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Shared Counter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcounter{maincounter}[section]
+%\renewcommand{\themaincounter}{\thesection.\arabic{maincounter}}
+
+
+
+

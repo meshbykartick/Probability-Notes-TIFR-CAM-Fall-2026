@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 01
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{01}
+{05 August 2026}
+{Introduction to Probability}
+{Prof.Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation and Some Problems: Monty Hall and  Sleeping Beauty Problem}
+
+\begin{question}{Sleeping Beauty Problem}{sleeping-beauty}
+
+
+ Princess, Villain, (Powerful Drug), Princess will sleep 2 years straight. Villain tosses a fiar coin, If Heads appear Princess wakes up once briefly at the end of 1 year, If fails \(\to \) at the end of 2 years. n no of cased, the princess will have any information about time of memory of having woken up. Suppose the princess wakes up, You ask what is the Probability of Heads what should the princess answer?
+
+\end{question}
+Solution:
+\begin{itemize}
+
+\item \(\frac{1}{2}\) 
+        No information exchanged so probability should be \(\frac{1}{2}\), If repeated indipendently a milliion times, half chances each.
+
+\item \(\frac{2}{3}\) 
+        There are possibilities of this. Proportion of waking during Heads is \(\frac{2}{3}\),and \ldots \(\frac{1}{3}\)
+\item \(\frac{3}{4}\) 
+\end{itemize}
+
+Villain tosses once, H \(\to \)Villain tosses again, Two Possibilities H and T, so,
+
+\begin{itemize}
+    \item HH \(\to \frac{1}{4}\)
+    \item HT \(\to \frac{1}{4}\)
+    \item T \(\to \frac{1}{2}\)
+\end{itemize}
+\begin{important}
+All the solutions above are wrong.
+The Above problem has no solution, Because it is ill posed, and this ill posedness is with respect to current Framework.
+
+\end{important}
+
+
+\begin{question}{Monty Hall Problem}{monty-hall}
+
+Monty Hall Problem: Todo: Add figure.  There are three doors: one hides a car and the other two hide goats. After you choose one door say A, the host opens another door revealing a goat.
+\begin{enumerate}
+    \item Question: Should you switch? 
+    \item Probability car behind C \(>\) Probability car behind A.
+\end{enumerate}
+
+\end{question}
+Solution:  Yes,  we should change our decision, 
+
+Initially, the probability that your chosen door contains the car is
+\(
+P(\text{chosen door})=\frac{1}{3},
+\)
+while the probability that the car is behind one of the other two doors is
+\(
+P(\text{other two doors})=\frac{2}{3}.
+\)
+
+Since the host always reveals a goat, this entire probability concentrates on the remaining unopened door. Therefore,
+\(
+P(\text{Win by staying})=\frac{1}{3}, \qquad
+P(\text{Win by switching})=\frac{2}{3}.
+\)
+Hence, switching gives twice the probability of winning compared to staying.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lecturesummary}
+
+\item Sleeping Beauty Problem
+
+\item Monty Hall Problem
+
+\end{lecturesummary}
+
+\lectureend
