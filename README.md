@@ -13,6 +13,14 @@ This repository contains my personal lecture notes for the Probability Theory co
 The notes are prepared in **LaTeX** using a custom-designed template optimized for mathematical lecture note-taking. The repository is maintained using **Git** for version control and is updated regularly after every lecture.
 
 
+## 📖 Lecture Notes
+
+[<img src="https://img.shields.io/badge/Read%20Notes-PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" height="40">](https://meshbykartick.github.io/Probability-Notes-TIFR-CAM-Fall-2026/main.pdf)
+
+## 📚 Resources
+
+- 📄 **[Read the Complete Notes (PDF)](./main.pdf)**
+
 # 📂 Repository Structure
 
 ```
