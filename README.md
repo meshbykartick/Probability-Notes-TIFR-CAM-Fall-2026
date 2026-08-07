@@ -12,29 +12,6 @@ This repository contains my personal lecture notes for the Probability Theory co
 
 The notes are prepared in **LaTeX** using a custom-designed template optimized for mathematical lecture note-taking. The repository is maintained using **Git** for version control and is updated regularly after every lecture.
 
----
-
-## ✨ Features
-
-- 📄 Beautiful custom LaTeX template
-- 📚 Lecture-wise organization
-- 🎨 Colored theorem environments
-- 📑 Automatic Table of Contents
-- 🔖 PDF Bookmarks
-- 📖 Bibliography using BibLaTeX
-- 🧠 Custom theorem, definition, lemma, proposition, etc.
-- 📌 Lecture summaries
-- 📋 Reading recommendations
-- ❓ Question environments
-- 💡 Important note boxes
-- ⚠️ Warning boxes
-- 📝 Professor notes
-- 🕰️ Historical notes
-- 🎯 Optimized for live classroom note-taking
-- ⚡ Neovim + UltiSnips workflow
-- 🔄 Version controlled using Git
-
----
 
 # 📂 Repository Structure
 
@@ -54,9 +31,6 @@ Probability-Notes-TIFR-CAM-Fall-2026/
 │   └── ...
 │
 ├── figures/
-│
-│
-├── assets/
 │
 ├── Probability_Notes.pdf
 │
@@ -90,29 +64,6 @@ Probability-Notes-TIFR-CAM-Fall-2026/
 
 The notes are organized lecture-wise.
 
----
-
-# 🛠️ Build Instructions
-
-Compile using **latexmk**
-
-```bash
-latexmk -pdf main.tex
-```
-
-Clean auxiliary files
-
-```bash
-latexmk -c
-```
-
-Complete clean
-
-```bash
-latexmk -C
-```
-
----
 
 # ⚙️ Software Used
 
