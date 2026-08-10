@@ -476,6 +476,70 @@ b
 \)
 (\textbf{Central Limit Theorem / De Moivre--Laplace})
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lectureend
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quiz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\lectureend
+\section{Quiz, 10 August 2026 }
+
+\begin{quiz}
+
+\begin{enumerate}
+
+    \item Let $p<\frac12$. Suppose we toss $n$ coins independently such
+    that the probability of heads is $p$ and tails is $q=1-p$.
+    
+    For what value of $k$ is the probability of getting $k$ heads
+    maximised?
+
+    \item For probability vectors
+    \(
+    P=(p_1,p_2,\ldots,p_n),
+    \qquad
+    Q=(q_1,q_2,\ldots,q_n),
+    \)
+    where
+    \(
+    p_i,q_i>0,
+    \qquad
+    \sum_i p_i=\sum_i q_i=1,
+    \)
+    define the Kullback--Leibler divergence by
+    \[
+    D_{KL}(P\|Q)
+    =
+    \sum_i p_i\log\left(\frac{p_i}{q_i}\right).
+    \]
+
+    Use Jensen's inequality to show that
+    \(
+    D_{KL}(P\|Q)\geq 0
+    \)
+    with equality if and only if
+    \(
+    P=Q.
+    \)
+
+    \item Let $\alpha\in(0,1)$. Prove that the number of heads equalling
+    $n\alpha$ is asymptotically
+    \[
+    \frac{1}
+    {\sqrt{2\pi n\alpha(1-\alpha)}}
+    \exp\left(
+    -nD_{KL}(P\|Q)
+    \right),
+    \]
+    where
+    \(
+    P=(\alpha,1-\alpha),
+    \qquad
+    Q=(p,q).
+    \)
+
+\end{enumerate}
+
+\end{quiz}
+
+
