@@ -53,7 +53,7 @@ Probability-Notes-TIFR-CAM-Fall-2026/
 |------|---------|
 | **Institute** | TIFR Centre for Applicable Mathematics |
 | **Semester** | Fall 2026 |
-| **Instructor** | DR. Nishant Chandgotia |
+| **Instructor** | Dr. Nishant Chandgotia |
 | **Language** | English |
 
 ---
