@@ -4,95 +4,542 @@
 {Introduction to Probability}
 {Dr. Nishant Chandgotia}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Todo:Change Name of this section}
+\section{Some Introductory Idea}
 
-Let, we have a sequence \(HT\cdotT - \) total n no.
-What is the Probability of the above sequence, its \(\~ \frac{1}{2^n}\)
-All sequences with k heads, \(P(k \text{Heads})=\frac{\binom{n}{k}{2^n}\) 
-
-    Uniform Distribution of \(\{1,2,\cdot r\}\)
-    If \(\left{x_{1},_{2},\ldots,x_{k}\right}\) are "Randomly" indipendently choosen then \(\sum_{n=1}^{k} X_i \) nearly equal to \(\frac{r+1}{2}\cdot k\)
-
-    Todo: add striling approximation,
-
-     \(\frac{P(#Heads =k)}{P(#Heads =k+1)}=\frac{k+1}{n-k}\) 
-
-     \(\frac{k+1}{n-k}>1 iff k> \frac{n-1}{2}\ )
+Suppose we toss a fair coin $n$-times.
+\(
+HTH\;HTTH\;\cdots\;T
+\)
 
 
+What is the Probability of the above sequence ? Its-  \(\sim \frac{1}{2^n}\)
 
-     We know \(\binom{n}{k}\) is maximum at \(k=\frac{n}{2}\)
+If we have all sequences with $k$-heads then
+\(
+P(k\text{-heads})
+=
+\frac{\binom{n}{k}}{2^n},
+\)
+and it will be maximum when
+\(
+k=\frac{n}{2}.
+\)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-     \\frac{\frac{\binom{n}{\frac{n}{2}}}{2^n} \sim \frac{\sqrt{2\pi n} {\frac{n}{e}}_n}{2.\frac{n}{2}}\\frac{n}{2e}}_n}{2^n= \frac{2}{\sqrt{2\pin} }}
+If
+\(
+x_1,x_2,\ldots,x_k
+\)
+are randomly independently chosen, then
+\(
+\sum_{i=1}^{k}x_i
+\sim
+\frac{r+1}{2}\cdot k,
+\)
+if they are chosen from the uniform distribution on
+\(
+\{1,2,\ldots,r\}.
+\)
 
-It would be unjustified to say #Head =\(\frac{n}{2}\) with high probability. 
-\(k=\alphan \qquad \alpha \neq \frac{1}{2}\) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now Stirling's Formula,
+\(
+n!
+\sim
+\sqrt{2\pi n}
+\left(\frac{n}{e}\right)^n,
+\)~~~
+for very large $n$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now,
+\[
+\frac{P(\text{number of heads }=k)}
+     {P(\text{number of heads }=k+1)}
+=
+\frac{k+1}{n-k}.
+\]
+
+So,
+\(
+\frac{k+1}{n-k}>1
+\iff
+k>\frac{n-1}{2},
+\)
+and
+\(
+\frac{k+1}{n-k}<1
+\iff
+k<\frac{n-1}{2}.
+\)
+
+As
+\(
+\binom{n}{k}
+\)
+is maximum when
+\(
+k=\frac{n}{2},
+\)
+therefore,
+\(
+\frac{\binom{n}{n/2}}{2^n}
+\sim
+\frac{2}{\sqrt{2\pi n}}
+\qquad
+\text{(By using Stirling's Formula).}
+\)
+\vspace{15pt}
+It would be unjustified to say
+\(
+\#\text{Heads}=\frac{n}{2}
+\)
+with high probability.
+
+Suppose
+\(
+k=\alpha n,
+\qquad
+\alpha\neq\frac12.
+\)
+
+Then
+\(
+\frac{\binom{n}{k}}{2^n}
+\sim
+\frac{1}{\sqrt{2\pi n}}
+e^{\,n\left(
+-\alpha\log\alpha
+-(1-\alpha)\log(1-\alpha)
+-\log2
+\right)}.
+\)
+
+Let,
+\(
+H(\alpha)
+=
+-\alpha\log\alpha
+-
+(1-\alpha)\log(1-\alpha),
+\)
+be Boltzman Shanon Entropy (Mathematical theory of Communications.
+
+Hence,
+\[
+\frac{\binom{n}{k}}{2^n}
+\sim
+\frac{1}{\sqrt{2\pi n}}
+e^{\,n\left(
+H(\alpha)-H\!\left(\frac12\right)
+\right)}.
+\]
+
+Now,
+\(
+H(\alpha)
+\le
+H\!\left(\frac12\right),
+\)
+by using Jensen's inequality as \(\log~ \) is a concave function.
+
+Equivalently,
+\(
+-\alpha\log\alpha
+-
+(1-\alpha)\log(1-\alpha)
+<
+\ln2.
+\)
+
+Therefore,
+\(
+\frac{\binom{n}{k}}{2^n}
+\longrightarrow0
+\)
+exponentially.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now,
+\[
+P\!\left(
+\#\text{Heads}
+\in
+\bigl(
+(\alpha-\varepsilon)n,
+(\alpha+\varepsilon)n
+\bigr)
+\right)
+=
+\sum_{k=(\alpha-\varepsilon)n}^{(\alpha+\varepsilon)n}
+\frac{\binom{n}{k}}{2^n}.
+\qquad ,\text{where}
+\varepsilon>0,
+\qquad
+\frac12
+\notin
+(\alpha-\varepsilon,\alpha+\varepsilon).
+\]
+
+Also,
+\[
+\frac{2n\varepsilon}{2^n}
+\binom{n}{(\alpha-\varepsilon)n}
+\le
+\cdots
+\le
+\frac{2n\varepsilon}{2^n}
+\binom{n}{(\alpha+\varepsilon)n}.
+\]
+
+Therefore, the asymptotic bounds are
+\(
+\frac{2n\varepsilon}{\sqrt{2\pi n}}
+e^{\,n\left(
+H(\alpha-\varepsilon)
+-
+H\!\left(\frac12\right)
+\right)}
+\)
+and
+\(
+\frac{2n\varepsilon}{\sqrt{2\pi n}}
+e^{\,n\left(
+H(\alpha+\varepsilon)
+-
+H\!\left(\frac12\right)
+\right)}.
+\)
 
 
-\(\frac{\binom {n}{\alpha n }}{2^n}\sim \frac{1}{\sqrt{2\pi n} }e^{n.(-\alpha \log\alpha - (1-\alpha)\log (1-\alpha)-\log_2)\)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-let, \(H(\alpha)=-\alpha \log\alpha - (1-\alpha)\log (1-\alpha)\) be Boltzman Shanon Entropy (Mathematical theory of communications),
-\(H(\frac{1}{2}= \log 2)\)
+Therefore,
+\(
+P\!\left(
+\#\text{Heads}
+\in
+\bigl(
+(\alpha-\varepsilon)n,
+(\alpha+\varepsilon)n
+\bigr)
+\right)
+\longrightarrow0
+\)
+exponentially as
+\(
+n\to\infty.
+\)
 
-Todo: Add figure of  Concave Function.
-By Jensen's Ineqauality (\(\log\) is Concave, \(-\alpha \log\alpha - (1-\alpha)\log (1-\alpha)<\log(2)\)
+Hence,
+\[
+P\!\left(
+\#\text{Heads}
+\in
+n\left(
+\frac12-\varepsilon,
+\frac12+\varepsilon
+\right)
+\right)
+\longrightarrow1.
+\]
+This is called the \textbf{Large Deviation Phenomenon}.
 
-\[P(#Heads \in \left( \left( \alpha-\epsilon \right)n ,\left( \alpha+\epsilon \right)n \right))= \sum_{k=\left( \alpha -\epsilon \right)n}^{\left( \alpha+\epsilon \right)n} \frac{\binom{n}{k}}{2^n}\]
+\(
+P(\text{staying close to mean})
+\longrightarrow1,
+\)
 
-Assymptotic bounds are \(\frac{2n\epsilon}{\sqrt{2n\pi}}e_{n\left( H\left( \alpha -\epsilon \right)-H\left( \frac{1}{2} \right) \right)}\) and \(\frac{2n\epsilon}{\sqrt{2n\pi}}e_{n\left( H\left( \alpha +\epsilon \right)-H\left( \frac{1}{2} \right) \right)}\)
-\(\implies P(#Heads \in \left( \left( \alpha-\epsilon \right)n ,\left( \alpha+\epsilon \right)n \right)) \to 0\) exponentially as n \(\to \infty\) 
-\(P(#Heads \in n\left( \frac{1}{2}-\epsilon, \frac{1}{2}+\epsilon \right)) \to 1\)
-Large deviation Phenomenon, \(P(\textrm{Staying close to mean })\to_1\)
-\(P(deviating from the mean significantly )\to 0\) exponentially.
-
-In our case rate function \(=h\left( \alpha \right) - H\left( \frac{1}{2} \right)\) 
-
-\(f_n = \frac{#Heads}{n}\) 
-\(P(\left| \frac{#Heads}{n}-\frac{1}{2} \right|>\epsilon )\to 0\)
-Todo: Add definition of convergence in  measuure and probability.
-
-
-\begin{question}{Question:}{some-new-problem}
-
-\( g_n \to g in measure.
-\implies g_n \text{almost everywhere}\)
-\end{question}
-
-Enumerate dyadic \(\left| \frac{k}{2_n}, \frac{k+1}{2^n} \right| \),
- \(I_{1} + I_{2}  \cdots  I_{n}\)
- \(g_k = 1_{I_k}\)
-
-  \(g_k\to_0\) in measure.
-  But \(g_k \to 0 \) almost everywhere.
-
-
-\(P(\left| f_n-\frac{1}{2} \right|>\epsilon )\to 0\)
-Since this is exponential decaying we will later prove that \(f_n \to \frac{1}{2}\) almost everywhere. (Borel Cantelli)
-
-What is the measure space of \(\left\{ H, T \right\}^script{N}  \), Sigma Algebra Generated by the product topology . Basis of the topology are  cylinder sets.
-
-Take \(k in script N \) finite  and  fix \(f: K \to \left\{ H,T \right\} \) 
-
-\( \left[ f \right]=g \in \left\{ H, T \right\}^script{N}  \) 
-\(g|_set =f\)
-
-Todo:Some Calculation to be added.
+whereas
+\(
+P(\text{deviating from the mean significantly})
+\longrightarrow0
+\)
+exponentially.
 
 
-\end{important}
+\vspace{15pt}
+In our case, the rate function is
+\(
+H(\alpha)-H\!\left(\frac12\right).
+\)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-alpha Beta Gamma
+Let
+\(
+f_n
+=
+\frac{\#\text{Heads}}{n}.
+\)
+Then
+\(
+f_n
+\longrightarrow
+f
+\qquad
+\text{in measure.}
+\)
 
-\begin{lecturesummary}
+Therefore,
 
-\item Todo: Lecture Summary Here
-\item Axiomatic measure theory.
-\item Law of Large Number
-\item Various form of convergence, Convergence in Distribution.
-\item Central limit Theorem/Large Deviation.
+\[
+P\!\left(
+\left|
+\frac{\#\text{Heads}}{n}
+-
+\frac12
+\right|
+>
+\varepsilon
+\right)
+\longrightarrow0
+\qquad\text{as }n\to\infty.
+\tag{1}
+\]
 
-\end{lecturesummary}
+We call this \textbf{convergence in probability}.
 
+Later we shall use the \textbf{Borel--Cantelli Lemma} to prove from
+(1) that
+\(
+\frac{\#\text{Heads}}{n}
+\longrightarrow
+\frac12
+\)
+almost surely.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The sample space is
+\(
+\Omega=\{H,T\}^{\mathbb N}.
+\)
+We equip \(\Omega\) with the product topology, where each copy of
+
+\(\{H,T\}\) carries the discrete topology. The corresponding Borel
+\(\sigma\)-algebra,
+\(
+\mathcal{F}=\mathcal{B}(\Omega),
+\)
+is generated by the cylinder sets. The basis of the product topology consists of the cylinder sets, namely sets of the form
+\(
+\{\omega\in\Omega:
+\omega_{i_1}=a_1,\ldots,\omega_{i_k}=a_k\}\),
+where \( i_1,\ldots,i_k\) are finitely many coordinates and each
+$a_j\in\{H,T\}$.
+
+If we only specify the first n coordinates, they look like
+$\{\omega:\omega_1=a_1,\ldots,\omega_n=a_n\}$,
+which are the basic cylinders.
+
+The complete probability space is
+\(
+\left(\Omega,\mathcal{F},\mu\right)
+=
+\left(\{H,T\}^{\mathbb N},
+\mathcal{B}\!\left(\{H,T\}^{\mathbb N}\right),
+\mu\right),
+\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Recall,
+
+\[
+P\!\left(
+\#\text{Heads}
+=
+\frac n2
+\right)
+\sim
+\frac{2}{\sqrt{2\pi n}}.
+\]
+
+Suppose
+
+\[
+c>0,
+\]
+
+and let
+\(
+\left|
+k-\frac n2
+\right|
+<
+c\sqrt n.
+\)
+
+Then
+
+\[
+P(\#\text{Heads}=k)
+=
+\frac{
+\dfrac{n!}{(n-k)!k!}
+}{2^n}.
+\]
+
+Using Stirling's formula,
+
+\[
+P(\#\text{Heads}=k)
+\sim
+\frac{1}
+{\sqrt{\pi n/2}}
+\cdot
+\frac{1}
+{
+\left(
+2-\frac{2k}{n}
+\right)^{\,n-k}
+\left(
+\frac{2k}{n}
+\right)^k
+}.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\[
+=
+\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
+\cdot
+\frac{1}{
+\left(
+1+\left(1-\frac{2k}{n}\right)
+\right)^{n-k}
+\left(
+1+\left(\frac{2k}{n}-1\right)
+\right)^k
+}.
+\]
+
+Hence,
+
+\[
+=
+\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
+\exp\!\left(
+-\frac{(n-2k)^2}{n}
+\right).
+\]
+
+Equivalently, \(\qquad \qquad 
+=
+\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
+\exp\!\left(
+-\frac{\left(k-\frac n2\right)^2}
+{2\cdot\frac n4}
+\right),
+\)
+which resembles the normal distribution.
+
+\[
+\mu=\frac12,
+\qquad
+\sigma=\frac12.
+\]
+
+Hence,
+
+\[
+=
+\frac{1}{\sqrt{2\pi\sigma^2 n}}
+\exp\!\left(
+-\frac{(k-\mu n)^2}
+{2\sigma^2 n}
+\right).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We can prove,
+\(
+P\!\left(
+a<
+\frac{\#\text{Heads}-\mu n}
+{\sigma\sqrt n}
+<
+b
+\right)
+\longrightarrow
+\int_a^b
+\varphi(x)\,dx,
+\qquad
+\text{as }n\to\infty.
+\)
+(\textbf{Central Limit Theorem / De Moivre--Laplace})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lectureend
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quiz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quiz, 10 August 2026 }
+
+\begin{quiz}
+
+\begin{enumerate}
+
+    \item Let $p<\frac12$. Suppose we toss $n$ coins independently such
+    that the probability of heads is $p$ and tails is $q=1-p$.
+    
+    For what value of $k$ is the probability of getting $k$ heads
+    maximised?
+
+    \item For probability vectors
+    \(
+    P=(p_1,p_2,\ldots,p_n),
+    \qquad
+    Q=(q_1,q_2,\ldots,q_n),
+    \)
+    where
+    \(
+    p_i,q_i>0,
+    \qquad
+    \sum_i p_i=\sum_i q_i=1,
+    \)
+    define the Kullback--Leibler divergence by
+    \[
+    D_{KL}(P\|Q)
+    =
+    \sum_i p_i\log\left(\frac{p_i}{q_i}\right).
+    \]
+
+    Use Jensen's inequality to show that
+    \(
+    D_{KL}(P\|Q)\geq 0
+    \)
+    with equality if and only if
+    \(
+    P=Q.
+    \)
+
+    \item Let $\alpha\in(0,1)$. Prove that the number of heads equalling
+    $n\alpha$ is asymptotically
+    \[
+    \frac{1}
+    {\sqrt{2\pi n\alpha(1-\alpha)}}
+    \exp\left(
+    -nD_{KL}(P\|Q)
+    \right),
+    \]
+    where
+    \(
+    P=(\alpha,1-\alpha),
+    \qquad
+    Q=(p,q).
+    \)
+
+\end{enumerate}
+
+\end{quiz}
+
 

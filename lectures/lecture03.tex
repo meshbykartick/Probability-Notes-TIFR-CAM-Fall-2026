@@ -1,545 +1,454 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 03
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \lecture
-{02}
-{Friday, 07 August 2026}
+{03}
+{Wednesday, 12 August 2026}
 {Introduction to Probability}
 {Dr. Nishant Chandgotia}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Some Introductory Idea}
+\section{Central Limit Theorem and Convergence}
 
-Suppose we toss a fair coin $n$-times.
-\(
-HTH\;HTTH\;\cdots\;T
-\)
-
-
-What is the Probability of the above sequence ? Its-  \(\sim \frac{1}{2^n}\)
-
-If we have all sequences with $k$-heads then
-\(
-P(k\text{-heads})
-=
-\frac{\binom{n}{k}}{2^n},
-\)
-and it will be maximum when
-\(
-k=\frac{n}{2}.
-\)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-If
-\(
-x_1,x_2,\ldots,x_k
-\)
-are randomly independently chosen, then
-\(
-\sum_{i=1}^{k}x_i
-\sim
-\frac{r+1}{2}\cdot k,
-\)
-if they are chosen from the uniform distribution on
-\(
-\{1,2,\ldots,r\}.
-\)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Now Stirling's Formula,
-\(
-n!
-\sim
-\sqrt{2\pi n}
-\left(\frac{n}{e}\right)^n,
-\)~~~
-for very large $n$.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Now,
-\[
-\frac{P(\text{number of heads }=k)}
-     {P(\text{number of heads }=k+1)}
-=
-\frac{k+1}{n-k}.
-\]
-
-So,
-\(
-\frac{k+1}{n-k}>1
-\iff
-k>\frac{n-1}{2},
-\)
-and
-\(
-\frac{k+1}{n-k}<1
-\iff
-k<\frac{n-1}{2}.
-\)
-
-As
-\(
-\binom{n}{k}
-\)
-is maximum when
-\(
-k=\frac{n}{2},
-\)
-therefore,
-\(
-\frac{\binom{n}{n/2}}{2^n}
-\sim
-\frac{2}{\sqrt{2\pi n}}
-\qquad
-\text{(By using Stirling's Formula).}
-\)
-\vspace{15pt}
-It would be unjustified to say
-\(
-\#\text{Heads}=\frac{n}{2}
-\)
-with high probability.
-
-Suppose
-\(
-k=\alpha n,
-\qquad
-\alpha\neq\frac12.
-\)
-
-Then
-\(
-\frac{\binom{n}{k}}{2^n}
-\sim
-\frac{1}{\sqrt{2\pi n}}
-e^{\,n\left(
--\alpha\log\alpha
--(1-\alpha)\log(1-\alpha)
--\log2
-\right)}.
-\)
-
-Let,
-\(
-H(\alpha)
-=
--\alpha\log\alpha
--
-(1-\alpha)\log(1-\alpha),
-\)
-be Boltzman Shanon Entropy (Mathematical theory of Communications.
-
-Hence,
-\[
-\frac{\binom{n}{k}}{2^n}
-\sim
-\frac{1}{\sqrt{2\pi n}}
-e^{\,n\left(
-H(\alpha)-H\!\left(\frac12\right)
-\right)}.
-\]
-
-Now,
-\(
-H(\alpha)
-\le
-H\!\left(\frac12\right),
-\)
-by using Jensen's inequality as \(\log~ \) is a concave function.
-
-Equivalently,
-\(
--\alpha\log\alpha
--
-(1-\alpha)\log(1-\alpha)
-<
-\ln2.
-\)
-
-Therefore,
-\(
-\frac{\binom{n}{k}}{2^n}
-\longrightarrow0
-\)
-exponentially.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Now,
-\[
-P\!\left(
-\#\text{Heads}
-\in
-\bigl(
-(\alpha-\varepsilon)n,
-(\alpha+\varepsilon)n
-\bigr)
-\right)
-=
-\sum_{k=(\alpha-\varepsilon)n}^{(\alpha+\varepsilon)n}
-\frac{\binom{n}{k}}{2^n}.
-\qquad ,\text{where}
-\varepsilon>0,
-\qquad
-\frac12
-\notin
-(\alpha-\varepsilon,\alpha+\varepsilon).
-\]
-
-Also,
-\[
-\frac{2n\varepsilon}{2^n}
-\binom{n}{(\alpha-\varepsilon)n}
-\le
-\cdots
-\le
-\frac{2n\varepsilon}{2^n}
-\binom{n}{(\alpha+\varepsilon)n}.
-\]
-
-Therefore, the asymptotic bounds are
-\(
-\frac{2n\varepsilon}{\sqrt{2\pi n}}
-e^{\,n\left(
-H(\alpha-\varepsilon)
--
-H\!\left(\frac12\right)
-\right)}
-\)
-and
-\(
-\frac{2n\varepsilon}{\sqrt{2\pi n}}
-e^{\,n\left(
-H(\alpha+\varepsilon)
--
-H\!\left(\frac12\right)
-\right)}.
-\)
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Therefore,
-\(
-P\!\left(
-\#\text{Heads}
-\in
-\bigl(
-(\alpha-\varepsilon)n,
-(\alpha+\varepsilon)n
-\bigr)
-\right)
-\longrightarrow0
-\)
-exponentially as
-\(
-n\to\infty.
-\)
-
-Hence,
-\[
-P\!\left(
-\#\text{Heads}
-\in
-n\left(
-\frac12-\varepsilon,
-\frac12+\varepsilon
-\right)
-\right)
-\longrightarrow1.
-\]
-This is called the \textbf{Large Deviation Phenomenon}.
-
-\(
-P(\text{staying close to mean})
-\longrightarrow1,
-\)
-
-whereas
-\(
-P(\text{deviating from the mean significantly})
-\longrightarrow0
-\)
-exponentially.
-
-
-\vspace{15pt}
-In our case, the rate function is
-\(
-H(\alpha)-H\!\left(\frac12\right).
-\)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Let
-\(
-f_n
-=
-\frac{\#\text{Heads}}{n}.
-\)
-Then
-\(
-f_n
-\longrightarrow
-f
-\qquad
-\text{in measure.}
-\)
-
-Therefore,
+Suppose we toss a fair coin independently $n$ times. The Central Limit
+Theorem suggests that
 
 \[
-P\!\left(
-\left|
-\frac{\#\text{Heads}}{n}
--
-\frac12
-\right|
->
-\varepsilon
-\right)
-\longrightarrow0
-\qquad\text{as }n\to\infty.
-\tag{1}
-\]
-
-We call this \textbf{convergence in probability}.
-
-Later we shall use the \textbf{Borel--Cantelli Lemma} to prove from
-(1) that
-\(
-\frac{\#\text{Heads}}{n}
-\longrightarrow
-\frac12
-\)
-almost surely.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The sample space is
-\(
-\Omega=\{H,T\}^{\mathbb N}.
-\)
-We equip \(\Omega\) with the product topology, where each copy of
-
-\(\{H,T\}\) carries the discrete topology. The corresponding Borel
-\(\sigma\)-algebra,
-\(
-\mathcal{F}=\mathcal{B}(\Omega),
-\)
-is generated by the cylinder sets. The basis of the product topology consists of the cylinder sets, namely sets of the form
-\(
-\{\omega\in\Omega:
-\omega_{i_1}=a_1,\ldots,\omega_{i_k}=a_k\}\),
-where \( i_1,\ldots,i_k\) are finitely many coordinates and each
-$a_j\in\{H,T\}$.
-
-If we only specify the first n coordinates, they look like
-$\{\omega:\omega_1=a_1,\ldots,\omega_n=a_n\}$,
-which are the basic cylinders.
-
-The complete probability space is
-\(
-\left(\Omega,\mathcal{F},\mu\right)
-=
-\left(\{H,T\}^{\mathbb N},
-\mathcal{B}\!\left(\{H,T\}^{\mathbb N}\right),
-\mu\right),
-\)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Recall,
-
-\[
-P\!\left(
-\#\text{Heads}
-=
-\frac n2
-\right)
-\sim
-\frac{2}{\sqrt{2\pi n}}.
-\]
-
-Suppose
-
-\[
-c>0,
-\]
-
-and let
-\(
-\left|
-k-\frac n2
-\right|
-<
-c\sqrt n.
-\)
-
-Then
-
-\[
-P(\#\text{Heads}=k)
-=
-\frac{
-\dfrac{n!}{(n-k)!k!}
-}{2^n}.
-\]
-
-Using Stirling's formula,
-
-\[
-P(\#\text{Heads}=k)
-\sim
-\frac{1}
-{\sqrt{\pi n/2}}
-\cdot
-\frac{1}
-{
-\left(
-2-\frac{2k}{n}
-\right)^{\,n-k}
-\left(
-\frac{2k}{n}
-\right)^k
-}.
-\]
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\[
-=
-\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
-\cdot
-\frac{1}{
-\left(
-1+\left(1-\frac{2k}{n}\right)
-\right)^{n-k}
-\left(
-1+\left(\frac{2k}{n}-1\right)
-\right)^k
-}.
-\]
-
-Hence,
-
-\[
-=
-\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
-\exp\!\left(
--\frac{(n-2k)^2}{n}
-\right).
-\]
-
-Equivalently, \(\qquad \qquad 
-=
-\frac{1}{\sqrt{2\pi\cdot\frac{n}{4}}}
-\exp\!\left(
--\frac{\left(k-\frac n2\right)^2}
-{2\cdot\frac n4}
-\right),
-\)
-which resembles the normal distribution.
-
-\[
-\mu=\frac12,
-\qquad
-\sigma=\frac12.
-\]
-
-Hence,
-
-\[
-=
-\frac{1}{\sqrt{2\pi\sigma^2 n}}
-\exp\!\left(
--\frac{(k-\mu n)^2}
-{2\sigma^2 n}
-\right).
-\]
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-We can prove,
-\(
 P\!\left(
 a<
 \frac{\#\text{Heads}-\mu n}
-{\sigma\sqrt n}
-<
-b
+{\sigma\sqrt{n}}
+<b
 \right)
 \longrightarrow
-\int_a^b
-\varphi(x)\,dx,
+\int_a^b \varphi(x)\,dx,
 \qquad
-\text{as }n\to\infty.
+n\to\infty,
+\]
+
+where, for a fair coin,
+and
+
+\(
+\varphi(x)
+=
+\frac{1}{\sqrt{2\pi}}
+e^{-x^2/2}.
 \)
-(\textbf{Central Limit Theorem / De Moivre--Laplace})
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Galton Board}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{figures/GaltonBoard.png}
+    \caption{Galton board. Source: 
+    \href{https://upload.wikimedia.org/wikipedia/commons/d/d2/GaltonBoard.png}
+    {Wikimedia Commons}.}
+    \label{fig:galton-board}
+\end{figure}
+
+The Galton board gives a visual representation of a process whose
+distribution approaches a normal distribution.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Random Walk}
+
+A \emph{random walk} is a stochastic process in which the position
+changes randomly at each step.
+
+For example, consider a person starting at the origin. At every step,
+the person tosses a fair coin:
+
+\[
+\begin{cases}
+H &\longrightarrow \text{move one step to the right},\\
+T &\longrightarrow \text{move one step to the left}.
+\end{cases}
+\]
+
+This gives the classical one-dimensional symmetric random walk.
+
+There are several natural questions:
+
+\begin{questions}
+
+    \item Will the person return to the origin?
+
+    \item Will the person escape to infinity?
+
+    \item How often will the person return to the origin?
+
+\end{questions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Convergence in Distribution}
+
+We know, 
+\[
+\frac{\#\text{Heads}}{n}
+\longrightarrow
+\frac12.
+\]
+
+Now define
+\[
+f_n
+=
+\frac{\#\text{Heads}-\mu n}
+{\sigma\sqrt{n}}.
+\]
+
+Then the Central Limit Theorem states that
+
+\[
+P(a<f_n<b)
+\longrightarrow
+\int_a^b
+\frac{1}{\sqrt{2\pi}}
+e^{-x^2/2}\,dx.
+\]
+
+This leads to the notion of \emph{weak convergence}, or
+\emph{convergence in distribution}.
+
+A natural question is whether convergence in distribution implies
+almost-sure convergence.
+
+\begin{important}
+Convergence in distribution does not, in general, imply almost-sure
+convergence.
+\end{important}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{An Example}
+
+Consider the following random process.
+
+Start with $1$.
+
+Toss a fair coin independently at every step:
+
+
+\[
+\begin{cases}
+H &\longrightarrow \text{multiply by }2,\\
+T &\longrightarrow \text{multiply by }-2.
+\end{cases}
+\]
+
+After $n$ steps, define
+\[
+f_n
+=
+\frac{\text{product after $n$ steps}}{2^n}.
+\]
+
+Since every multiplication contributes either $2$ or $-2$,
+
+\[
+f_n\in\{-1,1\}.
+\]
+
+Moreover,
+
+\[
+P(f_n=1)=\frac12,
+\qquad
+P(f_n=-1)=\frac12.
+\]
+
+Thus the distribution of $f_n$ is the same for every $n$.
+
+However, $f_n$ does not converge almost surely.
+
+\begin{questions}
+
+    \item Does $f_n$ converge almost surely?
+
+    \item Does $f_n$ converge in $L^1$?
+
+    \item Does $f_n$ converge in probability?
+
+\end{questions}
+
+\begin{remark}
+
+The example illustrates that convergence in distribution is a weaker
+notion of convergence than almost-sure convergence.
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objects in Probability}
+
+There is a close analogy between measure theory and probability theory.
+
+\begin{table}[H]
+    \centering
+    \caption{Analogy between Measure Theory and Probability}
+    \label{tab:measure-probability}
+
+    \renewcommand{\arraystretch}{1.35}
+
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X
+    }
+
+        \hline
+
+        \textbf{Measure Theory}
+        &
+        \textbf{Probability}
+        \\
+
+        \hline
+
+        Measure space:
+        \(\left(\Omega,\mathcal{B},\mu\right)\)
+        &
+        Probability space:
+        \(\left(\Omega,\mathcal{B},\mathbb{P}\right)
+        \)
+
+        \\[1ex]
+
+        $\sigma$-algebra $\mathcal{B}$:
+        \(A\in\mathcal{B}\), where $\mu(A)$ is defined.
+        &
+        Event:
+        \(A\in\mathcal{B}\), for which
+        \(\mathbb{P}(A)\) is defined.
+
+        \\[1ex]
+
+        Elements:
+        \(\omega\in\Omega\)
+        &
+        Outcomes / samples:
+        \(\omega\in\Omega\)
+
+        \\[1ex]
+
+        Measurable function:
+        \[
+        f:(\Omega,\mathcal{B})
+        \longrightarrow
+        (S,\rho)
+        \]
+        &
+        Random variable:
+        \[
+        X:(\Omega,\mathcal{B},\mathbb{P})
+        \longrightarrow
+        (S,\rho)
+        \]
+
+        \\[1ex]
+
+        $L^1$-integrability:
+        \[
+        \int_\Omega |f|\,d\mu<\infty
+        \]
+        &
+        Mean / expectation:
+        \[
+        \mathbb{E}[X]
+        =
+        \int_\Omega X\,d\mathbb{P}
+        \]
+
+        \\[1ex]
+
+        $L^2$-norm:
+        \[
+        \|f\|_{L^2}^2
+        =
+        \int_\Omega |f|^2\,d\mu
+        \]
+        &
+        Variance:
+        \[
+        \operatorname{Var}(X)
+        =
+        \mathbb{E}[X^2]
+        -
+        \mathbb{E}[X]^2
+        \]
+
+        \\[1ex]
+
+        Push-forward measure:
+        \[
+        f_*\mu(A)
+        =
+        \mu\left(f^{-1}(A)\right)
+        \]
+        &
+        Distribution of $X$:
+        \[
+        \nu(A)
+        =
+        \mathbb{P}\left(X^{-1}(A)\right)
+        \]
+
+        \\[1ex]
+
+        Fourier transform:
+        \[
+        \widehat{f}(t)
+        =
+        \int_{\mathbb{R}}
+        e^{itx}f(x)\,dx
+        \]
+        &
+        Characteristic function:
+        \[
+        \Phi_X(t)
+        =
+        \mathbb{E}\left[e^{itX}\right]
+        \]
+
+        \\[1ex]
+
+        Convergence in measure
+        &
+        Convergence in probability
+
+        \\[1ex]
+
+        Almost everywhere (a.e.)
+        &
+        Almost surely (a.s.)
+
+        \\[1ex]
+
+        Convergence in $L^1$
+        &
+        Convergence in mean.
+
+        \\
+
+        \hline
+
+    \end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sample Space and Sigma Algebra}
+
+The first object in probability is the \emph{sample space}.
+
+\[
+\Omega
+=
+\text{the universe of all possible outcomes}.
+\]
+
+For example, for a single coin toss,
+\(
+\Omega=\{H,T\}.
+\)
+
+For a bus arriving at a non-negative time,
+\(
+\Omega=[0,\infty).
+\)
+
+For infinitely many coin tosses,
+\(
+\Omega=\{H,T\}^{\mathbb{N}}.
+\)
+
+An element of this space is an infinite sequence
+\(
+\omega=(\omega_1,\omega_2,\ldots),
+\qquad
+\omega_i\in\{H,T\}.
+\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Sigma Algebra}
+
+Let $\mathcal{B}$ denote the $\sigma$-algebra of events.
+
+For a single coin toss,
+\(
+\mathcal{B}
+=
+\left\{
+\varnothing,
+\{H\},
+\{T\},
+\{H,T\}
+\right\}.
+\)
+
+For the infinite product space
+\(\{H,T\}^{\mathbb{N}}\), the relevant $\sigma$-algebra is generated
+by cylinder sets.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Cylinder Sets}
+
+Suppose we are interested only in the first finitely many tosses.
+
+Let
+\(
+F\subset\mathbb{N}
+\)
+be a finite set and let
+\(
+a:F\longrightarrow\{H,T\}
+\)
+be a fixed assignment of heads and tails.
+
+Define
+\(
+[a]
+=
+\left\{
+\omega\in\{H,T\}^{\mathbb{N}}
+:
+\omega_i=a(i)
+\text{ for every }i\in F
+\right\}.
+\)
+
+The set $[a]$ specifies the outcomes of the coordinates belonging to
+the finite set $F$, while leaving all other coordinates unrestricted.
+
+Such sets are called \emph{cylinder sets}.
+
+They form a basis for the product topology on
+\(
+\{H,T\}^{\mathbb{N}}.
+\)
+
+We want to be able to assign a probability
+\(
+\mathbb{P}([a])
+\)
+to every cylinder set.
+
+For a fair coin, if $|F|=k$, then
+\(
+\mathbb{P}([a])
+=
+\frac{1}{2^k}.
+\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \lectureend
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Quiz
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Quiz, 10 August 2026 }
-
-\begin{quiz}
-
-\begin{enumerate}
-
-    \item Let $p<\frac12$. Suppose we toss $n$ coins independently such
-    that the probability of heads is $p$ and tails is $q=1-p$.
-    
-    For what value of $k$ is the probability of getting $k$ heads
-    maximised?
-
-    \item For probability vectors
-    \(
-    P=(p_1,p_2,\ldots,p_n),
-    \qquad
-    Q=(q_1,q_2,\ldots,q_n),
-    \)
-    where
-    \(
-    p_i,q_i>0,
-    \qquad
-    \sum_i p_i=\sum_i q_i=1,
-    \)
-    define the Kullback--Leibler divergence by
-    \[
-    D_{KL}(P\|Q)
-    =
-    \sum_i p_i\log\left(\frac{p_i}{q_i}\right).
-    \]
-
-    Use Jensen's inequality to show that
-    \(
-    D_{KL}(P\|Q)\geq 0
-    \)
-    with equality if and only if
-    \(
-    P=Q.
-    \)
-
-    \item Let $\alpha\in(0,1)$. Prove that the number of heads equalling
-    $n\alpha$ is asymptotically
-    \[
-    \frac{1}
-    {\sqrt{2\pi n\alpha(1-\alpha)}}
-    \exp\left(
-    -nD_{KL}(P\|Q)
-    \right),
-    \]
-    where
-    \(
-    P=(\alpha,1-\alpha),
-    \qquad
-    Q=(p,q).
-    \)
-
-\end{enumerate}
-
-\end{quiz}
-
-
