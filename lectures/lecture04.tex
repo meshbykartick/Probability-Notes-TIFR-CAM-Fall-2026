@@ -1,0 +1,544 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 04
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{04}
+{Wednesday, 14 August 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sample Spaces, Random Variables and Their Distributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sample Space}
+
+The first object in probability is the \emph{sample space} $\Omega$,
+which is the collection of all possible outcomes.
+
+\begin{enumerate}
+
+    \item \textbf{Simple coin toss}
+    \(
+    \qquad
+    \Omega=\{H,T\}.
+    \)
+
+    \item \textbf{Arrival time of a bus}
+    Depending on the context, we may take
+    \(
+    \Omega=[0,1]
+    \)~~ 
+    or~~
+    \(
+    \Omega=[0,\infty).
+    \)
+
+    \item \textbf{Infinite sequence of coin tosses}
+    \(\qquad
+    \Omega=\{H,T\}^{\mathbb{N}}.
+    \)
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\texorpdfstring{$\sigma$-Algebra}{sigma-Algebra}}
+\begin{enumerate}
+    \item A $\sigma$-algebra $\mathcal{B}$ is the collection of events
+whose probabilities we can measure.
+
+For a simple coin toss,
+\(\qquad
+\mathcal{B}
+=
+\left\{
+\varnothing,
+\{H\},
+\{T\},
+\{H,T\}
+\right\}.
+\)
+
+\item For a subset of $\mathbb{R}$, we are naturally led to the
+\emph{Borel $\sigma$-algebra}.
+
+\item For the infinite product space
+\(\{H,T\}^{\mathbb{N}}\), consider a finite set
+\(
+F\subset\mathbb{N}
+\)
+and a function
+\(
+a:F\longrightarrow\{H,T\}.
+\)
+
+Define the corresponding cylinder set by
+
+\[
+[a]
+=
+\left\{
+\omega\in\{H,T\}^{\mathbb{N}}
+:
+\omega_i=a(i)
+\text{ for every }i\in F
+\right\}.
+\]
+
+Cylinder sets form the basic building blocks for the product
+$\sigma$-algebra.
+
+    
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Probability Measure}
+
+A probability measure is a measure
+\(
+\mathbb{P}:\mathcal{B}\longrightarrow[0,1]
+\)
+such that
+\(
+\mathbb{P}(\Omega)=1.
+\)
+\begin{enumerate}
+    \item For a fair coin,
+\( \qquad
+\mathbb{P}(\{H\})
+=
+\mathbb{P}(\{T\})
+=
+\frac12.
+\)
+
+\item For the uniform probability measure on $[0,1]$,
+
+\[
+\mathbb{P}([a,b])=b-a,
+\qquad
+0\leq a\leq b\leq1.
+\]
+
+\item For independent coin tosses, if $[a]$ is a cylinder set determined
+by $|F|$ coordinates, then
+
+\[
+\mathbb{P}([a])
+=
+2^{-|F|}.
+\]
+
+\item More generally, for a coin with
+\(
+\mathbb{P}(H)=p,
+\qquad
+\mathbb{P}(T)=1-p,
+\)
+
+we have
+
+\[
+\mathbb{P}([a])
+=
+p^{\#\text{Heads}}
+(1-p)^{\#\text{Tails}}.
+\]
+
+
+Question: Why does this define a probability measure on
+\(\{H,T\}^{\mathbb{N}}\)?
+    
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Non-measurable Sets}
+
+\begin{important}
+Not every subset of
+\(\{H,T\}^{\mathbb{N}}\)
+is measurable.
+\end{important}
+
+The construction of non-measurable sets is related to the existence
+of suitable equivalence relations and translation-invariant measures.
+
+A useful analogy is the classical construction for $\mathbb{R}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Proof Idea on $\mathbb{R}$}
+
+The general strategy is:
+
+\begin{enumerate}
+
+    \item Find a countable subgroup of $\mathbb{R}$.
+
+    \item Find a Borel measure satisfying translation invariance:
+    \[
+    \mu(A+x)=\mu(A),
+    \qquad
+    \forall x\in\mathbb{R},
+    \quad
+    A\in\mathcal{B}.
+    \]
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Analogue for the Infinite Coin-Toss Space}
+
+Consider
+\(\qquad
+\left(\frac{\mathbb{Z}}{2\mathbb{Z}}\right)^{\mathbb{N}}.
+\)
+
+One can consider the set
+
+\[
+G
+=
+\left\{
+x\in
+\left(\frac{\mathbb{Z}}{2\mathbb{Z}}\right)^{\mathbb{N}}
+:
+x(i)=0
+\text{ for all sufficiently large }i
+\right\}.
+\]
+
+The idea is to check that $G$ is a countable subgroup and then
+investigate translation invariance of the probability measure on
+cylinder sets.
+
+In particular, for a cylinder set $[a]$,
+\[\qquad
+\mathbb{P}([a])
+=
+2^{-|F|}.
+\]
+
+%\textbf{Todo:} Complete the construction and calculations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Random Variables}
+
+A random variable is a measurable function from the probability space
+to another measurable space.
+
+For example, for infinitely many coin tosses,
+\(\qquad
+f_n:
+\{H,T\}^{\mathbb{N}}
+\longrightarrow
+[0,1],
+\)
+~~~ 
+defined by
+\[\qquad
+f_n(\omega)
+=
+\frac{1}{n}
+\sum_{i=1}^{n}X_i(\omega),
+\]
+where
+\[
+X_i(\omega)
+=
+\begin{cases}
+1, & \omega_i=H,\\
+0, & \omega_i=T.
+\end{cases}
+\]
+
+We would like to understand the limit
+
+\[
+f(\omega)
+=
+\lim_{n\to\infty}f_n(\omega).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Random Variable Detecting the Existence of a Limit}
+
+\begin{question}{Random Variable for Existence of Limit}{random-variable-question}
+Given a probability space and a sequence of random variables
+$(f_n)$, define a random variable which captures whether or not
+\(
+\lim_{n\to\infty}f_n(\omega)
+\)
+exists.
+\end{question}
+
+For a real-valued sequence, the limit exists precisely when
+\(
+\limsup_{n\to\infty}f_n(\omega)
+=
+\liminf_{n\to\infty}f_n(\omega)
+\)
+and both quantities are finite.
+
+Define
+
+\[
+\widetilde f(\omega)
+=
+\begin{cases}
+\displaystyle
+\limsup_{n\to\infty}f_n(\omega)
+-
+\liminf_{n\to\infty}f_n(\omega),
+&
+\text{if both are finite},\\[2ex]
++\infty,
+&
+\text{otherwise}.
+\end{cases}
+\]
+
+Then define
+
+\[
+f'(\omega)
+=
+\begin{cases}
+1,
+&
+\widetilde f(\omega)=0,\\
+0,
+&
+\widetilde f(\omega)\neq0.
+\end{cases}
+\]
+
+Thus
+
+\[
+f'(\omega)
+=
+\mathbf{1}_{\{
+\lim_{n\to\infty}f_n(\omega)
+\text{ exists as a finite real number}
+\}}.
+\]
+
+\begin{remark}
+
+The precise formulation and notation may differ from the presentation
+in Durrett.
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distribution of a Random Variable}
+
+Let~~~
+\(
+X:
+(\Omega,\mathcal{B},\mathbb{P})
+\longrightarrow
+(S,\rho)
+\)
+be a random variable.
+
+The distribution of $X$ is the push-forward of $\mathbb{P}$ under $X$:
+\(
+X_*\mathbb{P}.
+\)
+
+More explicitly, the distribution $\mu_X$ of $X$ is the measure on
+$(S,\rho)$ defined by
+
+\[
+\mu_X(A)
+=
+\mathbb{P}\left(X^{-1}(A)\right),
+\qquad
+A\in\rho.
+\]
+
+It is also common to write
+
+\[
+\mathbb{P}(X\in A)
+\coloneqq
+\mathbb{P}\left(X^{-1}(A)\right).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Consider the random variables $X_1$ and $X_2$ arising from the
+independent coin-toss example above.
+
+Then $X_1$ and $X_2$ have the same distribution:~~~
+\(
+X_1\overset{d}{=}X_2.
+\)
+
+However, they are not the same random variable.
+
+Indeed,
+\(
+X_1(\omega)
+\neq
+X_2(\omega)
+\)
+for some $\omega$.
+
+Also,
+\(
+(X_1,X_2)
+\)
+is itself a random variable, taking values in the appropriate product
+space.
+
+\begin{remark}
+
+Having the same distribution does not imply that two random variables
+are equal.
+
+In symbols,
+
+\[
+X=Y
+\quad\Longrightarrow\quad
+X\overset{d}{=}Y,
+\]
+
+but in general,
+
+\[
+X\overset{d}{=}Y
+\quad\not\Longrightarrow\quad
+X=Y.
+\]
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Types of Random Variables}
+
+Random variables can be classified according to their distributions.
+
+\begin{enumerate}
+
+    \item \textbf{Discrete random variables}
+
+    \item \textbf{Continuous random variables}
+
+    \begin{enumerate}
+
+        \item Absolutely continuous random variables.
+
+        \item Singular random variables.
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\begin{itemize}
+    \item These classifications are determined by the distribution of the
+random variable.
+
+\item A discrete random variable has an \emph{atomic distribution}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples of Discrete Random Variables}
+
+\begin{enumerate}
+
+    \item \textbf{Bernoulli random variable}
+    Let
+    \(
+    p\in[0,1].
+    \)~~We write
+    \(
+    X\sim\operatorname{Ber}(p)
+    \)
+
+    if
+    \[
+    \mathbb{P}(X=1)=p,
+    \qquad
+    \mathbb{P}(X=0)=1-p.
+    \]
+
+    This notation means that $X$ has the Bernoulli distribution with
+    parameter $p$.
+
+    \item \textbf{Binomial random variable}
+
+    Let
+    \(
+    n\in\mathbb{N},
+    \qquad
+    p\in[0,1].
+    \)
+    We write
+    \(
+    X\sim\operatorname{Bin}(n,p)
+    \)
+
+    if
+    \[
+    \mathbb{P}(X=r)
+    =
+    \binom{n}{r}
+    p^r(1-p)^{n-r},
+    \qquad
+    r=0,1,\ldots,n.
+    \]
+
+    \item \textbf{Poisson random variable}
+
+    Let
+    \(
+    \lambda>0.
+    \)
+    We write~~ 
+    \(
+    X\sim\operatorname{Poi}(\lambda)
+    \)
+
+    if
+
+    \[
+    \mathbb{P}(X=k)
+    =
+    e^{-\lambda}
+    \frac{\lambda^k}{k!},
+    \qquad
+    k=0,1,2,\ldots.
+    \]
+
+    \item \textbf{Geometric random variable}
+
+    Let
+    \(
+    p\in(0,1).
+    \)
+    Under the convention that $X$ takes values in
+    $\{1,2,\ldots\}$, we write
+    \(
+    X\sim\operatorname{Geo}(p)
+    \)
+
+    if
+
+    \[
+    \mathbb{P}(X=k)
+    =
+    p(1-p)^{k-1},
+    \qquad
+    k=1,2,\ldots.
+    \]
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\lectureend
