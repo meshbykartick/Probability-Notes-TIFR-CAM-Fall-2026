@@ -417,6 +417,118 @@ X=Y.
 
 \end{remark}
 
+\section{Some Useful Definitions:}
+Let $(X_n)_{n\geq1}$ and $X$ be random variables defined on a
+probability space $(\Omega,\mathcal{F},\mathbb{P})$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Convergence in Probability}
+
+\begin{definition}{Convergence in Probability}{conv-in-probability}
+We say that $X_n$ \textbf{converges in probability} to $X$, denoted by
+\[
+    X_n \xrightarrow{\mathbb{P}} X,
+\]
+if for every $\varepsilon>0$,
+\[
+    \lim_{n\to\infty}
+    \mathbb{P}\left(
+        |X_n-X|>\varepsilon
+    \right)
+    =0.
+\]
+
+Equivalently, for every $\varepsilon>0$,
+\[
+    \mathbb{P}\left(
+        |X_n-X|>\varepsilon
+    \right)
+    \longrightarrow 0.
+\]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Convergence in Distribution}
+
+\begin{definition}{Convergence in Distribution}{conv-in-distribution}
+We say that $X_n$ \textbf{converges in distribution} (or \emph{in law})
+to $X$, denoted by
+\[
+    X_n \xrightarrow{d} X,
+\]
+if
+\[
+    \lim_{n\to\infty}F_{X_n}(x)
+    =
+    F_X(x)
+\]
+for every continuity point $x$ of the distribution function $F_X$ of
+$X$.
+
+Here,
+\[
+    F_{X_n}(x)
+    =
+    \mathbb{P}(X_n\leq x),
+    \qquad
+    F_X(x)
+    =
+    \mathbb{P}(X\leq x).
+\]
+\end{definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\texorpdfstring{Convergence in $L^1$}{Convergence in L1}}
+
+\begin{definition}{\texorpdfstring{$L_1$}{L1} Convergence}{l1-conv}
+    We say that $X_n$ \textbf{converges to $X$ in $L^1$}, denoted by
+\[
+    X_n \xrightarrow{L^1} X,
+\]
+if
+\[
+    \lim_{n\to\infty}
+    \mathbb{E}\left[|X_n-X|\right]
+    =0.
+\]
+Equivalently,
+\[
+    \|X_n-X\|_1
+    =
+    \mathbb{E}\left[|X_n-X|\right]
+    \longrightarrow 0.
+\]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Almost Sure Convergence}
+
+\begin{definition}{Almost Sure Convergence}{almost-sure-conv}
+We say that $X_n$ \textbf{converges almost surely} to $X$, denoted by
+\[
+    X_n \xrightarrow{\mathrm{a.s.}} X,
+\]
+if
+\[
+    \mathbb{P}\left(
+        \left\{
+        \omega\in\Omega:
+        \lim_{n\to\infty}X_n(\omega)=X(\omega)
+        \right\}
+    \right)
+    =1.
+\]
+
+Equivalently,
+\[
+    \mathbb{P}\left(
+        \lim_{n\to\infty}X_n=X
+    \right)
+    =1.
+\]
+
+That is, the sequence $X_n(\omega)$ converges to $X(\omega)$
+for almost every $\omega\in\Omega$.
+\end{definition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Types of Random Variables}
 
@@ -542,3 +654,24 @@ random variable.
 
 
 \lectureend
+
+\section{Quiz, 17 August 2026 }
+
+\begin{quiz}
+
+\begin{enumerate}
+\item Convergence in probability implies convergence almost surely.
+
+    \item Convergence in distribution implies convergence in probability.
+
+    \item Convergence almost surely implies convergence in distribution.
+
+    \item Let $X,Y,Z\sim\operatorname{Ber}(1/2)$ such that
+    $X\perp Y$, $Y\perp Z$ and $Z\perp X$. Then
+
+       $$ \mathbb{P}(X=1,Y=1,Z=1)=\frac{1}{8}.$$
+\end{enumerate}
+
+\end{quiz}
+
+
