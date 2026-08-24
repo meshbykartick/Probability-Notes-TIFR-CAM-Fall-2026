@@ -1,0 +1,613 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 06
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{06}
+{Friday, 21 August 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distribution Functions and Random Variables}
+
+Random variables are measurable maps
+\[
+X:
+(\Omega,\mathcal{B},\mathbb{P})
+\longrightarrow
+(\mathbb{R},\mathcal{B}(\mathbb{R})).
+\]
+
+We define the cumulative distribution function (C.D.F.) of $X$ by
+
+\begin{definition}{Cumulative Distribution Function}{cdf}
+The \emph{cumulative distribution function} of a random variable
+$X$ is the function
+\[
+F_X:\mathbb{R}\longrightarrow[0,1]
+\]
+defined by
+\[
+F_X(t)
+=
+\mathbb{P}(X\leq t).
+\]
+\end{definition}
+
+\begin{remark}
+\textbf{Naming.}
+This is what Durrett calls the \emph{distribution function}.
+\end{remark}
+
+The C.D.F. completely determines the distribution of a real-valued
+random variable.
+
+If
+\(
+X\sim\mu,
+\)
+then the C.D.F. of $X$ is given by
+\[
+F_X(t)
+=
+\mu((-\infty,t]).
+\]
+
+Conversely, suppose that a C.D.F. $F_X$ is given. We would like to
+construct the corresponding probability measure $\mu_X$ on
+$\mathbb{R}$.
+
+For $a<b$, define
+\[
+\mu_X((a,b])
+=
+F_X(b)-F_X(a).
+\]
+
+One can check that this extends to a probability measure on
+$\mathbb{R}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties of the C.D.F.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $F_X$ be the C.D.F. of a random variable $X$.
+
+\begin{enumerate}
+
+    \item $F_X$ is an increasing function.
+
+    \item
+    \(
+    \lim_{t\to\infty}F_X(t)=1,
+    \qquad
+    \lim_{t\to-\infty}F_X(t)=0.
+    \)
+
+    \item $F_X$ is right-continuous:
+    \[
+    \lim_{t\downarrow s}F_X(t)=F_X(s).
+    \]
+
+    Indeed,
+    \[
+    \begin{aligned}
+    \lim_{t\downarrow s}F_X(t)
+    &=
+    \lim_{t\downarrow s}
+    \mathbb{P}(X\leq t)=
+    \mathbb{P}(X\leq s),
+    \end{aligned}
+    \]
+    by continuity from above.
+
+\end{enumerate}
+
+\begin{remark}
+
+The C.D.F. need not be left-continuous.
+
+In fact,
+\[
+\mathbb{P}(X=t)>0
+\]
+if and only if
+\[
+F_X(t)-F_X(t^-)>0,
+\]
+where
+\[
+F_X(t^-)
+=
+\lim_{s\uparrow t}F_X(s).
+\]
+
+Moreover,
+\[
+F_X(t)-F_X(t^-)
+=
+\mathbb{P}(X=t).
+\]
+\end{remark}
+
+The remaining standard properties are:
+
+\begin{enumerate}
+    \setcounter{enumi}{3}
+
+    \item $F_X$ has at most countably many discontinuities.
+
+    \item $F_X$ is Borel measurable.
+
+    \item
+    \(
+    F_X(t^-)
+    =
+    \mathbb{P}(X<t).
+    \)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Probability Measure Associated with a C.D.F.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now check the construction
+\[
+\mu_X((a,b])
+=
+F_X(b)-F_X(a)
+\]
+and see why it defines a probability measure.
+
+The natural collection of sets to consider first is the semiring
+\[
+\mathcal{S}
+=
+\left\{
+(a,b]:a<b
+\right\}.
+\]
+
+Suppose
+\[
+(a,b]
+\subseteq
+\bigcup_{i=1}^{\infty}(a_i,b_i].
+\]
+
+We want to verify the appropriate countable subadditivity/additivity
+property.
+
+For each interval,
+\[
+\mu_X((a_i,b_i])
+=
+F_X(b_i)-F_X(a_i).
+\]
+
+Hence
+\[
+\sum_{i=1}^{\infty}
+\mu_X((a_i,b_i])
+=
+\sum_{i=1}^{\infty}
+\left(
+F_X(b_i)-F_X(a_i)
+\right).
+\]
+
+The key point is the right-continuity and monotonicity of $F_X$,
+which allow the interval $(a,b]$ to be approximated by finitely many
+of the covering intervals.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Finite Additivity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose
+\[
+(a,b]
+=
+\bigcup_{i=1}^{n}(a_i,b_i]
+\]
+where the intervals are disjoint and ordered so that
+\[
+a=a_1<b_1=a_2<b_2=a_3<\cdots<a_n<b_n=b.
+\]
+
+Then
+\[
+\begin{aligned}
+\mu_X((a,b])
+&=
+F_X(b)-F_X(a)\\
+&=
+\sum_{i=1}^{n}
+\left(
+F_X(b_i)-F_X(a_i)
+\right)\\
+&=
+\sum_{i=1}^{n}
+\mu_X((a_i,b_i]).
+\end{aligned}
+\]
+
+Thus $\mu_X$ is finitely additive on the semiring $\mathcal{S}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Countable Additivity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The same idea extends to countable disjoint unions.
+
+Suppose
+\[
+(a,b]
+=
+\bigcup_{i=1}^{\infty}(a_i,b_i],
+\]
+where the intervals are pairwise disjoint.
+
+For the finite partial unions,
+\[
+\bigcup_{i=1}^{n}(a_i,b_i]
+\subseteq
+(a,b],
+\]
+and finite additivity gives
+\[
+\sum_{i=1}^{n}
+\mu_X((a_i,b_i])
+\leq
+\mu_X((a,b]).
+\]
+
+Passing to the limit,
+\[
+\sum_{i=1}^{\infty}
+\mu_X((a_i,b_i])
+\leq
+\mu_X((a,b]).
+\]
+
+The reverse inequality follows from the covering property, together
+with the continuity properties of $F_X$.
+
+Consequently,
+\[
+\mu_X((a,b])
+=
+\sum_{i=1}^{\infty}
+\mu_X((a_i,b_i]).
+\]
+
+Hence $\mu_X$ is countably additive on the semiring.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Correspondence Between C.D.F.s and Probability Measures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let
+\[
+\mathcal{F}
+=
+\left\{
+F:
+\begin{array}{c}
+F\text{ satisfies the properties}\\
+\text{of a C.D.F.}
+\end{array}
+\right\}
+\]
+and let
+\[
+\mathcal{P}
+=
+\left\{
+\text{probability measures on }\mathbb{R}
+\right\}.
+\]
+
+The correspondence
+\(
+F\longmapsto\mu_F
+\)
+is bijective.
+
+In other words, a probability measure on $\mathbb{R}$ determines a
+unique C.D.F., and a C.D.F. determines a unique probability measure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Constructing a Random Variable from a C.D.F.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}{Constructing a Random Variable from a C.D.F.}{construct-rv-from-cdf}
+Suppose we are given a function $F$ satisfying the properties of a
+C.D.F. Is there a random variable $X$ such that
+\[
+F=F_X?
+\]
+\end{question}
+
+We want to construct such a random variable explicitly.
+
+The idea is to use the probability space
+\[
+([0,1],\mathcal{B}([0,1]),\lambda),
+\]
+where $\lambda$ denotes Lebesgue measure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Case 1: $F$ is Continuous and Strictly Increasing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose first that
+\[
+F:(\mathbb{R})\longrightarrow(0,1)
+\]
+is bijective and has no discontinuities.
+
+\medskip
+\noindent\textbf{Claim.}
+We can take
+\[
+(\Omega,\mathcal{F},\mathbb{P})
+=
+([0,1],\mathcal{B}([0,1]),\lambda).
+\]
+\medskip
+For any probability measure $\mu$, we seek an algorithmic way of
+constructing
+\[
+X:\Omega\longrightarrow\mathbb{R}
+\]
+such that
+\[
+X\sim\mu.
+\]
+
+Define
+\[
+X=F^{-1}.
+\]
+
+Then, for every $t\in\mathbb{R}$,
+
+\[
+\begin{aligned}
+\mathbb{P}(X\leq t)
+&=
+\mathbb{P}\left(F^{-1}\leq t\right)\\
+&=
+\mathbb{P}
+\left(
+\left\{
+\omega:
+F^{-1}(\omega)\leq t
+\right\}
+\right)\\
+&=
+\mathbb{P}
+\left(
+\left\{
+\omega:
+\omega\leq F(t)
+\right\}
+\right)\\
+&=
+\mathbb{P}\left((0,F(t)]\right)\\
+&=
+F(t).
+\end{aligned}
+\]
+
+Therefore,
+\[
+F_X(t)=F(t),
+\]
+and hence
+\[
+F_X=F.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Case 2: $F$ Has a Jump}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Case 2.}
+
+Suppose $F$ has a jump at $t$.
+
+Let
+\[
+a=F(t^-),
+\qquad
+b=F(t).
+\]
+
+Define
+\[
+X(\omega)
+=
+\begin{cases}
+F^{-1}(\omega), & \omega<a,\\[4pt]
+t, & a\leq\omega\leq b,\\[4pt]
+F^{-1}(\omega), & \omega>b.
+\end{cases}
+\]
+
+Thus the entire interval $(a,b]$ is mapped to the single point $t$.
+
+This creates the required atom:
+\[
+\mathbb{P}(X=t)
+=
+b-a
+=
+F(t)-F(t^-).
+\]
+
+\begin{center}
+    \textbf{Todo: Add the corresponding graph.}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Case 3: $F$ Has a Flat Portion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Case 3.}
+
+Suppose $F$ is constant on an interval $[a,b]$.
+
+Let
+\[
+\theta=F(a)=F(b).
+\]
+
+Define
+\[
+X(\omega)
+=
+\begin{cases}
+F^{-1}(\omega), & \omega<\theta,\\[4pt]
+a, & \omega=\theta,\\[4pt]
+F^{-1}(\omega), & \omega>\theta.
+\end{cases}
+\]
+
+The value of $X$ at the single point $\omega=\theta$ is irrelevant
+for the distribution, since
+\[
+\lambda(\{\theta\})=0.
+\]
+
+\begin{center}
+    \textbf{Todo: Add the corresponding graph.}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Case 4: General C.D.F.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Case 4.}
+
+For a general C.D.F., define the generalized inverse by
+
+\begin{definition}{Generalized Inverse of a C.D.F.}{generalized-inverse-cdf}
+For a C.D.F. $F$, its generalized inverse is defined by
+\[
+F^{-1}(\omega)
+=
+\inf
+\left\{
+x\in\mathbb{R}: F(x)\geq\omega
+\right\},
+\qquad
+\omega\in(0,1).
+\]
+\end{definition}
+Define
+\[
+X(\omega)=F^{-1}(\omega).
+\]
+
+We need to show that
+\[
+\mathbb{P}(X\leq b)=F(b)
+\]
+and that $X$ is measurable.
+
+Let
+\[
+A_b
+=
+\left\{
+\omega:X(\omega)\leq b
+\right\}.
+\]
+
+It is enough to show that
+\[
+A_b=(0,F(b)].
+\]
+
+\medskip
+\noindent\textbf{Claim.}
+For every $b\in\mathbb{R}$,
+\[
+\left\{
+\omega:F^{-1}(\omega)\leq b
+\right\}
+=
+(0,F(b)].
+\]
+\medskip
+Consequently,
+\[
+\begin{aligned}
+\mathbb{P}(X\leq b)
+&=
+\lambda(A_b)\\
+&=
+\lambda((0,F(b)])\\
+&=
+F(b).
+\end{aligned}
+\]
+
+Therefore,
+\[
+F_X(b)=F(b)
+\]
+for every $b\in\mathbb{R}$.
+
+\textbf{Homework:} Prove the claim above and complete the remaining
+details of the construction.
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lectureend
+
+
+\section{Quiz, 24 August 2026}
+
+Let $\mathcal{R}$ denote the respective appropriate Borel sigma algebra,
+while $m$ is the Lebesgue measure on $(0,1)$.
+
+\begin{quiz}
+
+\begin{enumerate}
+
+    \item Let $F:\mathbb{R}\to(0,1)$ be a function such that it is
+    non-decreasing, right continuous, and
+    \[
+        \lim_{x\to-\infty}F(x)=0
+        \qquad\text{and}\qquad
+        \lim_{x\to\infty}F(x)=1.
+    \]
+    Prove that there is a probability measure $\mu$ on
+    $(\mathbb{R},\mathcal{R})$ such that
+    \[
+        F(x)=\mu((-\infty,x]).
+    \]
+
+    \item Let $(\Omega,\mathcal{B},\mu)$ be a probability space and
+    $X$ be a non-negative $L^1$ random variable. If $F_X$ is
+    the c.d.f., prove that
+    \[
+        \int_{\mathbb{R}}(1-F_X(x))\,dx=\mathbb{E}(X).
+    \]
+
+    \item \textbf{This is for Bonus:} Let $\mu$ be a probability measure on
+    $(\mathbb{R}^2,\mathcal{R})$. Construct a random variable
+    \[
+        X:((0,1),\mathcal{B},m)\to\mathbb{R}^2
+    \]
+    such that the distribution of $X$ is $\mu$.
+
+\end{enumerate}
+
+\end{quiz}

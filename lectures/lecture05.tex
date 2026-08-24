@@ -1,0 +1,675 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 06
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{05}
+{Wednesday, 19 August 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous Random Variables}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}{Quiz-Question-Discussion}{quiz-question-discussion}
+The last question from the quiz showed that pairwise independence and
+mutual independence are different notions. What is the distinction
+between the two?
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Continuous Random Variables}
+
+Let
+\(\qquad 
+X:(\Omega,\mathcal{F},\mathbb{P})
+\longrightarrow
+(S,\rho)
+\)
+be a random variable.
+
+In many cases, the state space is one of
+\(
+\mathbb{R}, ~  ~ ~
+\mathbb{R}^d,
+\)
+equipped with the Borel $\sigma$-algebra.
+
+A random variable is called \emph{continuous} when its distribution
+does not have atoms. In particular, for a real-valued continuous random
+variable,
+\(
+\mathbb{P}(X=s)=0,
+\qquad
+\forall s\in\mathbb{R}.
+\)
+
+The distribution of $X$ is the push-forward of $\mathbb{P}$ via $X$:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Absolutely Continuous and Singular Distributions}
+
+Let $\mu_X=X_*(\mathbb{P})$ denote the distribution of $X$.
+
+\begin{definition}{Absolutely Continuous}{absolutely-continuous-definition}
+The distribution $\mu_X$ is said to be \emph{absolutely continuous}
+with respect to Lebesgue measure $\lambda$ if there exists a
+non-negative function
+\(
+f\in L^1(\mathbb{R})
+\)
+such that
+\(
+\int_{\mathbb{R}}f\,d\lambda=1
+\)
+and
+\(
+\mu_X(A)
+=
+\mathbb{P}(X\in A)
+=
+\int_A f(x)\,d\lambda(x)
+\)
+for every Borel set $A\subseteq\mathbb{R}$.
+
+The function $f$ is called the \emph{density} of $X$.
+\end{definition}
+
+\begin{remark}
+
+The statement that the distribution of a random variable is absolutely
+continuous means that its distribution is absolutely continuous with
+respect to Lebesgue measure.
+
+On the other hand, a distribution is called \emph{singular} with
+respect to Lebesgue measure if it is concentrated on a set of Lebesgue
+measure zero.
+
+\end{remark}
+
+More precisely, if
+\(
+\nu=X_*(\mathbb{P}),
+\)
+then $\nu$ is singular with respect to Lebesgue measure if there exists
+a Borel set $A\subseteq\mathbb{R}$ such that
+
+\[
+\nu(A)=1,
+\qquad
+\lambda(A)=0.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples of Continuous Random Variables}
+
+\begin{enumerate}
+
+    \item \textbf{Uniform random variable}
+
+    The uniform distribution on $[0,1]$ has density
+
+    \[
+    f(x)
+    =
+    \begin{cases}
+        1, & 0\leq x\leq1,\\
+        0, & \text{otherwise}.
+    \end{cases}
+    \]
+
+    \item \textbf{Normal random variable}
+
+    Let
+
+    \[
+    X\sim N(\mu,\sigma^2),
+    \qquad
+    \sigma>0.
+    \]
+
+    Its density is
+
+    \[
+    f_X(x)
+    =
+    \frac{1}{\sqrt{2\pi}\sigma}
+    \exp\left(
+        -\frac{(x-\mu)^2}{2\sigma^2}
+    \right).
+    \]
+
+    Hence, for $a<b$,
+
+    \[
+    \mathbb{P}(a\leq X\leq b)
+    =
+    \int_a^b
+    \frac{1}{\sqrt{2\pi}\sigma}
+    \exp\left(
+        -\frac{(x-\mu)^2}{2\sigma^2}
+    \right)
+    dx.
+    \]
+
+    \item \textbf{Exponential random variable}
+
+    Let
+
+    \[
+    \lambda>0,
+    \qquad
+    X\sim\operatorname{Exp}(\lambda).
+    \]
+
+    The random variable takes values in $[0,\infty)$ and has density
+
+    \[
+    f_X(x)
+    =
+    \lambda e^{-\lambda x},
+    \qquad
+    x\geq0.
+    \]
+
+    Thus, for $0\leq a<b$,
+
+    \[
+    \mathbb{P}(a<X<b)
+    =
+    \int_a^b
+    \lambda e^{-\lambda x}\,dx.
+    \]
+
+    The exponential distribution has the \emph{memoryless property}:
+
+    \[
+    \mathbb{P}(X>s+t\mid X>s)
+    =
+    \mathbb{P}(X>t).
+    \]
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Singular Continuous Distribution}
+
+Consider
+\(
+\Omega=\{0,1\}^{\mathbb{N}}
+\)
+with the product $\sigma$-algebra and the usual product probability
+measure.
+
+Define
+\[
+X(\omega)
+=
+\sum_{n=1}^{\infty}
+\frac{\omega_n}{2^n}.
+\]
+
+Then
+
+\[
+X:\{0,1\}^{\mathbb{N}}\longrightarrow[0,1].
+\]
+
+\begin{question}{~}{ques-tion}
+What is the distribution of $X$?
+\end{question}
+
+For a fixed sequence
+\(
+\widetilde{\omega}:
+\{1,\ldots,n\}
+\longrightarrow
+\{0,1\},
+\)
+consider the corresponding dyadic interval
+
+\[
+I_{\widetilde{\omega}}
+=
+\left[
+\sum_{i=1}^{n}
+\frac{\widetilde{\omega}_i}{2^i},
+\,
+\sum_{i=1}^{n}
+\frac{\widetilde{\omega}_i}{2^i}
++
+\frac{1}{2^n}
+\right].
+\]
+
+The event that the first $n$ coordinates agree with
+$\widetilde{\omega}$ is the cylinder set
+$[\widetilde{\omega}]$, and
+
+\[
+\mathbb{P}
+\left(
+X\in I_{\widetilde{\omega}}
+\right)
+=
+\mathbb{P}
+\left(
+[\widetilde{\omega}]
+\right)
+=
+2^{-n}.
+\]
+
+Since the length of the dyadic interval is also
+
+\[
+|I_{\widetilde{\omega}}|
+=
+2^{-n},
+\]
+
+we obtain, for dyadic intervals $I\subseteq[0,1]$,
+
+\[
+\mathbb{P}(X\in I)=|I|.
+\]
+
+This leads to the uniform distribution on $[0,1]$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Cantor Distribution}
+
+Now consider
+
+\[
+\widetilde{X}(\omega)
+=
+\sum_{n=1}^{\infty}
+\frac{2\omega_n}{3^n},
+\qquad
+\omega_n\in\{0,1\}.
+\]
+
+This is the ternary expansion obtained by using only the digits $0$
+and $2$.
+
+Consequently,
+
+\[
+\widetilde{X}(\omega)
+\in C
+\]
+
+almost surely, where $C$ denotes the middle-thirds Cantor set.
+
+Recall that
+
+\[
+\lambda(C)=0.
+\]
+
+Thus the distribution of $\widetilde{X}$ is concentrated on a set of
+Lebesgue measure zero.
+
+\begin{important}
+The Cantor distribution is a singular continuous distribution.
+
+It is continuous in the sense that
+
+\[
+\mathbb{P}(\widetilde{X}=\theta)=0
+\]
+
+for every $\theta\in\mathbb{R}$, but its distribution is singular with
+respect to Lebesgue measure because it is concentrated on the Cantor
+set.
+\end{important}
+
+To see why there are no atoms, consider the ternary expansion
+
+\[
+\theta
+=
+\sum_{n=1}^{\infty}
+\frac{\theta_n}{3^n}.
+\]
+
+If some $\theta_i\notin\{0,2\}$, then
+
+\[
+\mathbb{P}(\widetilde{X}=\theta)=0.
+\]
+
+If $\theta_i\in\{0,2\}$ for every $i$, then fixing the first $n$
+digits determines a cylinder set of probability
+\(
+2^{-n}.
+\)
+
+Therefore,
+
+\(
+\mathbb{P}(\widetilde{X}=\theta)
+\leq
+2^{-n}
+\)
+for every $n$, and hence
+\(
+\mathbb{P}(\widetilde{X}=\theta)=0.
+\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bernoulli Convolution}
+
+Consider
+\(
+\lambda\in\left(\frac12,1\right)
+\)
+and let
+\(
+\omega=(\omega_1,\omega_2,\ldots)
+\in\{-1,1\}^{\mathbb{N}}.
+\)
+
+Define
+
+\[
+X_\lambda(\omega)
+=
+\sum_{n=1}^{\infty}
+\omega_n\lambda^n.
+\]
+
+This is an example of a \emph{Bernoulli convolution}.
+
+\begin{question}{~}{question-is-it-absolutely-cts}
+For which values of $\lambda$ is the distribution of
+$X_\lambda$ absolutely continuous?
+\end{question}
+
+This question is related to the classical problems surrounding
+Bernoulli convolutions and the Erd\H{o}s conjecture.
+
+\begin{question}{~}{What-is-the-distribution}
+What distribution should we use to model a given random phenomenon?
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bertrand's Paradox}
+
+\begin{question}{~}{what-is-the-probability}
+Suppose we have a unit disc and an inscribed equilateral triangle.
+Consider a uniformly chosen chord of the disc.
+
+What is the probability that the chord has length greater than the
+side length of the triangle?
+\end{question}
+
+
+Let $AB$ denote the side of the inscribed equilateral triangle and
+$CD$ denote the randomly chosen chord. We want to determine
+
+\[
+\mathbb{P}(CD>AB).
+\]
+
+The difficulty is that the phrase \emph{uniformly chosen chord} does
+not specify a unique probability model.
+
+\begin{remark}
+
+Bertrand's paradox illustrates that the answer depends on how
+``uniformly'' is interpreted.
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Method 1: Choosing Two Endpoints}
+
+Choose the two endpoints $C$ and $D$ independently and uniformly from
+the circumference of the circle.
+
+Under this model,
+
+\[
+\mathbb{P}(CD>AB)=\frac13.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Method 2: Choosing the Midpoint}
+
+Choose a radius uniformly and then choose a point $M$ uniformly along
+that radius. Construct the unique chord whose midpoint is $M$.
+
+Under this model,
+
+\[
+\mathbb{P}(CD>AB)=\frac12.
+\]
+
+The difference in the two answers demonstrates the ambiguity in the
+phrase ``uniformly chosen chord.''
+
+\begin{question}{~}{question-on-distribution}
+What is the distribution of the chord length under each of these
+probability models?
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distribution as a Push-Forward}
+
+The distribution of a random variable is simply the push-forward of
+the underlying probability measure.
+
+Suppose
+
+\[
+X:
+(\Omega,\mathcal{F},\mathbb{P})
+\longrightarrow
+(\mathbb{R},\mathcal{B}(\mathbb{R}))
+\]
+
+is a real-valued random variable.
+
+Its distribution is
+
+\[
+\nu=X_*(\mathbb{P}).
+\]
+
+Therefore,
+
+\[
+\mathbb{P}(X\in[a,b])
+=
+\nu([a,b])
+=
+\mathbb{P}
+\left(
+X^{-1}([a,b])
+\right).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Change of Variables}
+
+Suppose
+
+\[
+\Omega=[a,b]
+\]
+
+with Lebesgue probability measure, and suppose $X$ is a sufficiently
+regular monotone function.
+
+Then the distribution of $X$ can be obtained from the push-forward
+measure.
+
+If $X$ is invertible, then
+
+\[
+\mathbb{P}(X\in[c,d])
+=
+\mathbb{P}
+\left(
+X^{-1}([c,d])
+\right).
+\]
+
+For a monotone differentiable function,
+
+\[
+X^{-1}(d)-X^{-1}(c)
+=
+\int_c^d
+(X^{-1})'(t)\,dt.
+\]
+
+Using
+
+\[
+(X^{-1})'(t)
+=
+\frac{1}{X'(X^{-1}(t))},
+\]
+
+we obtain
+
+\[
+\mathbb{P}(X\in[c,d])
+=
+\int_c^d
+\frac{1}
+{X'(X^{-1}(t))}
+\,dt,
+\]
+
+whenever the required regularity and monotonicity assumptions hold.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example: Chord Length}
+
+\textbf{Method 1.}
+
+Let
+
+\[
+\Omega=[0,1]
+\]
+
+and define
+
+\[
+X(\theta)
+=
+\left|
+e^{\pi i\theta}-1
+\right|.
+\]
+
+Since
+
+\[
+\left|e^{i\alpha}-1\right|
+=
+2\left|\sin\frac{\alpha}{2}\right|,
+\]
+
+we have
+
+\[
+X(\theta)
+=
+2\sin\left(\frac{\pi\theta}{2}\right),
+\qquad
+0\leq\theta\leq1.
+\]
+
+Thus
+
+\[
+X:[0,1]\longrightarrow[0,2].
+\]
+
+Its inverse is
+
+\[
+X^{-1}(x)
+=
+\frac{2}{\pi}
+\arcsin\left(\frac{x}{2}\right).
+\]
+
+Therefore,
+
+\[
+\frac{d}{dx}X^{-1}(x)
+=
+\frac{1}
+{\pi\sqrt{1-\frac{x^2}{4}}}.
+\]
+
+Hence the density of $X$ is
+
+\[
+f_X(x)
+=
+\frac{1}
+{\pi\sqrt{1-\frac{x^2}{4}}},
+\qquad
+0<x<2.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Method 2.}
+
+Alternatively, consider
+
+\[
+X:[0,1]\longrightarrow[0,2]
+\]
+
+defined by
+
+\[
+X(\omega)
+=
+2\sqrt{1-\omega^2}.
+\]
+
+Here,
+
+\[
+X^{-1}(x)
+=
+\sqrt{1-\frac{x^2}{4}},
+\qquad
+0\leq x\leq2.
+\]
+
+The corresponding density is obtained by differentiating the inverse
+appropriately.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{important}
+
+The central point of Bertrand's paradox is that specifying the word
+``uniformly'' is not enough. A probability model must specify the
+underlying sample space and probability measure.
+
+Different choices of the probability space and probability measure can
+produce different distributions for the same geometric quantity.
+
+\end{important}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\lectureend
