@@ -1,0 +1,690 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 08
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{08}
+{Wednesday, 2 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Independence and Expectations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose $X,Y\in L^1(\mathbb{P})$ and $X$ and $Y$ are independent.
+Then
+\(
+    \mathbb{E}(XY)
+    =
+    \mathbb{E}(X)\mathbb{E}(Y).
+\)
+
+\begin{question}{Why does this make sense?}{Quesito-3}
+    Why does \(XY \in L^{1}\left( \mathbb{P} \right)\)?
+\end{question}
+
+\begin{remark}
+The basic idea is that if $X\sim\mu$ and $Y\sim\nu$ are
+independent, then
+
+\[
+    \mathbb{P}(X\in A,Y\in B)
+    =
+    \mathbb{P}(X\in A)\mathbb{P}(Y\in B)
+    =
+    \mu(A)\nu(B).
+\]
+
+Hence,
+\(
+    (X,Y)\sim\mu\times\nu.
+\)
+
+Therefore,
+
+\[
+\begin{aligned}
+    \mathbb{E}(|XY|)
+    &=
+    \mathbb{E}(|X||Y|) \\
+    &=
+    \int_{\mathbb{R}^2}
+    |x||y|\,d(\mu\times\nu)(x,y).
+\end{aligned}
+\]
+
+By Fubini's theorem,
+
+\[
+\begin{aligned}
+    \mathbb{E}(|XY|)
+    &=
+    \left(
+        \int_{\mathbb{R}} |x|\,d\mu(x)
+    \right)
+    \left(
+        \int_{\mathbb{R}} |y|\,d\nu(y)
+    \right) \\
+    &=
+    \mathbb{E}(|X|)\mathbb{E}(|Y|)
+    <\infty.
+\end{aligned}
+\]
+
+The same argument applied to $XY$ gives
+
+\[
+    \mathbb{E}(XY)
+    =
+    \mathbb{E}(X)\mathbb{E}(Y).
+\]
+
+This also works when $X,Y\geq 0$.
+
+Similarly, if
+\(
+    X_1,X_2,\ldots,X_n\in L^1(\mathbb{P})
+\)
+are independent, then
+
+\[
+    \mathbb{E}
+    \left(
+        \prod_{i=1}^n X_i
+    \right)
+    =
+    \prod_{i=1}^n \mathbb{E}(X_i).
+\]
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Covariance
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Covariance}{covariance}
+For random variables $X,Y\in L^2(\mathbb{P})$, the covariance of
+$X$ and $Y$ is defined by
+
+\[
+    \operatorname{Cov}(X,Y)
+    =
+    \mathbb{E}
+    \left[
+        (X-\mathbb{E}(X))(Y-\mathbb{E}(Y))
+    \right].
+\]
+
+Equivalently,
+
+\[
+    \operatorname{Cov}(X,Y)
+    =
+    \mathbb{E}(XY)
+    -
+    \mathbb{E}(X)\mathbb{E}(Y).
+\]
+\end{definition}
+
+\begin{remark}
+If $X$ and $Y$ are independent, then
+\(
+    \operatorname{Cov}(X,Y)=0.
+\)
+
+The converse is not true in general.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Counterexample
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{Uncorrelated but Dependent Random Variables}{uncor-but-dep-rv}
+Consider random variables $X,Y$ taking values in
+$\{-1,0,1\}$ with joint probability table
+
+\[
+\begin{array}{c|ccc}
+    & Y=1 & Y=0 & Y=-1 \\ \hline
+X=1  & 0 & a & 0 \\
+X=0  & b & c & b \\
+X=-1 & 0 & a & 0
+\end{array}
+\]
+
+where
+\(
+    2a+2b+c=1,
+    \qquad
+    a,b,c\geq 0.
+\)
+
+Clearly this is a probability distribution.
+
+We have
+\(
+    \mathbb{P}(X=1,Y=1)=0,
+\)
+but
+\(
+    \mathbb{P}(X=1)\mathbb{P}(Y=1)>0
+\)
+whenever $a,b>0$. Hence $X$ and $Y$ are not independent.
+
+On the other hand,
+\(
+    \mathbb{E}(X)=0,
+    \qquad
+    \mathbb{E}(Y)=0,
+\)
+
+and therefore
+
+\[
+    \operatorname{Cov}(X,Y)
+    =
+    \mathbb{E}(XY)
+    -
+    \mathbb{E}(X)\mathbb{E}(Y)
+    =
+    0.
+\]
+
+Thus zero covariance does not imply independence.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Questions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}{Distribution of a Transformation}{distribution-transformation}
+If
+\(
+    X\sim\operatorname{Unif}[-1,1],
+\)
+what is the distribution of
+\(
+    X^3?
+\)
+\end{question}
+
+\begin{question}{Bernoulli Random Variables}{bernoulli-random-variables}
+Suppose
+\(
+    X,Y\sim\operatorname{Ber}.
+\)
+
+What conditions on $X$ and $Y$ imply independence?
+\end{question}
+
+\begin{question}{Jointly Normal Random Variables}{jointly-normal}
+Suppose $X$ and $Y$ are jointly normal random variables.
+
+Does
+\(
+    \operatorname{Cov}(X,Y)=0
+\)
+imply that $X$ and $Y$ are independent?
+\end{question}
+
+\begin{question}{Bernoulli Variables and Covariance}{bernoulli-covariance}
+Suppose
+\(
+    X\sim\operatorname{Ber}(p),
+    \qquad
+    Y\sim\operatorname{Ber}(q).
+\)
+
+If
+\(
+    \operatorname{Cov}(X,Y)=0,
+\)
+does it follow that $X$ and $Y$ are independent?
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Inequalities
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Inequalities}
+
+\begin{definition}{Markov's Inequality}{markov-inequality}
+Let $X\geq 0$ be a random variable and let $a>0$. Then
+
+\[
+    \mathbb{P}(X\geq a)
+    \leq
+    \frac{\mathbb{E}(X)}{a}.
+\]
+\end{definition}
+
+\begin{remark}
+The main idea behind Markov's inequality is the following.
+Let
+\(
+    \varphi:\mathbb{R}\to\mathbb{R}
+\)
+be a measurable function such that
+\(
+    \varphi\geq 0.
+\)
+
+For $A\in\mathcal{F}$,
+
+\[
+    \mathbb{E}
+    \left[
+        \varphi(X)\mathbf{1}_{\{X\in A\}}
+    \right]
+    \leq
+    \mathbb{E}[\varphi(X)].
+\]
+
+This simple inequality has many important consequences.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Chebyshev
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Chebyshev's Inequality}{chebyshev-inequality}
+Let
+\(
+    \mu=\mathbb{E}(X),
+    \qquad
+    \sigma^2=\operatorname{Var}(X),
+    \qquad
+    \lambda>0.
+\)
+
+Then
+
+\[
+    \mathbb{P}
+    \left(
+        |X-\mu|\geq\lambda\sigma
+    \right)
+    \leq
+    \frac{1}{\lambda^2}.
+\]
+\end{definition}
+
+\begin{remark}
+Let, 
+\(
+    Y=(X-\mu)^2.
+\)
+Then
+\(
+    \mathbb{E}(Y)
+    =
+    \operatorname{Var}(X)
+    =
+    \sigma^2.
+\)
+
+Therefore, by Markov's inequality,
+
+\[
+\begin{aligned}
+    \mathbb{P}
+    \left(
+        |X-\mu|\geq\lambda\sigma
+    \right)
+    &=
+    \mathbb{P}
+    \left(
+        Y\geq\lambda^2\sigma^2
+    \right) \\
+    &\leq
+    \frac{\sigma^2}
+    {\lambda^2\sigma^2} \\
+    &=
+    \frac{1}{\lambda^2}.
+\end{aligned}
+\]
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Chernoff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Chernoff Bound}{chernoff-bound}
+For $t>0$, define the moment generating function
+
+\[
+    M(t)=\mathbb{E}(e^{tX}).
+\]
+
+Then
+
+\[
+    \mathbb{P}(X\geq a)
+    \leq
+    \frac{M(t)}{e^{ta}}.
+\]
+\end{definition}
+
+\begin{remark}
+The Chernoff bound follows immediately by applying Markov's
+inequality to the nonnegative random variable $e^{tX}$:
+
+\[
+\begin{aligned}
+    \mathbb{P}(X\geq a)
+    &=
+    \mathbb{P}(e^{tX}\geq e^{ta}) \\
+    &\leq
+    \frac{\mathbb{E}(e^{tX})}{e^{ta}} \\
+    &=
+    \frac{M(t)}{e^{ta}}.
+\end{aligned}
+\]
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Coupon Collector Problem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Coupon Collector Problem}
+
+\begin{question}{Coupon Collector Problem}{coupon-collector-problem}
+Suppose there are $n$ different types of cards. Each time a card is
+picked, each of the $n$ types is obtained independently and uniformly.
+
+How many cards do we need to draw to ensure that we have obtained all
+$n$ types of cards?
+\end{question}
+
+Consider the probability space
+\(
+    \Omega
+    =
+    \left(
+        \{1,2,\ldots,n\}^{\mathbb{N}},
+        \mathcal{B},
+        \operatorname{Unif}^{\otimes\mathbb{N}}
+    \right).
+\)
+
+Let
+\(
+    X_n(\omega)
+    =
+    \#\{\text{cards picked to obtain the full collection}\}.
+\)
+
+Equivalently,
+
+\[
+    X_n(\omega)
+    =
+    \min
+    \left\{
+        m:
+        \{\omega_1,\omega_2,\ldots,\omega_m\}
+        =
+        \{1,\ldots,n\}
+    \right\}.
+\]
+
+\begin{theorem}{Coupon Collector Bound}{coupon-collector-bound}
+For every $\varepsilon>0$,
+
+\[
+    \mathbb{P}
+    \left(
+        1-\varepsilon
+        <
+        \frac{X_n}{n\log n}
+        <
+        1+\varepsilon
+    \right)
+    \longrightarrow 1
+    \qquad\text{as }n\to\infty.
+\]
+\end{theorem}
+
+\begin{proof}
+We prove the upper bound. It is enough to show that
+
+\[
+    \mathbb{P}
+    \left(
+        \frac{X_n}{n\log n}>1+\varepsilon
+    \right)
+    \longrightarrow 0
+    \qquad\text{as }n\to\infty.
+\]
+
+Equivalently,
+
+\[
+    \mathbb{P}
+    \left(
+        X_n>(1+\varepsilon)n\log n
+    \right)
+    \longrightarrow 0.
+\]
+
+Let $Y_k$ denote the number of card types missing after $k$
+draws. Thus,
+
+\[
+    Y_k(\omega)
+    =
+    n-
+    \left|
+        \{\omega_1,\omega_2,\ldots,\omega_k\}
+    \right|.
+\]
+
+We want to show that if
+\(
+    k>(1+\varepsilon)n\log n,
+\)
+then $Y_k$ is very likely to be zero.
+
+For each $i\in\{1,\ldots,n\}$ and each $k\geq 1$, define
+
+\[
+    S_{i,k}
+    =
+    \begin{cases}
+        1,
+        & \text{if card type $i$ is not picked by time $k$,}\\
+        0,
+        & \text{otherwise.}
+    \end{cases}
+\]
+
+Then
+\(
+    Y_k
+    =
+    \sum_{i=1}^n S_{i,k}.
+\)
+
+For a fixed $i$,
+\(
+    \mathbb{E}(S_{i,k})
+    =
+    \left(1-\frac{1}{n}\right)^k,
+\)
+since the probability that type $i$ is not selected in one draw is
+$1-\frac1n$.
+
+Therefore,
+
+\[
+    \mathbb{E}(Y_k)
+    =
+    n
+    \left(1-\frac{1}{n}\right)^k.
+\]
+
+Now take ~ ~ ~
+\(
+    k=(1+\varepsilon)n\log n.
+\)
+
+By Markov's inequality,
+
+\[
+\begin{aligned}
+    \mathbb{P}
+    \left(
+        X_n>(1+\varepsilon)n\log n
+    \right)
+    &=
+    \mathbb{P}
+    \left(
+        Y_{(1+\varepsilon)n\log n}\geq 1
+    \right) \\
+    &\leq
+    \mathbb{E}
+    \left[
+        Y_{(1+\varepsilon)n\log n}
+    \right] \\
+    &=
+    n
+    \left(
+        1-\frac{1}{n}
+    \right)^{(1+\varepsilon)n\log n}.
+\end{aligned}
+\]
+
+Using
+\(
+    1-\frac1n\leq e^{-1/n},
+\)
+we obtain
+
+\[
+\begin{aligned}
+    n
+    \left(
+        1-\frac1n
+    \right)^{(1+\varepsilon)n\log n}
+    &\leq
+    n
+    \exp
+    \left(
+        -\frac{(1+\varepsilon)n\log n}{n}
+    \right) \\
+    &=
+    n e^{-(1+\varepsilon)\log n} \\
+    &=
+    n^{-\varepsilon}.
+\end{aligned}
+\]
+
+Hence,
+
+\[
+    \mathbb{P}
+    \left(
+        X_n>(1+\varepsilon)n\log n
+    \right)
+    \leq
+    n^{-\varepsilon}
+    \longrightarrow 0.
+\]
+
+Thus,
+
+\[
+    \mathbb{P}
+    \left(
+        \frac{X_n}{n\log n}>1+\varepsilon
+    \right)
+    \longrightarrow 0.
+\]
+
+This proves the desired upper bound.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of Lecture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lectureend
+
+
+
+\section{Quiz, 4 September 2026}
+
+\begin{quiz}
+
+\begin{enumerate}
+
+    \item It is equivalent to a question discussed in class.
+    What is it?
+
+    \item If
+    \(
+        X\sim\operatorname{Geo}(p),
+    \)
+    prove that
+    \(
+        \mathbb{E}(X)=\frac{1}{p},
+        \qquad
+        \operatorname{Var}(X)\leq\frac{1}{p^2}.
+    \)
+
+    \item Let $X_k^{(n)}$ be the time taken for $k$ bins to be
+    filled. Prove that
+    \(
+        S_k^{(n)}
+        =
+        X_{k+1}^{(n)}-X_k^{(n)}
+        \sim
+        \operatorname{Geo}(p_k),
+    \)
+    where
+    \(
+        p_k=1-\frac{k}{n},
+    \)
+    and that the random variables
+    \(
+        S_0^{(n)},S_1^{(n)},\ldots,S_{n-1}^{(n)}
+    \)
+    are independent.
+
+    \item Prove that
+    \(
+        \mathbb{E}\left(X_n^{(n)}\right)
+        =
+        n\sum_{m=1}^{n}\frac{1}{m}.
+    \)
+
+    \item Prove that
+    \(
+        \operatorname{Var}\left(X_n^{(n)}\right)
+        \leq cn^2
+    \)
+    for some constant $c$.
+
+    \item Prove that
+    \(
+        \frac{\mathbb{E}\left(X_n^{(n)}\right)}
+        {n\log n}
+        \longrightarrow 1
+        \qquad\text{as }n\to\infty.
+    \)
+
+    \item Use Chebyshev's inequality to conclude that
+    \(
+        \frac{
+            X_n^{(n)}
+            -
+            n\displaystyle\sum_{m=1}^{n}\frac{1}{m}
+        }{
+            nf(n)
+        }
+        \longrightarrow 0
+        \qquad\text{in probability as }f(n)\to\infty.
+    \)
+\end{enumerate}
+
+\end{quiz}

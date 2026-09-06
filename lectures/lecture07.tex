@@ -1,0 +1,896 @@
+ \lecture
+{07}
+{Friday, 28 August 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples of Random Variables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{Uniform Random Variable}{uniform-random-variable}
+
+Let $X$ be uniformly distributed on $(0,1)$. Then its C.D.F. is
+given by
+\[
+F_X(x)
+=
+\begin{cases}
+0, & x\leq 0,\\[4pt]
+x, & 0<x<1,\\[4pt]
+1, & x\geq 1.
+\end{cases}
+\]
+
+\end{example}
+
+
+\begin{example}{Exponential Random Variable}{exponential-random-variable}
+
+Let
+\[
+X\sim\operatorname{Exp}(\lambda),
+\qquad \lambda>0.
+\]
+Then $X$ has density
+\[
+f_X(y)=\lambda e^{-\lambda y},
+\qquad y\ge 0.
+\]
+
+\end{example}
+
+
+\begin{example}{Poisson Random Variable}{poisson-random-variable}
+
+Let
+\[
+X\sim\operatorname{Poisson}(\lambda),
+\qquad \lambda>0.
+\]
+Then the C.D.F. of $X$ is
+\[
+F_X(x)
+=
+\begin{cases}
+0, & x<0,\\[6pt]
+\displaystyle
+\sum_{k=0}^{\lfloor x\rfloor}
+e^{-\lambda}\frac{\lambda^k}{k!},
+& x\geq 0.
+\end{cases}
+\]
+
+\end{example}
+
+
+\begin{example}{Standard Normal Random Variable}{standard-normal-random-variable}
+
+Let
+\[
+X\sim N(0,1).
+\]
+Then the C.D.F. of $X$ is
+\[
+F_X(x)
+=
+\int_{-\infty}^{x}
+\frac{1}{\sqrt{2\pi}}
+e^{-y^2/2}\,dy.
+\]
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A Gaussian Tail Estimate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Gaussian Tail Bound}{gaussian-tail-bound}
+
+For $x>0$,
+\[
+\left(
+\frac{1}{x}-\frac{1}{x^3}
+\right)e^{-x^2/2}
+\leq
+\int_x^\infty e^{-y^2/2}\,dy
+\leq
+\frac{1}{x}e^{-x^2/2}.
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+We first prove the upper bound.
+
+Let
+\[
+y=x+z.
+\]
+Then
+\[
+\begin{aligned}
+\int_x^\infty e^{-y^2/2}\,dy
+&=
+e^{-x^2/2}
+\int_0^\infty
+e^{-xz-z^2/2}\,dz.
+\end{aligned}
+\]
+
+Since
+\[
+e^{-xz-z^2/2}
+\leq e^{-xz},
+\]
+we obtain
+\[
+\begin{aligned}
+\int_x^\infty e^{-y^2/2}\,dy
+&\leq
+e^{-x^2/2}
+\int_0^\infty e^{-xz}\,dz\\
+&=
+\frac{1}{x}e^{-x^2/2}.
+\end{aligned}
+\]
+
+Thus,
+\[
+\boxed{
+\int_x^\infty e^{-y^2/2}\,dy
+\leq
+\frac{1}{x}e^{-x^2/2}
+}.
+\]
+
+\end{proof}
+Todo: We have to compute the lower bound also.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Expectation and Variance}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Expectation}{expectation}
+
+Suppose $X$ is a random variable such that
+\[
+X\in L^1(\mathbb{P}).
+\]
+Then the expectation of $X$ is defined by
+\[
+\mathbb{E}(X)
+=
+\int_\Omega X\,d\mathbb{P}.
+\]
+
+\end{definition}
+
+
+\begin{definition}{Variance}{variance}
+
+Suppose
+\[
+X\in L^2(\mathbb{P}).
+\]
+Then the variance of $X$ is defined by
+\[
+\operatorname{Var}(X)
+=
+\mathbb{E}
+\left[
+\left(X-\mathbb{E}(X)\right)^2
+\right].
+\]
+
+\end{definition}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Central Limit Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Central Limit Theorem}{central-limit-theorem}
+
+Let
+\(
+X_1,X_2,\ldots
+\)
+be i.i.d.\ random variables such that they  all have same distribution say X,~ ~ ~ 
+\(
+\mathbb{E}(X_1^2)<\infty.
+\)
+Let
+\[
+\mu=\mathbb{E}(X_1),
+\qquad
+\sigma^2=\operatorname{Var}(X_1).
+\]
+
+Then
+\[
+\frac{
+\displaystyle
+\sum_{i=1}^n X_i-n\mu
+}{
+\sqrt{n}\sigma
+}
+\xrightarrow{d}
+N(0,1).
+\]
+
+Equivalently, for $a<b$,
+\[
+\mathbb{P}
+\left(
+a
+\leq
+\frac{
+\displaystyle\sum_{i=1}^n X_i-n\mu
+}{
+\sqrt{n}\sigma
+}
+\leq b
+\right)
+\longrightarrow
+\frac{1}{\sqrt{2\pi}}
+\int_a^b e^{-x^2/2}\,dx.
+\]
+
+\end{theorem}
+
+\begin{remark}
+The result above is the usual form of the Central Limit Theorem.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples of Expectation and Variance}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{Expectation and Variance of Common Distributions}
+{expectation-variance-common-distributions}
+
+\begin{enumerate}
+
+    \item If
+    \(
+    X\sim\operatorname{Exp}(\lambda),
+    \)
+    then
+    \[
+    \mathbb{E}(X)=\frac{1}{\lambda},
+    \qquad
+    \operatorname{Var}(X)=\frac{1}{\lambda^2}.
+    \]
+
+    \item If
+    \(
+    X\sim\operatorname{Poisson}(\lambda),
+    \)
+    then
+    \[
+    \mathbb{E}(X)=\lambda,
+    \qquad
+    \operatorname{Var}(X)=\lambda.
+    \]
+
+    \item If
+    \(
+    X\sim\operatorname{Geom}(p),
+    \)
+    then
+    \[
+    \mathbb{E}(X)=\frac{1}{p},
+    \qquad
+    \operatorname{Var}(X)
+    =
+    \frac{1-p}{p^2}.
+    \]
+
+    \item If
+    \(
+    X\sim N(\mu,\sigma^2),
+    \)
+    then
+    \[
+    \mathbb{E}(X)=\mu,
+    \qquad
+    \operatorname{Var}(X)=\sigma^2.
+    \]
+
+\end{enumerate}
+
+\end{example}
+
+
+\begin{question}{Prove this}{prove-t}
+Do the calculations to prove
+\(
+\mathbb{E}(X)=\mu
+\qquad\text{and}\qquad
+\operatorname{Var}(X)=\sigma^2
+\)
+for
+\(
+X\sim N(\mu,\sigma^2).
+\)
+\end{question}
+
+
+\begin{remark}
+
+If
+\(
+Y=aX+b,
+\)
+then
+\(
+\mathbb{E}(Y)
+=
+a\mathbb{E}(X)+b
+\)
+and
+\(
+\operatorname{Var}(Y)
+=
+a^2\operatorname{Var}(X).
+\)
+
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A Result on Signs of Vectors}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Sign Choice for Vectors}{sign-choice-vectors}
+
+Let
+\(
+v_1,\ldots,v_n\in\mathbb{R}^n
+\)
+satisfy
+\(
+\|v_i\|_2=1
+\qquad
+\text{for all }i.
+\)
+
+Then:
+
+\begin{enumerate}
+
+    \item There exist
+    \(
+    \varepsilon_1,\ldots,\varepsilon_n
+    \in\{-1,1\}
+    \)
+    such that
+    \(
+    \left\|
+    \sum_{i=1}^n
+    \varepsilon_i v_i
+    \right\|_2
+    \leq
+    \sqrt{n}.
+    \)
+
+    \item There exist
+    \(
+    \varepsilon_1,\ldots,\varepsilon_n
+    \in\{-1,1\}
+    \)
+    such that
+    \(
+    \left\|
+    \sum_{i=1}^n
+    \varepsilon_i v_i
+    \right\|_2
+    \geq
+    \sqrt{n}.
+    \)
+
+\end{enumerate}
+
+\end{theorem}
+
+
+\begin{proof}
+
+Let
+\(
+\varepsilon_1,\ldots,\varepsilon_n
+\)
+be independent random variables, each uniformly distributed on
+$\{-1,1\}$.
+
+Then
+\[
+\begin{aligned}
+\mathbb{E}
+\left[
+\left\|
+\sum_{i=1}^n\varepsilon_i v_i
+\right\|_2^2
+\right]
+&=
+\mathbb{E}
+\left[
+\sum_{i,j}
+\varepsilon_i\varepsilon_j
+\langle v_i,v_j\rangle
+\right]\\
+&=
+\sum_{i,j}
+\langle v_i,v_j\rangle
+\mathbb{E}(\varepsilon_i\varepsilon_j).
+\end{aligned}
+\]
+
+For $i\neq j$,
+\(
+\mathbb{E}(\varepsilon_i\varepsilon_j)
+=
+\mathbb{E}(\varepsilon_i)
+\mathbb{E}(\varepsilon_j)
+=
+0,
+\)
+while
+\(
+\mathbb{E}(\varepsilon_i^2)=1.
+\)
+
+Therefore,
+\[
+\begin{aligned}
+\mathbb{E}
+\left[
+\left\|
+\sum_{i=1}^n\varepsilon_i v_i
+\right\|_2^2
+\right]
+&=
+\sum_{i=1}^n
+\|v_i\|_2^2\\
+&=
+n.
+\end{aligned}
+\]
+
+Hence there must exist a choice of signs for which
+\(
+\left\|
+\sum_{i=1}^n\varepsilon_i v_i
+\right\|_2^2
+\geq n,
+\)
+and there must also exist a choice of signs for which
+\(
+\left\|
+\sum_{i=1}^n\varepsilon_i v_i
+\right\|_2^2
+\leq n.
+\)
+
+Taking square roots gives the result.
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercises on Probability Distributions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}{}{question-1}
+Suppose $X$ is a discrete random variable such that
+\[
+\mathbb{P}(X=k)
+=
+(1-p)^{k-1}p,
+\qquad
+k\geq 1,
+\qquad
+k\in\mathbb{N}.
+\]
+
+Find
+\[
+\mathbb{P}(a<X<b).
+\]
+\end{question}
+
+
+\begin{question}{}{question-2}
+Suppose $X$ is a random variable whose probability density
+function is
+\[
+f_X(x)
+=
+\lambda e^{-\lambda x},
+\qquad
+x\geq0,
+\qquad
+\lambda>0.
+\]
+
+Find
+\[
+\mathbb{P}(a<X<b).
+\]
+\end{question}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Graph Theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Graph}{graph}
+
+A graph is a pair
+\(
+G=(V,E),
+\)
+where
+
+\begin{itemize}
+    \item $V$ is the set of vertices;
+    \item $E$ is the set of edges.
+\end{itemize}
+
+In this lecture, we consider undirected graphs.
+
+\end{definition}
+
+
+\begin{example}{Basic Graphs}{basic-graphs}
+
+Examples of graphs include:
+
+\begin{enumerate}
+
+    \item The complete simple graph $K_n$.
+
+    \item The cycle graph $C_n$, where
+    \(
+    V=\mathbb{Z}_n
+    \)
+    and
+    \(
+    E
+    =
+    \left\{
+    (i,i+1):i\in\mathbb{Z}_n
+    \right\}.
+    \)
+
+\end{enumerate}
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bipartite Graphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Bipartite Graph}{bipartite-graph}
+
+A graph $G=(V,E)$ is called bipartite if there exists a partition
+\(
+V=V_1\sqcup V_2
+\)
+such that whenever
+\(
+(u,v)\in E,
+\)
+we have
+\(
+u\in V_1,\qquad v\in V_2,
+\)
+or equivalently,
+\(
+u\in V_2,\qquad v\in V_1.
+\)
+
+\end{definition}
+
+
+\begin{example}{Odd Cycle is Not Bipartite}{odd-cycle-not-bipartite}
+
+The cycle graph $C_n$ is bipartite if and only if $n$ is even.
+
+For an odd cycle, one cannot partition the vertices into two sets such
+that every edge joins vertices belonging to different sets.
+
+\end{example}
+
+
+\begin{example}{Path Graph}{path-graph}
+
+The path graph $P_n$ is always bipartite.
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subgraphs and Walks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Subgraph}{subgraph}
+
+A graph
+\(
+G'=(V',E')
+\)
+is a subgraph of
+\(
+G=(V,E)
+\)
+if
+\(
+V'\subseteq V
+\qquad\text{and}\qquad
+E'\subseteq E.
+\)
+
+\end{definition}
+
+
+\begin{definition}{Walk}{walk}
+
+A walk from a vertex to another vertex in
+\(
+G=(V,E)
+\)
+is a sequence of vertices
+\(
+v_0,v_1,\ldots,v_n
+\)
+such that
+\(
+(v_i,v_{i+1})\in E
+\)
+for every
+\(
+i=0,\ldots,n-1.
+\)
+
+\end{definition}
+
+
+\begin{definition}{Tree}{tree}
+
+A graph is called a tree if it is connected and does not contain a
+cycle as a subgraph.
+
+\end{definition}
+
+
+\begin{definition}{Connected Graph}{connected-graph}
+
+A graph is called connected if, for all distinct vertices
+$u,v\in V$, there exists a walk from $u$ to $v$.
+
+\end{definition}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Trees and Bipartite Graphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Every Tree is Bipartite}{every-tree-is-bipartite}
+
+Every tree is a bipartite graph.
+
+\end{theorem}
+
+
+\begin{proof}
+
+Let
+\(
+T=(V,E)
+\)
+be a tree and choose a vertex
+\(
+v\in V.
+\)
+
+Define
+\[
+V_0
+=
+\left\{
+u\in V:
+d(u,v)\text{ is even}
+\right\}
+\]
+and
+\[
+V_1
+=
+\left\{
+u\in V:
+d(u,v)\text{ is odd}
+\right\},
+\]
+where $d(u,v)$ denotes the length of the shortest walk from $u$ to
+$v$.
+
+Clearly,
+\[
+V=V_0\sqcup V_1.
+\]
+
+Suppose $(u,w)\in E$. If $d(u,v)$ and $d(w,v)$ had the same parity,
+then combining shortest paths from $v$ to $u$ and $v$ to $w$ with the
+edge $(u,w)$ would produce cycle.
+
+Since $T$ is a tree, this is impossible.
+
+Therefore every edge joins a vertex in $V_0$ to a vertex in $V_1$.
+Hence $T$ is bipartite.
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characterization of Bipartite Graphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Characterization of Bipartite Graphs}
+{bipartite-odd-cycle-characterization}
+
+A graph
+\(
+G=(V,E)
+\)
+is bipartite if and only if it contains no cycle of odd length.
+
+\end{theorem}
+
+
+\begin{remark}
+
+An odd cycle is not bipartite.
+
+Moreover, every subgraph of a bipartite graph is also bipartite.
+
+\end{remark}
+
+
+\begin{proof}
+
+We have already seen that every tree is bipartite.
+
+Now suppose that $G$ is bipartite. Let
+\(
+V=V_0\sqcup V_1
+\)
+be a bipartition of $V$.
+
+Consider a cycle
+\[
+v_0,v_1,\ldots,v_{n-1},v_0.
+\]
+
+Since every edge joins the two different parts of the bipartition,
+the vertices of the cycle must alternate between $V_0$ and $V_1$.
+
+Therefore the length of the cycle must be even.
+
+Hence every cycle in a bipartite graph is even.
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bipartite Subgraph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{Bipartite Subgraph}{large-bipartite-subgraph}
+
+Let
+\(
+G=(V,E)
+\)
+be a finite graph without self-loops. Then there exists a bipartite
+subgraph
+\(
+G'=(V,E')
+\)
+such that
+\(
+|E'|\geq\frac{|E|}{2}.
+\)
+
+\end{theorem}
+
+
+\begin{proof}
+
+Let $V$ be the vertex set and consider a random partition
+\(
+V=V_0\sqcup V_1
+\)
+obtained by independently assigning each vertex to $V_0$ or $V_1$ with
+probability $1/2$.
+
+An edge $(u,v)\in E$ is said to be \emph{crossing} if $u$ and $v$
+belong to different parts of the partition.
+
+Define the random variable
+\[
+X_{(u,v)}
+=
+\begin{cases}
+1, & \text{if $(u,v)$ is crossing},\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+
+Let
+\(
+X
+=
+\sum_{(u,v)\in E}
+X_{(u,v})
+\)
+be the total number of crossing edges.
+
+For a fixed edge $(u,v)$,
+\[
+\begin{aligned}
+\mathbb{E}(X_{(u,v)})
+&=
+\mathbb{P}(X_{(u,v)}=1)\\
+&=
+\mathbb{P}(u\in V_0,v\in V_1)
++
+\mathbb{P}(u\in V_1,v\in V_0)\\
+&=
+\frac14+\frac14\\
+&=
+\frac12.
+\end{aligned}
+\]
+
+Therefore,
+\[
+\begin{aligned}
+\mathbb{E}(X)
+&=
+\sum_{(u,v)\in E}
+\mathbb{E}(X_{(u,v)})\\
+&=
+\frac{|E|}{2}.
+\end{aligned}
+\]
+
+Hence there must exist at least one partition for which
+\[
+X\geq\frac{|E|}{2}.
+\]
+
+Take $E'$ to be the set of crossing edges for such a partition.
+Then
+\(
+G'=(V,E')
+\)
+is bipartite and satisfies
+\(
+|E'|\geq\frac{|E|}{2}.
+\)
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of Lecture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lectureend
