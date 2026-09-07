@@ -1,0 +1,673 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 09
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{09}
+{Monday, 7 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Continuation of Coupon Collector Problem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Continuation of Coupon Collector Problem}
+
+We have already defined $X_n$ and
+\(
+    Y_k = \sum_{i=1}^{n} S_{i,k}.
+\)
+
+Now,
+\[
+\begin{aligned}
+    \operatorname{Var}(Y_k)
+    &=
+    \sum_{i=1}^{n}\operatorname{Var}(S_{i,k})
+    +
+    \sum_{\substack{i,j=1\\i\neq j}}^{n}
+    \operatorname{Cov}(S_{i,k},S_{j,k}).
+\end{aligned}
+\]
+
+We have
+\[
+    \operatorname{Var}(S_{i,k})
+    =
+    \left(1-\frac{1}{n}\right)^k
+    \left[
+        1-\left(1-\frac{1}{n}\right)^k
+    \right].
+\]
+
+Now,
+\[
+\begin{aligned}
+    \operatorname{Cov}(S_{i,k},S_{j,k})
+    &=
+    \mathbb{E}(S_{i,k}S_{j,k})
+    -
+    \mathbb{E}(S_{i,k})\mathbb{E}(S_{j,k}) \\
+    &=
+    \left(1-\frac{2}{n}\right)^k
+    -
+    \left(1-\frac{1}{n}\right)^{2k}.
+\end{aligned}
+\]
+
+Since
+\[
+    \left(1-x\right)^2
+    \geq
+    1-2x,
+\]
+we have
+\[
+    \left(1-\frac{1}{n}\right)^2
+    \geq
+    1-\frac{2}{n},
+\]
+and hence
+\[
+    \left(1-\frac{2}{n}\right)^k
+    \leq
+    \left(1-\frac{1}{n}\right)^{2k}.
+\]
+
+Therefore,
+\[
+    \operatorname{Cov}(S_{i,k},S_{j,k})
+    \leq 0.
+\]
+
+Thus,
+\[
+\begin{aligned}
+    \operatorname{Var}(Y_k)
+    &\leq
+    n
+    \left(1-\frac{1}{n}\right)^k
+    \left[
+        1-\left(1-\frac{1}{n}\right)^k
+    \right].
+\end{aligned}
+\]
+
+Also,
+\[
+    \mathbb{E}(Y_k)
+    =
+    n\left(1-\frac{1}{n}\right)^k.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+    \frac{\mathbb{E}(Y_k)}
+    {\sqrt{\operatorname{Var}(Y_k)}}
+    &\geq
+    \frac{
+        n\left(1-\frac{1}{n}\right)^k
+    }{
+        \sqrt{
+            n\left(1-\frac{1}{n}\right)^k
+            \left[
+                1-\left(1-\frac{1}{n}\right)^k
+            \right]
+        }
+    } \\
+    &\geq
+    \sqrt{
+        n\left(1-\frac{1}{n}\right)^k
+    }.
+\end{aligned}
+\]
+
+\begin{question}
+{Coupon Collector Problem}
+{coupon-collector-lower-bound}
+
+We want to show that
+\[
+    \mathbb{P}
+    \left(
+        X_n
+        <
+        (1-\epsilon)n\log n
+    \right)
+    \longrightarrow 0
+    \qquad\text{as }n\to\infty.
+\]
+
+Consider
+\[
+    k=(1-\epsilon)n\log n.
+\]
+
+Then
+\[
+\begin{aligned}
+    \mathbb{P}(X_n<k)
+    &=
+    \mathbb{P}(Y_k=0).
+\end{aligned}
+\]
+
+By Chebyshev's inequality,
+\[
+\begin{aligned}
+    \mathbb{P}(Y_k=0)
+    &\leq
+    \mathbb{P}
+    \left(
+        \left|
+        \frac{Y_k-\mathbb{E}(Y_k)}
+        {\sqrt{\operatorname{Var}(Y_k)}}
+        \right|
+        \geq
+        \frac{\mathbb{E}(Y_k)}
+        {\sqrt{\operatorname{Var}(Y_k)}}
+    \right) \\
+    &\leq
+    \frac{
+        \operatorname{Var}(Y_k)
+    }{
+        \mathbb{E}(Y_k)^2
+    }.
+\end{aligned}
+\]
+
+More generally, Chebyshev gives
+\[
+    \mathbb{P}
+    \left(
+        \left|
+        \frac{Y_k-\mathbb{E}(Y_k)}
+        {\sqrt{\operatorname{Var}(Y_k)}}
+        \right|
+        \geq t
+    \right)
+    \leq
+    \frac{1}{t^2}.
+\]
+
+We have
+\[
+\begin{aligned}
+    \left|
+        Y_k-\mathbb{E}(Y_k)
+    \right|
+    \geq
+    t\sqrt{\operatorname{Var}(Y_k)}
+    \quad\Longleftrightarrow\quad
+    Y_k
+    \notin
+    \left(
+        \mathbb{E}(Y_k)
+        -
+        t\sqrt{\operatorname{Var}(Y_k)},
+        \mathbb{E}(Y_k)
+        +
+        t\sqrt{\operatorname{Var}(Y_k)}
+    \right).
+\end{aligned}
+\]
+
+Choose $t$ such that
+\[
+    0<
+    \mathbb{E}(Y_k)
+    -
+    t\sqrt{\operatorname{Var}(Y_k)}.
+\]
+
+Thus,
+\[
+    t
+    \leq
+    \frac{\mathbb{E}(Y_k)}
+    {\sqrt{\operatorname{Var}(Y_k)}}.
+\]
+
+If
+\[
+    Y_k=0,
+\]
+then
+\[
+\begin{aligned}
+    \left|
+        \frac{Y_k-\mathbb{E}(Y_k)}
+        {\sqrt{\operatorname{Var}(Y_k)}}
+    \right|
+    &=
+    \frac{\mathbb{E}(Y_k)}
+    {\sqrt{\operatorname{Var}(Y_k)}} \\
+    &\geq
+    \sqrt{
+        n\left(1-\frac{1}{n}\right)^k
+    }.
+\end{aligned}
+\]
+
+For
+\[
+    k=(1-\epsilon)n\log n,
+\]
+we have
+\[
+\begin{aligned}
+    n\left(1-\frac{1}{n}\right)^k
+    &\sim
+    n e^{-(1-\epsilon)\log n} \\
+    &=
+    n^\epsilon.
+\end{aligned}
+\]
+
+Hence,
+\[
+    \frac{\mathbb{E}(Y_k)}
+    {\sqrt{\operatorname{Var}(Y_k)}}
+    \geq
+    \sqrt{n^\epsilon}
+    =
+    n^{\epsilon/2}.
+\]
+
+Therefore,
+\[
+    \mathbb{P}
+    \left(
+        Y_{(1-\epsilon)n\log n}=0
+    \right)
+    \longrightarrow 0
+    \qquad\text{as }n\to\infty.
+\]
+
+\end{question}
+
+\textbf{Todo:} Check and fill the corresponding graphs.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Erdős--Rényi Graphs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Erdős--Rényi Graphs}
+
+Let
+\(
+    n\in\mathbb{N},
+    \qquad
+    p\in(0,1).
+\)
+The random graph
+\(
+    G(n,p)
+\)
+is a random graph with $n$ vertices
+\(
+    \{1,2,\ldots,n\},
+\)
+where each edge is chosen independently with probability $p$.
+
+\begin{question}
+{Number of Copies of $K_r$}
+{number-of-copies-kr}
+
+How many copies of $K_r$ are there in $G(n,p)$, where $K_r$
+denotes the complete graph on $r$ vertices?
+\end{question}
+
+Let
+\(
+    A\subseteq\{1,2,\ldots,n\}
+\)
+have cardinality $r$.
+
+Define
+\(
+    X_A
+    =
+    \begin{cases}
+        1, & \text{if $K_r$ appears on $A$},\\
+        0, & \text{otherwise}.
+    \end{cases}
+\)
+
+Let $X$ denote the number of copies of $K_r$. Then
+\[
+    X
+    =
+    \sum_{\substack{
+        A\subseteq\{1,2,\ldots,n\}\\
+        |A|=r
+    }}
+    X_A.
+\]
+
+Since all the edges of $K_r$ must be present,
+\[
+    \mathbb{E}(X_A)
+    =
+    p^{\binom{r}{2}}.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+    \mathbb{E}(X)
+    &=
+    \sum_{\substack{
+        A\subseteq\{1,2,\ldots,n\}\\
+        |A|=r
+    }}
+    \mathbb{E}(X_A) \\
+    &=
+    \binom{n}{r}
+    p^{\binom{r}{2}}.
+\end{aligned}
+\]
+
+Now,
+\[
+\begin{aligned}
+    \operatorname{Var}(X)
+    &=
+    \sum_{\substack{
+        A\subseteq\{1,2,\ldots,n\}\\
+        |A|=r
+    }}
+    \operatorname{Var}(X_A) \\
+    &\qquad+
+    \sum_{\substack{
+        A\neq B\\
+        |A|=|B|=r
+    }}
+    \operatorname{Cov}(X_A,X_B).
+\end{aligned}
+\]
+
+For the first term,
+\[
+\begin{aligned}
+    \sum_{|A|=r}\operatorname{Var}(X_A)
+    &=
+    \binom{n}{r}
+    p^{\binom{r}{2}}
+    \left(
+        1-p^{\binom{r}{2}}
+    \right).
+\end{aligned}
+\]
+
+If
+\(
+    |A\cap B|\leq 1,
+\)
+then the sets of edges involved in $X_A$ and $X_B$ are disjoint.
+
+Hence,
+\[
+    \operatorname{Cov}(X_A,X_B)=0.
+\]
+
+If
+\(
+    |A\cap B|=t>1,
+\)
+then
+\[
+\begin{aligned}
+    \operatorname{Cov}(X_A,X_B)
+    &=
+    \mathbb{E}(X_AX_B)
+    -
+    \mathbb{E}(X_A)\mathbb{E}(X_B) \\
+    &=
+    p^{
+        2\binom{r}{2}-\binom{t}{2}
+    }
+    -
+    p^{2\binom{r}{2}}.
+\end{aligned}
+\]
+
+Thus,
+\[
+\begin{aligned}
+    \sum_{\substack{
+        A\neq B,\,
+        |A\cap B|=t\\
+        |A|=|B|=r
+    }}
+    \operatorname{Cov}(X_A,X_B)
+    &=
+    \binom{n}{r}
+    \binom{n-r}{r-t}
+    \left[
+        p^{
+            2\binom{r}{2}-\binom{t}{2}
+        }
+        -
+        p^{2\binom{r}{2}}
+    \right].
+\end{aligned}
+\]
+
+Consequently,
+\[
+\begin{aligned}
+    \operatorname{Var}(X)
+    &=
+    \binom{n}{r}
+    p^{\binom{r}{2}}
+    \left(
+        1-p^{\binom{r}{2}}
+    \right) \\
+    &\qquad+
+    \sum_{t=2}^{r-1}
+    \binom{n}{r}
+    \binom{n-r}{r-t}
+    \left[
+        p^{
+            2\binom{r}{2}-\binom{t}{2}
+        }
+        -
+        p^{2\binom{r}{2}}
+    \right].
+\end{aligned}
+\]
+
+For some constants $c_1,c_2>0$,
+\[
+    \mathbb{E}(X)\sim c_1 n^r,
+    \qquad
+    \operatorname{Var}(X)\sim c_2 n^{2r-2}.
+\]
+
+By Chebyshev's inequality, we have
+\[
+    \mathbb{P}
+    \left(
+        \left|
+            \frac{X-\mathbb{E}(X)}
+            {n^{r-1}f(n)}
+        \right|
+        >\epsilon
+    \right)
+    \longrightarrow 0
+    \qquad\text{as }n\to\infty,
+\]
+where $f(n)$ is any function such that
+\(
+    f(n)\longrightarrow\infty
+    \qquad\text{as }n\to\infty.
+\)
+
+In fact,
+\[
+\begin{aligned}
+    \mathbb{P}
+    \left(
+        |X-\mathbb{E}(X)|
+        >
+        \epsilon\mathbb{E}(X)
+    \right)
+    &\leq
+    \frac{
+        \operatorname{Var}(X)
+    }{
+        \epsilon^2\mathbb{E}(X)^2
+    } \\
+    &\sim
+    \frac{1}{n^2\epsilon^2}
+    \longrightarrow 0.
+\end{aligned}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Full Strength of Chebyshev
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Full Strength of Chebyshev}
+
+Let
+\(
+    X_1,X_2,\ldots,X_n
+\)
+be random variables and define
+\(
+    S_n=\sum_{i=1}^{n}X_i.
+\)
+
+Suppose
+\(
+    \mathbb{E}(X_i)=\mu,
+\)
+\(
+    \operatorname{Var}(X_i)\leq C
+    \qquad\text{for all }i,
+\)
+and
+\[
+    \operatorname{Cov}(X_i,X_j)=0
+    \qquad\text{for all }i<j.
+\]
+
+Thus, the random variables are uncorrelated.
+
+Then
+\(
+    \frac{S_n}{n}
+    \longrightarrow
+    \mu
+\)
+in $L^2$ and in probability.
+
+This is a version of the weak law of large numbers.
+
+\textbf{Proof.}
+
+We have
+\[
+\begin{aligned}
+    \mathbb{E}
+    \left[
+        \left|
+            \frac{S_n}{n}-\mu
+        \right|^2
+    \right]
+    &=
+    \operatorname{Var}
+    \left(
+        \frac{S_n}{n}
+    \right) \\
+    &=
+    \frac{1}{n^2}
+    \operatorname{Var}(S_n).
+\end{aligned}
+\]
+
+Since the random variables are uncorrelated,
+\[
+\begin{aligned}
+    \operatorname{Var}(S_n)
+    &=
+    \sum_{i=1}^{n}\operatorname{Var}(X_i) \\
+    &\leq
+    Cn.
+\end{aligned}
+\]
+
+Therefore,
+\[
+    \mathbb{E}
+    \left[
+        \left|
+            \frac{S_n}{n}-\mu
+        \right|^2
+    \right]
+    \leq
+    \frac{Cn}{n^2}
+    =
+    \frac{C}{n}
+    \longrightarrow 0.
+\]
+
+Hence,
+\(
+    \frac{S_n}{n}
+    \longrightarrow
+    \mu
+    \qquad\text{in }L^2,
+\)
+and therefore
+\(
+    \frac{S_n}{n}
+    \longrightarrow
+    \mu
+    \qquad\text{in probability}.
+\)
+
+\textbf{But further:}
+
+By Chebyshev's inequality,
+\[
+\begin{aligned}
+    \mathbb{P}
+    \left(
+        \left|
+            \frac{S_n}{n}-\mu
+        \right|
+        >
+        \epsilon\mu
+    \right)
+    &\leq
+    \frac{
+        \operatorname{Var}(S_n)
+    }{
+        (n\epsilon\mu)^2
+    } \\
+    &\leq
+    \frac{nC}
+    {n^2\epsilon^2\mu^2} \\
+    &=
+    \frac{C}
+    {n\epsilon^2\mu^2}
+    \longrightarrow 0.
+\end{aligned}
+\]
+
+\begin{question}
+{Exponential Decay}
+{exponential-decay}
+
+How do we get exponential decay?
+\end{question}
+
+
+\lectureend
