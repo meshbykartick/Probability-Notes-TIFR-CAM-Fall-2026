@@ -1,0 +1,544 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{10}
+{Wednesday, 11 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hoeffding's Inequality
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hoeffding's Inequality}
+
+\begin{theorem}{Hoeffding's Inequality}{hoeffding-inequality}
+
+Let $X_1,X_2,\ldots,X_n$ be independent random variables such that
+\(
+    \mathbb{E}(X_i)=0
+    \qquad\text{for all }i,
+\)
+and
+\(
+    |X_i|\leq a_i.
+\)
+
+Define
+\[
+    S_n=\sum_{i=1}^{n}X_i.
+\]
+
+Then, for every $t>0$,
+\[
+    \mathbb{P}(S_n\geq t)
+    \leq
+    \exp\left(
+        -\frac{t^2}
+        {2\sum_{i=1}^{n}a_i^2}
+    \right).
+\]
+
+\end{theorem}
+
+\begin{corollary}{Two-Sided Hoeffding Bound}{two-sided-hoeffding}
+
+Under the assumptions of Hoeffding's inequality,
+\[
+    \mathbb{P}(|S_n|\geq t)
+    \leq
+    2\exp\left(
+        -\frac{t^2}
+        {2\sum_{i=1}^{n}a_i^2}
+    \right),
+    \qquad t>0.
+\]
+
+\end{corollary}
+
+\begin{remark}
+
+There are several useful versions of Hoeffding's inequality.
+
+\begin{enumerate}
+
+    \item The inequality can be applied to centered versions of
+    random variables. If the random variables do not have mean zero,
+    replace $S_n$ by
+    \[
+        S_n-\sum_{i=1}^{n}\mathbb{E}(X_i).
+    \]
+
+    \item There are versions of the inequality for asymmetric
+    intervals.
+
+    \item Independence can be relaxed in other concentration
+    inequalities. One important example is the
+    \emph{Azuma--Hoeffding inequality} for martingales.
+
+\end{enumerate}
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Example: Coin Tosses
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{Coin Tosses}{hoeffding-coin-tosses}
+
+Consider independent coin tosses and let
+\[
+    X_i=
+    \begin{cases}
+        1, & \text{if the $i$-th toss is a head},\\
+        0, & \text{if the $i$-th toss is a tail}.
+    \end{cases}
+\]
+
+After centering the variables appropriately, Hoeffding's inequality
+gives an exponential bound on deviations of the number of heads from
+its expected value.
+
+In particular, when the variables satisfy
+\[
+    |X_i|\leq 1,
+\]
+we obtain a bound of the form
+\[
+    \mathbb{P}(|S_n|\geq t)
+    \leq
+    2\exp\left(-\frac{t^2}{2n}\right).
+\]
+
+For $t=n\alpha$,
+\[
+    \mathbb{P}(|S_n|\geq n\alpha)
+    \leq
+    2\exp\left(-\frac{n\alpha^2}{2}\right).
+\]
+
+Thus the probability of a deviation of order $n$ decays
+exponentially in $n$.
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proof}
+
+For $\theta>0$, by Markov's inequality,
+\[
+\begin{aligned}
+    \mathbb{P}(S_n\geq t)
+    &=
+    \mathbb{P}\left(e^{\theta S_n}\geq e^{\theta t}\right)\\
+    &\leq
+    \frac{\mathbb{E}\left(e^{\theta S_n}\right)}
+    {e^{\theta t}}.
+\end{aligned}
+\]
+
+Since the $X_i$ are independent,
+\[
+\mathbb{E}\left(e^{\theta S_n}\right)
+=
+\prod_{i=1}^{n}
+\mathbb{E}\left(e^{\theta X_i}\right).
+\]
+
+Because
+\(
+    -a_i\leq X_i\leq a_i
+\)
+and $\mathbb{E}(X_i)=0$, convexity of the exponential function gives
+\[
+    \mathbb{E}\left(e^{\theta X_i}\right)
+    \leq
+    \frac{1}{2}
+    \left(
+        e^{-\theta a_i}
+        +
+        e^{\theta a_i}
+    \right).
+\]
+
+Using the power-series expansion of the exponential function,
+\[
+    \frac{e^{-u}+e^u}{2}
+    \leq
+    e^{u^2/2},
+\]
+and hence
+\[
+    \mathbb{E}\left(e^{\theta X_i}\right)
+    \leq
+    e^{\theta^2a_i^2/2}.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+    \mathbb{P}(S_n\geq t)
+    &\leq
+    \frac{
+        \exp\left(
+            \dfrac{\theta^2}{2}
+            \sum_{i=1}^{n}a_i^2
+        \right)
+    }
+    {e^{\theta t}}\\
+    &=
+    \exp\left(
+        \frac{\theta^2}{2}
+        \sum_{i=1}^{n}a_i^2
+        -
+        \theta t
+    \right).
+\end{aligned}
+\]
+
+Choose
+\(
+    \theta
+    =
+    \frac{t}{\sum_{i=1}^{n}a_i^2}.
+\)
+
+Then
+\[
+    \mathbb{P}(S_n\geq t)
+    \leq
+    \exp\left(
+        -\frac{t^2}
+        {2\sum_{i=1}^{n}a_i^2}
+    \right).
+\]
+
+This proves Hoeffding's inequality.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Independence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Independence}
+
+Let
+\(
+    (\Omega,\mathcal{F},\mathbb{P})
+\)
+be a probability space, and let $I$ be an index set.
+
+\begin{definition}{Independence of Random Variables}{independence-random-variables}
+
+Let
+\(
+    X_i:(\Omega,\mathcal{F})
+    \longrightarrow
+    (S,\mathcal{S}),
+    \qquad i\in I,
+\)
+be random variables.
+
+The collection $(X_i)_{i\in I}$ is said to be independent if, for every
+finite collection of distinct indices
+\(
+    i_1,i_2,\ldots,i_n\in I
+\)
+and measurable sets
+\(
+    A_1,A_2,\ldots,A_n\in\mathcal{S},
+\)
+we have
+\[
+    \mathbb{P}
+    \left(
+        \bigcap_{j=1}^{n}
+        \{X_{i_j}\in A_j\}
+    \right)
+    =
+    \prod_{j=1}^{n}
+    \mathbb{P}(X_{i_j}\in A_j).
+\]
+
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Independence of Sigma Algebras
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{Independence of $\sigma$-Algebras}{independence-sigma-algebras}
+
+Let
+\(
+    \{\mathcal{F}_i\}_{i\in I}
+\)
+be a collection of sub-$\sigma$-algebras of $\mathcal{F}$.
+
+They are said to be independent if, for every finite collection of
+distinct indices
+\(
+    i_1,i_2,\ldots,i_n\in I
+\)
+and sets
+\(
+    B_{i_j}\in\mathcal{F}_{i_j},
+\)
+we have
+\[
+    \mathbb{P}
+    \left(
+        \bigcap_{j=1}^{n}B_{i_j}
+    \right)
+    =
+    \prod_{j=1}^{n}
+    \mathbb{P}(B_{i_j}).
+\]
+
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sigma Algebra Generated by a Random Variable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{$\sigma$-Algebra Generated by a Random Variable}
+{sigma-algebra-generated-by-random-variable}
+
+Let
+\(
+    X:(\Omega,\mathcal{F},\mathbb{P})
+    \longrightarrow
+    (S,\mathcal{S})
+\)
+be a random variable.
+
+The $\sigma$-algebra generated by $X$ is
+\[
+    \sigma(X)
+    =
+    \sigma
+    \left(
+        X^{-1}(A):A\in\mathcal{S}
+    \right).
+\]
+
+Equivalently, $\sigma(X)$ is the smallest $\sigma$-algebra contained
+in $\mathcal{F}$ with respect to which $X$ is measurable.
+
+\end{definition}
+
+\begin{observation}
+
+The random variables $(X_i)_{i\in I}$ are independent if and only if
+the $\sigma$-algebras
+\(
+    \bigl(\sigma(X_i)\bigr)_{i\in I}
+\)
+are independent.
+
+\end{observation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Elementary Properties
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{proposition}{Basic Properties of Independence}{basic-independence-properties}
+
+Let $B,B'\in\mathcal{F}$.
+
+Then
+\[
+    B\perp B'
+    \quad\Longleftrightarrow\quad
+    B\perp (B')^c
+    \quad\Longleftrightarrow\quad
+    B^c\perp B'.
+\]
+
+\end{proposition}
+
+\begin{proposition}{Disjoint Independent Events}{disjoint-independent-events}
+
+Let
+\(
+    B_1,B_2,\ldots,B_n,B\in\mathcal{F}.
+\)
+
+Suppose that the events $B_1,\ldots,B_n$ are pairwise disjoint and
+\(
+    B_i\perp B
+    \qquad\text{for every }i.
+\)
+
+Then
+\[
+    \bigcup_{i=1}^{n}B_i
+    \perp B.
+\]
+
+\end{proposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Question
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{question}{Intersection of Independent Events}{intersection-independent-events}
+
+Suppose
+\[
+    B_1\perp B
+    \qquad\text{and}\qquad
+    B_2\perp B.
+\]
+
+Does it follow that
+\[
+    B_1\cap B_2\perp B?
+\]
+
+\begin{todo}
+Find an explicit counterexample, or use a Venn diagram to determine
+whether the statement is true in general.
+\end{todo}
+
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Pi-Lambda Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{$\pi$-$\lambda$ Systems}
+
+A useful way of checking independence is to reduce the collection of
+sets that needs to be checked.
+
+\begin{definition}{$\pi$-System}{pi-system}
+
+Let
+\[
+    \mathcal{P}\subseteq\mathcal{F}.
+\]
+
+We say that $\mathcal{P}$ is a $\pi$-system if it is closed under
+finite intersections; that is,
+\[
+    A,B\in\mathcal{P}
+    \quad\Longrightarrow\quad
+    A\cap B\in\mathcal{P}.
+\]
+
+\end{definition}
+
+\begin{definition}{$\lambda$-System}{lambda-system}
+
+Let
+\[
+    \mathcal{L}\subseteq\mathcal{F}.
+\]
+
+We say that $\mathcal{L}$ is a $\lambda$-system if:
+
+\begin{enumerate}
+
+    \item
+    \(
+        \Omega\in\mathcal{L}.
+    \)
+
+    \item If $A,B\in\mathcal{L}$ and $A\subseteq B$, then
+    \(
+        B\setminus A\in\mathcal{L}.
+    \)
+
+    \item If
+    \(
+        A_1\subseteq A_2\subseteq\cdots,
+        \subseteq 
+        A_n, \cdots \in\mathcal{L},
+    \)
+    then
+    \(
+        \bigcup_{n=1}^{\infty}A_n\in\mathcal{L}.
+    \)
+
+\end{enumerate}
+
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Pi-Lambda Theorem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{$\pi$-$\lambda$ Theorem}{pi-lambda-theorem}
+
+Let $\mathcal{P}$ be a $\pi$-system and let $\mathcal{L}$ be a
+$\lambda$-system such that
+\(
+    \mathcal{P}\subseteq\mathcal{L}.
+\)
+Then
+\(
+    \sigma(\mathcal{P})
+    \subseteq
+    \mathcal{L}.
+\)
+
+\end{theorem}
+
+\begin{proof}
+Proof Sketch: Durret
+Let $\mathcal{L}'$ be the smallest $\lambda$-system containing
+$\mathcal{P}$. Thus,
+\[
+    \mathcal{P}
+    \subseteq
+    \mathcal{L}'
+    \subseteq
+    \mathcal{L}.
+\]
+
+The $\pi$-$\lambda$ theorem states that if $\mathcal{P}$ is a
+$\pi$-system, then
+\[
+    \sigma(\mathcal{P})
+    =
+    \mathcal{L}'.
+\]
+
+Therefore,
+\[
+    \sigma(\mathcal{P})
+    \subseteq
+    \mathcal{L}.
+\]
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Application to Independence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{remark}
+
+The $\pi$-$\lambda$ theorem allows us to verify independence on a
+smaller collection of sets.
+
+Instead of checking independence for every set in
+\[
+    \sigma(X_i),
+\]
+it is often enough to check it on a suitable $\pi$-system generating
+that $\sigma$-algebra.
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture End
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lectureend
