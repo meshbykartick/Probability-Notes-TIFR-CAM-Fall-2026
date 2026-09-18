@@ -1,0 +1,1258 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{11}
+{Wednesday, 16 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+%============================================================
+% Independence of Generated Sigma-Fields
+%============================================================
+
+\begin{theorem}{Independence of Generated $\sigma$-Fields}
+{independent-to-independent}
+
+Suppose that
+\[
+\mathcal{A}_1,\mathcal{A}_2,\ldots,\mathcal{A}_n
+\]
+are independent $\pi$-systems. Then
+\[
+\sigma(\mathcal{A}_1),\sigma(\mathcal{A}_2),
+\ldots,\sigma(\mathcal{A}_n)
+\]
+are independent.
+
+\end{theorem}
+
+\begin{proof}
+
+We first prove the following intermediate statement:
+
+\[
+(\ast)\qquad
+\text{If }
+\mathcal{A}_1,\ldots,\mathcal{A}_n
+\text{ are independent, then }
+\sigma(\mathcal{A}_1),\mathcal{A}_2,\ldots,\mathcal{A}_n
+\text{ are independent.}
+\]
+
+Once $(\ast)$ is proved, we can apply the same argument successively
+to $\mathcal{A}_2,\ldots,\mathcal{A}_n$.
+
+\medskip
+
+Fix
+\[
+A_i\in\mathcal{A}_i,
+\qquad 2\leq i\leq n,
+\]
+and define
+\[
+F=A_2\cap A_3\cap\cdots\cap A_n.
+\]
+
+Define
+\[
+\mathcal{L}
+=
+\left\{
+A:
+\mathbb{P}(A\cap F)
+=
+\mathbb{P}(A)\mathbb{P}(F)
+\right\}.
+\]
+
+We will show that $\mathcal{L}$ is a $\lambda$-system and that
+\[
+\mathcal{A}_1\subseteq\mathcal{L}.
+\]
+
+Then the $\pi$-$\lambda$ theorem will imply
+\[
+\sigma(\mathcal{A}_1)\subseteq\mathcal{L}.
+\]
+
+\medskip
+
+\textbf{Step 1: $\Omega\in\mathcal{L}$.}
+
+Since
+\[
+\Omega\cap F=F
+\]
+and
+\[
+\mathbb{P}(\Omega)=1,
+\]
+we have
+\[
+\mathbb{P}(\Omega\cap F)
+=
+\mathbb{P}(F)
+=
+\mathbb{P}(\Omega)\mathbb{P}(F).
+\]
+
+Hence
+\[
+\Omega\in\mathcal{L}.
+\]
+
+\medskip
+
+\textbf{Step 2: Difference property.}
+
+Suppose
+\[
+A,B\in\mathcal{L},
+\qquad A\subseteq B.
+\]
+
+Then
+\[
+(B\setminus A)\cap F
+=
+(B\cap F)\setminus(A\cap F).
+\]
+
+Since
+\[
+A\cap F\subseteq B\cap F,
+\]
+the difference formula for a probability measure gives
+\[
+\mathbb{P}((B\setminus A)\cap F)
+=
+\mathbb{P}(B\cap F)
+-
+\mathbb{P}(A\cap F).
+\]
+
+Since $A,B\in\mathcal{L}$,
+\[
+\mathbb{P}(B\cap F)
+=
+\mathbb{P}(B)\mathbb{P}(F)
+\]
+and
+\[
+\mathbb{P}(A\cap F)
+=
+\mathbb{P}(A)\mathbb{P}(F).
+\]
+
+Therefore
+\[
+\begin{aligned}
+\mathbb{P}((B\setminus A)\cap F)
+&=
+\mathbb{P}(B)\mathbb{P}(F)
+-
+\mathbb{P}(A)\mathbb{P}(F)\\
+&=
+\bigl(\mathbb{P}(B)-\mathbb{P}(A)\bigr)\mathbb{P}(F).
+\end{aligned}
+\]
+
+Since $A\subseteq B$,
+\[
+\mathbb{P}(B\setminus A)
+=
+\mathbb{P}(B)-\mathbb{P}(A).
+\]
+
+Hence
+\[
+\mathbb{P}((B\setminus A)\cap F)
+=
+\mathbb{P}(B\setminus A)\mathbb{P}(F).
+\]
+
+Therefore
+\[
+B\setminus A\in\mathcal{L}.
+\]
+
+\medskip
+
+\textbf{Step 3: Continuity from below.}
+
+Suppose
+\[
+B_k\in\mathcal{L},
+\qquad
+B_k\uparrow B.
+\]
+
+Then
+\[
+B_k\cap F\uparrow B\cap F.
+\]
+
+Indeed,
+\[
+B_k\subseteq B_{k+1}
+\quad\Longrightarrow\quad
+B_k\cap F\subseteq B_{k+1}\cap F,
+\]
+and
+\[
+\begin{aligned}
+\bigcup_{k=1}^{\infty}(B_k\cap F)
+&=
+\left(\bigcup_{k=1}^{\infty}B_k\right)\cap F\\
+&=
+B\cap F.
+\end{aligned}
+\]
+
+By continuity from below,
+\[
+\mathbb{P}(B\cap F)
+=
+\lim_{k\to\infty}
+\mathbb{P}(B_k\cap F).
+\]
+
+Since $B_k\in\mathcal{L}$,
+\[
+\mathbb{P}(B_k\cap F)
+=
+\mathbb{P}(B_k)\mathbb{P}(F).
+\]
+
+Therefore
+\[
+\begin{aligned}
+\mathbb{P}(B\cap F)
+&=
+\lim_{k\to\infty}
+\mathbb{P}(B_k)\mathbb{P}(F)\\
+&=
+\mathbb{P}(F)
+\lim_{k\to\infty}\mathbb{P}(B_k).
+\end{aligned}
+\]
+
+Again, by continuity from below,
+\[
+\lim_{k\to\infty}\mathbb{P}(B_k)
+=
+\mathbb{P}(B).
+\]
+
+Consequently,
+\[
+\mathbb{P}(B\cap F)
+=
+\mathbb{P}(B)\mathbb{P}(F).
+\]
+
+Hence
+\[
+B\in\mathcal{L}.
+\]
+
+Thus $\mathcal{L}$ is a $\lambda$-system.
+
+\medskip
+
+\textbf{Step 4: Show that $\mathcal{A}_1\subseteq\mathcal{L}$.}
+
+Take
+\[
+A_1\in\mathcal{A}_1.
+\]
+
+Since
+\[
+A_i\in\mathcal{A}_i,
+\qquad
+1\leq i\leq n,
+\]
+and
+\[
+\mathcal{A}_1,\ldots,\mathcal{A}_n
+\]
+are independent, we have
+\[
+\mathbb{P}(A_1\cap A_2\cap\cdots\cap A_n)
+=
+\prod_{i=1}^{n}\mathbb{P}(A_i).
+\]
+
+Also, since
+\[
+\mathcal{A}_2,\ldots,\mathcal{A}_n
+\]
+are independent,
+\[
+\mathbb{P}(F)
+=
+\mathbb{P}(A_2\cap\cdots\cap A_n)
+=
+\prod_{i=2}^{n}\mathbb{P}(A_i).
+\]
+
+Therefore
+\[
+\begin{aligned}
+\mathbb{P}(A_1\cap F)
+&=
+\mathbb{P}(A_1\cap A_2\cap\cdots\cap A_n)\\
+&=
+\prod_{i=1}^{n}\mathbb{P}(A_i)\\
+&=
+\mathbb{P}(A_1)
+\prod_{i=2}^{n}\mathbb{P}(A_i)\\
+&=
+\mathbb{P}(A_1)\mathbb{P}(F).
+\end{aligned}
+\]
+
+Thus
+\[
+A_1\in\mathcal{L}.
+\]
+
+Since $A_1$ was arbitrary,
+\[
+\mathcal{A}_1\subseteq\mathcal{L}.
+\]
+
+\medskip
+
+\textbf{Step 5: Apply the $\pi$-$\lambda$ theorem.}
+
+The collection $\mathcal{A}_1$ is a $\pi$-system and
+$\mathcal{L}$ is a $\lambda$-system containing $\mathcal{A}_1$.
+
+Therefore, by the $\pi$-$\lambda$ theorem,
+\[
+\sigma(\mathcal{A}_1)\subseteq\mathcal{L}.
+\]
+
+Hence, for every
+\[
+A_1\in\sigma(\mathcal{A}_1),
+\]
+we have
+\[
+\mathbb{P}(A_1\cap F)
+=
+\mathbb{P}(A_1)\mathbb{P}(F).
+\]
+
+Since
+\[
+F=A_2\cap\cdots\cap A_n,
+\]
+it follows that
+\[
+\begin{aligned}
+\mathbb{P}(A_1\cap A_2\cap\cdots\cap A_n)
+&=
+\mathbb{P}(A_1)
+\mathbb{P}(A_2\cap\cdots\cap A_n)\\
+&=
+\mathbb{P}(A_1)
+\prod_{i=2}^{n}\mathbb{P}(A_i)\\
+&=
+\prod_{i=1}^{n}\mathbb{P}(A_i).
+\end{aligned}
+\]
+
+Thus
+\[
+\sigma(\mathcal{A}_1),
+\mathcal{A}_2,\ldots,\mathcal{A}_n
+\]
+are independent.
+
+This proves $(\ast)$.
+
+\medskip
+
+\textbf{Step 6: Iterate the argument.}
+
+We have shown that
+\[
+\sigma(\mathcal{A}_1),
+\mathcal{A}_2,\ldots,\mathcal{A}_n
+\]
+are independent.
+
+By permuting the order of the systems, we may apply $(\ast)$ again
+and obtain
+\[
+\sigma(\mathcal{A}_1),
+\sigma(\mathcal{A}_2),
+\mathcal{A}_3,\ldots,\mathcal{A}_n
+\]
+as independent.
+
+Repeating this argument successively gives
+\[
+\sigma(\mathcal{A}_1),
+\sigma(\mathcal{A}_2),
+\ldots,
+\sigma(\mathcal{A}_n)
+\]
+as independent.
+
+Therefore
+\[
+\boxed{
+\sigma(\mathcal{A}_1),\ldots,\sigma(\mathcal{A}_n)
+\text{ are independent}.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Criterion for Independence of Random Variables
+%============================================================
+
+\begin{observation}{A $\pi$-System Criterion for Independence}
+Let
+\[
+X_1,X_2:(\Omega,\mathcal{F},\mathbb{P})
+\longrightarrow
+(S,\mathcal{R})
+\]
+be random variables.
+
+Suppose that $\mathcal{A}\subseteq\mathcal{R}$ is a $\pi$-system
+such that
+\(
+\sigma(\mathcal{A})=\mathcal{R}.
+\)
+
+Then, to prove that $X_1$ and $X_2$ are independent, it is enough
+to verify that
+\[
+\mathbb{P}(X_1\in A_1,\ X_2\in A_2)
+=
+\mathbb{P}(X_1\in A_1)
+\mathbb{P}(X_2\in A_2)
+\]
+for all
+\(
+A_1,A_2\in\mathcal{A}.
+\)
+
+Indeed,
+\[
+\mathcal{A}
+\]
+generates the relevant $\sigma$-field, and the preceding
+$\pi$-$\lambda$ argument extends the independence from
+$\mathcal{A}$ to $\sigma(\mathcal{A})$.
+
+In particular, when
+\[
+(S,\mathcal{R})
+=
+(\mathbb{R},\mathcal{B}(\mathbb{R})),
+\]
+we may take
+\[
+\mathcal{A}
+=
+\left\{
+(-\infty,a]:
+a\in\mathbb{R}
+\right\},
+\]
+which is a $\pi$-system generating
+$\mathcal{B}(\mathbb{R})$.
+
+\end{observation}
+
+
+%============================================================
+% Grouping Independent Sigma-Fields
+%============================================================
+
+\begin{theorem}{Independence of Groups of Independent $\sigma$-Fields}
+{thm-after-ind-ind}
+
+Suppose that
+\[
+\mathcal{F}_{i,j},
+\qquad
+1\leq i\leq n,
+\quad
+1\leq j\leq m(i),
+\]
+are independent $\sigma$-fields, and let
+\[
+\mathcal{G}_i
+=
+\sigma\left(
+\bigcup_{j=1}^{m(i)}
+\mathcal{F}_{i,j}
+\right).
+\]
+
+Then
+\(
+\mathcal{G}_1,\ldots,\mathcal{G}_n
+\)
+are independent.
+
+\end{theorem}
+
+\begin{proof}
+
+For each $i$, define
+\[
+\mathcal{A}_i
+=
+\left\{
+\bigcap_{j=1}^{m(i)}A_{i,j}
+:
+A_{i,j}\in\mathcal{F}_{i,j}
+\right\}.
+\]
+
+Since each $\mathcal{F}_{i,j}$ is a $\sigma$-field, in particular
+\[
+\Omega\in\mathcal{F}_{i,j}.
+\]
+
+We first show that $\mathcal{A}_i$ is a $\pi$-system.
+
+Take
+\[
+A_i=\bigcap_{j=1}^{m(i)}A_{i,j},
+\qquad
+B_i=\bigcap_{j=1}^{m(i)}B_{i,j},
+\]
+where
+\[
+A_{i,j},B_{i,j}\in\mathcal{F}_{i,j}.
+\]
+
+Then
+\[
+A_i\cap B_i
+=
+\bigcap_{j=1}^{m(i)}
+(A_{i,j}\cap B_{i,j}).
+\]
+
+Since each $\mathcal{F}_{i,j}$ is a $\sigma$-field,
+\[
+A_{i,j}\cap B_{i,j}\in\mathcal{F}_{i,j}.
+\]
+
+Therefore
+\[
+A_i\cap B_i\in\mathcal{A}_i.
+\]
+
+Hence $\mathcal{A}_i$ is a $\pi$-system.
+
+Moreover, for every
+\[
+A_{i,j}\in\mathcal{F}_{i,j},
+\]
+we have
+\[
+A_{i,j}
+=
+A_{i,j}
+\cap
+\bigcap_{k\neq j}\Omega.
+\]
+
+Since
+\[
+\Omega\in\mathcal{F}_{i,k},
+\]
+it follows that
+\[
+A_{i,j}\in\mathcal{A}_i.
+\]
+
+Thus
+\[
+\bigcup_{j=1}^{m(i)}\mathcal{F}_{i,j}
+\subseteq
+\mathcal{A}_i.
+\]
+
+On the other hand, every element of $\mathcal{A}_i$ is a finite
+intersection of sets belonging to
+\[
+\bigcup_{j=1}^{m(i)}\mathcal{F}_{i,j}.
+\]
+
+Hence
+\[
+\mathcal{A}_i
+\subseteq
+\sigma\left(
+\bigcup_{j=1}^{m(i)}\mathcal{F}_{i,j}
+\right)
+=
+\mathcal{G}_i.
+\]
+
+Therefore
+\[
+\sigma(\mathcal{A}_i)=\mathcal{G}_i.
+\]
+
+\medskip
+
+Now take
+\[
+A_i\in\mathcal{A}_i,
+\]
+where
+\[
+A_i
+=
+\bigcap_{j=1}^{m(i)}A_{i,j},
+\qquad
+A_{i,j}\in\mathcal{F}_{i,j}.
+\]
+
+Since all the $\mathcal{F}_{i,j}$ are independent,
+\[
+\begin{aligned}
+\mathbb{P}\left(
+\bigcap_{i=1}^{n}A_i
+\right)
+&=
+\mathbb{P}\left(
+\bigcap_{i=1}^{n}
+\bigcap_{j=1}^{m(i)}
+A_{i,j}
+\right)\\
+&=
+\prod_{i=1}^{n}
+\prod_{j=1}^{m(i)}
+\mathbb{P}(A_{i,j}).
+\end{aligned}
+\]
+
+For each $i$,
+\[
+A_i
+=
+\bigcap_{j=1}^{m(i)}A_{i,j},
+\]
+and hence, again by independence,
+\[
+\mathbb{P}(A_i)
+=
+\prod_{j=1}^{m(i)}
+\mathbb{P}(A_{i,j}).
+\]
+
+Therefore
+\[
+\mathbb{P}\left(
+\bigcap_{i=1}^{n}A_i
+\right)
+=
+\prod_{i=1}^{n}\mathbb{P}(A_i).
+\]
+
+Thus
+\[
+\mathcal{A}_1,\ldots,\mathcal{A}_n
+\]
+are independent $\pi$-systems.
+
+By Theorem~\ref{independent-to-independent},
+\[
+\sigma(\mathcal{A}_1),\ldots,\sigma(\mathcal{A}_n)
+\]
+are independent.
+
+Since
+\[
+\sigma(\mathcal{A}_i)=\mathcal{G}_i,
+\]
+we conclude that
+\[
+\boxed{
+\mathcal{G}_1,\ldots,\mathcal{G}_n
+\text{ are independent}.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Functions of Independent Random Variables
+%============================================================
+
+\begin{theorem}{Functions of Independent Random Variables}
+{functions-of-independent-random-variables}
+
+Suppose that, for
+\(
+1\leq i\leq n,
+\qquad
+1\leq j\leq m(i),
+\)
+the random variables
+\(
+X_{i,j}
+\)
+are independent.
+
+Suppose also that
+\(
+f_i:\mathbb{R}^{m(i)}\to\mathbb{R}
+\)
+are measurable functions.
+
+Then the random variables
+\(
+f_i(X_{i,1},\ldots,X_{i,m(i)}),
+\qquad
+1\leq i\leq n,
+\)
+are independent.
+
+\end{theorem}
+
+\begin{proof}
+
+For each $i,j$, let
+\[
+\mathcal{F}_{i,j}
+=
+\sigma(X_{i,j})
+\]
+and define
+\[
+\mathcal{G}_i
+=
+\sigma\left(
+\bigcup_{j=1}^{m(i)}
+\mathcal{F}_{i,j}
+\right).
+\]
+
+Since the random variables $X_{i,j}$ are independent, the
+$\sigma$-fields
+\[
+\mathcal{F}_{i,j}
+\]
+are independent.
+
+Hence, by Theorem~\ref{thm-after-ind-ind},
+\[
+\mathcal{G}_1,\ldots,\mathcal{G}_n
+\]
+are independent.
+
+\medskip
+
+Now fix $i$.
+
+Since
+\[
+X_{i,j}
+\]
+is $\mathcal{F}_{i,j}$-measurable and
+\[
+\mathcal{F}_{i,j}\subseteq\mathcal{G}_i,
+\]
+each $X_{i,j}$ is $\mathcal{G}_i$-measurable.
+
+Therefore
+\[
+(X_{i,1},\ldots,X_{i,m(i)})
+\]
+is $\mathcal{G}_i$-measurable.
+
+Since $f_i$ is measurable, the composition
+\[
+Y_i
+=
+f_i(X_{i,1},\ldots,X_{i,m(i)})
+\]
+is $\mathcal{G}_i$-measurable.
+
+Consequently,
+\[
+\sigma(Y_i)\subseteq\mathcal{G}_i.
+\]
+
+\medskip
+
+It remains to prove that
+\[
+Y_1,\ldots,Y_n
+\]
+are independent.
+
+Take arbitrary
+\[
+B_i\in\sigma(Y_i),
+\qquad
+1\leq i\leq n.
+\]
+
+Since
+\[
+\sigma(Y_i)\subseteq\mathcal{G}_i,
+\]
+we have
+\[
+B_i\in\mathcal{G}_i
+\]
+for every $i$.
+
+But
+\[
+\mathcal{G}_1,\ldots,\mathcal{G}_n
+\]
+are independent. Hence
+\[
+\mathbb{P}\left(
+\bigcap_{i=1}^{n}B_i
+\right)
+=
+\prod_{i=1}^{n}\mathbb{P}(B_i).
+\]
+
+Since this holds for every choice
+\[
+B_i\in\sigma(Y_i),
+\]
+the $\sigma$-fields
+\[
+\sigma(Y_1),\ldots,\sigma(Y_n)
+\]
+are independent.
+
+Therefore
+\[
+Y_1,\ldots,Y_n
+\]
+are independent.
+
+Recalling that
+\[
+Y_i
+=
+f_i(X_{i,1},\ldots,X_{i,m(i)}),
+\]
+we obtain
+\[
+\boxed{
+f_1(X_{1,1},\ldots,X_{1,m(1)}),
+\ldots,
+f_n(X_{n,1},\ldots,X_{n,m(n)})
+\text{ are independent}.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Product Distribution of Independent Random Variables
+%============================================================
+
+\begin{theorem}{Product Distribution of Independent Random Variables}
+{thm-product-of-random-variable}
+
+Suppose $X_1,\ldots,X_n$ are independent random variables and
+$X_i$ has distribution $\mu_i$.
+
+Then the random vector
+\(
+(X_1,\ldots,X_n)
+\)
+has distribution
+\(
+\mu_1\times\cdots\times\mu_n.
+\)
+
+\end{theorem}
+
+\begin{proof}
+
+Let
+\[
+X=(X_1,\ldots,X_n).
+\]
+
+The distribution of $X$ is the probability measure
+$\mu$ on $\mathbb{R}^n$ defined by
+\[
+\mu(B)
+=
+\mathbb{P}(X\in B),
+\qquad
+B\in\mathcal{B}(\mathbb{R}^n).
+\]
+
+Consider the collection
+\[
+\mathcal{A}
+=
+\left\{
+A_1\times\cdots\times A_n:
+A_i\in\mathcal{B}(\mathbb{R})
+\right\}.
+\]
+
+This is a $\pi$-system generating
+$\mathcal{B}(\mathbb{R}^n)$.
+
+For
+\[
+A=A_1\times\cdots\times A_n\in\mathcal{A},
+\]
+we have
+\[
+\begin{aligned}
+\mu(A)
+&=
+\mathbb{P}
+\left(
+X_1\in A_1,\ldots,X_n\in A_n
+\right).
+\end{aligned}
+\]
+
+Since
+\[
+X_1,\ldots,X_n
+\]
+are independent,
+\[
+\begin{aligned}
+\mu(A)
+&=
+\prod_{i=1}^{n}
+\mathbb{P}(X_i\in A_i)\\
+&=
+\prod_{i=1}^{n}\mu_i(A_i).
+\end{aligned}
+\]
+
+But the product measure satisfies
+\[
+(\mu_1\times\cdots\times\mu_n)
+(A_1\times\cdots\times A_n)
+=
+\prod_{i=1}^{n}\mu_i(A_i).
+\]
+
+Therefore
+\[
+\mu(A)
+=
+(\mu_1\times\cdots\times\mu_n)(A)
+\]
+for every
+\[
+A\in\mathcal{A}.
+\]
+
+Since $\mathcal{A}$ is a $\pi$-system generating
+$\mathcal{B}(\mathbb{R}^n)$, the uniqueness theorem for probability
+measures implies
+\[
+\mu
+=
+\mu_1\times\cdots\times\mu_n.
+\]
+
+Hence
+\[
+\boxed{
+\mathcal{L}(X_1,\ldots,X_n)
+=
+\mu_1\times\cdots\times\mu_n.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Sum and Product of Random Variables
+%============================================================
+
+\section{Sum and Product of Random Variables}
+
+%------------------------------------------------------------
+% Sums of Independent Random Variables
+%------------------------------------------------------------
+
+\subsection{Sums of Independent Random Variables}
+
+\begin{theorem}{Distribution Function of the Sum}
+{distribution-function-sum}
+
+Let $X$ and $Y$ be independent random variables with distribution
+functions
+\[
+F(x)=\mathbb{P}(X\leq x),
+\qquad
+G(y)=\mathbb{P}(Y\leq y).
+\]
+
+Then
+\[
+\boxed{
+\mathbb{P}(X+Y\leq z)
+=
+\int_{\mathbb{R}}F(z-y)\,dG(y).
+}
+\]
+
+\end{theorem}
+
+\begin{proof}
+
+Define
+\[
+h(x,y)
+=
+\mathbf{1}_{\{x+y\leq z\}}.
+\]
+
+Let $\mu$ and $\nu$ denote the probability distributions of $X$
+and $Y$, respectively. Thus
+\[
+\mu(A)=\mathbb{P}(X\in A),
+\qquad
+\nu(B)=\mathbb{P}(Y\in B).
+\]
+
+Since $X$ and $Y$ are independent, their joint distribution is
+\[
+\mu\times\nu.
+\]
+
+Therefore
+\[
+\begin{aligned}
+\mathbb{P}(X+Y\leq z)
+&=
+\mathbb{P}
+\left(
+(X,Y)\in
+\{(x,y):x+y\leq z\}
+\right)\\
+&=
+\iint
+\mathbf{1}_{\{x+y\leq z\}}
+\,\mu(dx)\,\nu(dy).
+\end{aligned}
+\]
+
+For fixed $y$,
+\[
+h(x,y)
+=
+\mathbf{1}_{(-\infty,z-y]}(x).
+\]
+
+Hence
+\[
+\begin{aligned}
+\int h(x,y)\,\mu(dx)
+&=
+\int
+\mathbf{1}_{(-\infty,z-y]}(x)\,\mu(dx)\\
+&=
+\mu((-\infty,z-y])\\
+&=
+\mathbb{P}(X\leq z-y)\\
+&=
+F(z-y).
+\end{aligned}
+\]
+
+Since $h\geq0$, Tonelli's theorem allows us to integrate first
+with respect to $x$. Thus
+\[
+\begin{aligned}
+\mathbb{P}(X+Y\leq z)
+&=
+\iint
+\mathbf{1}_{\{x+y\leq z\}}
+\,\mu(dx)\,\nu(dy)\\
+&=
+\int
+\left[
+\int
+\mathbf{1}_{\{x+y\leq z\}}
+\,\mu(dx)
+\right]\nu(dy)\\
+&=
+\int F(z-y)\,\nu(dy).
+\end{aligned}
+\]
+
+Since $G$ is the distribution function of $Y$, integration with
+respect to $\nu$ is conventionally written as integration with
+respect to $dG(y)$. Therefore
+\[
+\boxed{
+\mathbb{P}(X+Y\leq z)
+=
+\int_{\mathbb{R}}F(z-y)\,dG(y).
+}
+\]
+
+\end{proof}
+
+
+%------------------------------------------------------------
+% Density of the Sum
+%------------------------------------------------------------
+
+\begin{theorem}{Density of the Sum}
+{density-of-sum}
+
+Suppose that $X$ has density $f$ and $Y$ has distribution function
+$G$, and that $X$ and $Y$ are independent.
+
+Then $X+Y$ has density
+\[
+h(x)
+=
+\int_{\mathbb{R}}f(x-y)\,dG(y).
+\]
+
+If $Y$ also has a density $g$, then
+\[
+h(x)
+=
+\int_{\mathbb{R}}f(x-y)g(y)\,dy.
+\]
+
+\end{theorem}
+
+\begin{proof}
+
+For any $z\in\mathbb{R}$, by the preceding theorem,
+\[
+\mathbb{P}(X+Y\leq z)
+=
+\int_{\mathbb{R}}F(z-y)\,dG(y).
+\]
+
+Since $X$ has density $f$,
+\[
+F(z-y)
+=
+\int_{-\infty}^{z-y}f(u)\,du.
+\]
+
+Making the change of variable
+\[
+x=u+y,
+\]
+so that
+\[
+u=x-y,
+\qquad
+du=dx,
+\]
+we obtain
+\[
+F(z-y)
+=
+\int_{-\infty}^{z}f(x-y)\,dx.
+\]
+
+Consequently,
+\[
+\mathbb{P}(X+Y\leq z)
+=
+\int_{\mathbb{R}}
+\left[
+\int_{-\infty}^{z}
+f(x-y)\,dx
+\right]dG(y).
+\]
+
+Since $f\geq0$, Tonelli's theorem allows us to interchange the
+order of integration:
+\[
+\begin{aligned}
+\mathbb{P}(X+Y\leq z)
+&=
+\int_{-\infty}^{z}
+\left[
+\int_{\mathbb{R}}
+f(x-y)\,dG(y)
+\right]dx.
+\end{aligned}
+\]
+
+Define
+\[
+h(x)
+=
+\int_{\mathbb{R}}
+f(x-y)\,dG(y).
+\]
+
+Then
+\[
+\mathbb{P}(X+Y\leq z)
+=
+\int_{-\infty}^{z}h(x)\,dx.
+\]
+
+Thus $h$ is a density of $X+Y$, and hence
+\[
+\boxed{
+h(x)
+=
+\int_{\mathbb{R}}f(x-y)\,dG(y).
+}
+\]
+
+Finally, if $Y$ has density $g$, then
+\[
+dG(y)=g(y)\,dy.
+\]
+
+Therefore
+\[
+\boxed{
+h(x)
+=
+\int_{\mathbb{R}}f(x-y)g(y)\,dy.
+}
+\]
+
+This is the convolution formula for the density of the sum of two
+independent random variables.
+
+\end{proof}
+
+
+%============================================================
+% End of Lecture
+%============================================================
+
+\lectureend

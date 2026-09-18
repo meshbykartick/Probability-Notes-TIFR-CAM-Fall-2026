@@ -1,0 +1,652 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{12}
+{Wednesday, 18 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%============================================================
+% Convolution of Measures
+%============================================================
+
+\begin{observation}
+
+Suppose that
+\(
+\mu=f\,dm,
+\qquad
+\nu=g\,dm.
+\)
+
+Then the product measure is
+\(
+\mu\times\nu,
+\)
+and the convolution of $\mu$ and $\nu$ has density
+\(
+f*g.
+\)
+
+More precisely,
+\[
+\mu*\nu=(f*g)\,dm,
+\]
+where
+\[
+(f*g)(z)
+=
+\int_{\mathbb{R}}
+f(z-y)g(y)\,dy.
+\]
+
+A proof of this result can be found in Durrett.
+
+\end{observation}
+
+
+%============================================================
+% Convolution with Counting Measure
+%============================================================
+
+\begin{observation}
+If the underlying measure is the counting measure, then the
+convolution takes the simple form
+\[
+(f*g)(n)
+=
+\sum_{m}f(m)g(n-m).
+\]
+
+Thus, in the discrete case, convolution is given by a sum rather
+than an integral.
+
+\end{observation}
+
+\section{ Distribution Function of a Sum
+}
+
+
+%============================================================
+% Distribution Function of a Sum
+%============================================================
+
+\begin{theorem}{Distribution Function of a Sum}
+{cdf-sum-product-measure}
+
+Let
+\(
+X\sim\mu,
+\qquad
+Y\sim\nu,
+\)
+where $X$ and $Y$ are independent.
+
+If $F$ and $G$ are the distribution functions of $\mu$ and $\nu$,
+respectively, then the distribution function of $X+Y$ is
+\[
+\begin{aligned}
+\mathbb{P}(X+Y\leq z)
+&=
+\mathbb{P}\bigl((X,Y)\in
+\{(x,y):x+y\leq z\}\bigr)\\
+&=
+\int_{\{x+y\leq z\}}
+d(\mu\times\nu)(x,y).
+\end{aligned}
+\]
+
+Equivalently,
+\[
+\mathbb{P}(X+Y\leq z)
+=
+\int_{\mathbb{R}}F(z-y)\,dG(y).
+\]
+
+\end{theorem}
+
+\section{Some Questions and Exercises on Sum and Product of Random Variables}
+
+%============================================================
+% Exercises
+%============================================================
+
+\begin{question}{Density of the Product of Two Independent Random Variables}
+{density-product-random-variables}
+
+Let
+\(
+X\sim\mu,
+\qquad
+Y\sim\nu,
+\)
+where
+\(
+\mu=f\,dm,
+\qquad
+\nu=g\,dm.
+\)
+
+Assume that $X$ and $Y$ are independent.
+Compute the density of
+\(
+XY.
+\)
+
+\end{question}
+
+
+\begin{question}{Sum of Two Independent Poisson Random Variables}
+{sum-independent-poisson}
+
+Let
+\(
+X\sim\operatorname{Poi}(\lambda),
+\qquad
+Y\sim\operatorname{Poi}(\mu),
+\)
+and suppose that $X$ and $Y$ are independent.
+
+Determine the distribution of
+\(
+X+Y.
+\)
+
+\end{question}
+
+
+\begin{question}{Sum of Two Independent Binomial Random Variables}
+{sum-independent-binomial}
+
+Let
+\(
+X\sim\operatorname{Bin}(m,p),
+\qquad
+Y\sim\operatorname{Bin}(m,p),
+\)
+and suppose that $X$ and $Y$ are independent.
+
+Determine the distribution of
+\(
+X+Y.
+\)
+
+\end{question}
+
+
+%============================================================
+% Sum of Independent Exponential Random Variables
+%============================================================
+
+\begin{example}{Sum of Two Independent Exponential Random Variables}
+{sum-two-exponential}
+
+Suppose
+\(
+X,Y\sim\operatorname{Exp}(\lambda)
+\)
+are independent, where $\lambda>0$ is the rate parameter.
+
+The densities of $X$ and $Y$ are
+\[
+f_X(x)=\lambda e^{-\lambda x},
+\qquad x>0,
+\]
+and
+\[
+f_Y(y)=\lambda e^{-\lambda y},
+\qquad y>0.
+\]
+
+Let
+\(
+Z=X+Y.
+\)
+
+By the convolution formula,
+\[
+f_Z(y)
+=
+\int_0^y
+f_X(x)f_Y(y-x)\,dx.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+f_Z(y)
+&=
+\int_0^y
+\lambda e^{-\lambda x}
+\lambda e^{-\lambda(y-x)}
+\,dx\\
+&=
+\lambda^2e^{-\lambda y}
+\int_0^y dx\\
+&=
+\lambda^2y e^{-\lambda y},
+\qquad y>0.
+\end{aligned}
+\]
+
+Thus
+\(
+X+Y
+\)
+has a Gamma distribution with shape parameter $2$ and rate
+parameter $\lambda$:
+\(
+X+Y\sim\Gamma(2,\lambda).
+\)
+
+\end{example}
+
+
+%============================================================
+% Sum of n Independent Exponential Random Variables
+%============================================================
+
+\begin{proposition}{Sum of Independent Exponential Random Variables}
+{sum-independent-exponential}
+
+Let
+\(
+X_1,X_2,\ldots,X_n
+\)
+be independent random variables such that
+\(
+X_i\sim\operatorname{Exp}(\lambda),
+\qquad
+\lambda>0.
+\)
+
+Then
+\[
+X_1+\cdots+X_n
+\sim
+\Gamma(n,\lambda).
+\]
+
+Its density is
+\[
+f(x)
+=
+\frac{\lambda^n}{(n-1)!}
+x^{n-1}e^{-\lambda x},
+\qquad x>0.
+\]
+
+\end{proposition}
+
+\begin{proof}
+
+We prove the result by induction on $n$.
+
+For $n=1$,
+\[
+f_{X_1}(x)
+=
+\lambda e^{-\lambda x},
+\qquad x>0.
+\]
+
+Since
+\(
+Gamma(1,\lambda)
+\)
+has density
+\(
+\frac{\lambda^1}{\Gamma(1)}
+x^{1-1}e^{-\lambda x}
+=
+\lambda e^{-\lambda x},
+\)
+the result holds for $n=1$.
+
+\medskip
+
+Suppose the result holds for $n$. Then
+\(
+S_n=X_1+\cdots+X_n
+\)
+has density
+\[
+f_{S_n}(x)
+=
+\frac{\lambda^n}{(n-1)!}
+x^{n-1}e^{-\lambda x},
+\qquad x>0.
+\]
+
+Since $X_{n+1}$ is independent of $S_n$,
+\(
+S_{n+1}=S_n+X_{n+1}
+\)
+has density given by convolution:
+\[
+\begin{aligned}
+f_{S_{n+1}}(x)
+&=
+\int_0^x
+f_{S_n}(u)
+f_{X_{n+1}}(x-u)\,du\\
+&=
+\int_0^x
+\frac{\lambda^n}{(n-1)!}
+u^{n-1}e^{-\lambda u}
+\lambda e^{-\lambda(x-u)}
+\,du\\
+&=
+\frac{\lambda^{n+1}e^{-\lambda x}}
+{(n-1)!}
+\int_0^x u^{n-1}\,du\\
+&=
+\frac{\lambda^{n+1}e^{-\lambda x}}
+{(n-1)!}
+\frac{x^n}{n}\\
+&=
+\frac{\lambda^{n+1}}
+{n!}
+x^ne^{-\lambda x}.
+\end{aligned}
+\]
+
+Thus
+\(
+S_{n+1}
+\)
+has density
+\(
+f_{S_{n+1}}(x)
+=
+\frac{\lambda^{n+1}}{n!}
+x^ne^{-\lambda x},
+\qquad x>0.
+\)
+
+Therefore, by induction,
+\[
+\boxed{
+X_1+\cdots+X_n
+\sim
+\Gamma(n,\lambda).
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Gamma Distribution
+%============================================================
+
+\begin{definition}{Gamma Distribution}{gamma-distribution}
+
+Let
+\(
+\alpha>0,
+\qquad
+\lambda>0.
+\)
+
+
+A random variable $X$ is said to have a Gamma distribution with
+shape parameter $\alpha$ and rate parameter $\lambda$ if its
+density is
+\[
+f_X(x)
+=
+\frac{\lambda^\alpha}{\Gamma(\alpha)}
+x^{\alpha-1}e^{-\lambda x},
+\qquad x>0,
+\]
+and
+\[
+f_X(x)=0,
+\qquad x\leq0.
+\]
+
+We write
+\[
+X\sim Gamma(\alpha,\lambda).
+\]
+
+The Gamma function is defined by
+\[
+\Gamma(\alpha)
+=
+\int_0^\infty
+x^{\alpha-1}e^{-x}\,dx,
+\qquad
+\alpha>0.
+\]
+
+For $n\in\mathbb{N}$,
+\[
+\Gamma(n)=(n-1)!.
+\]
+
+\end{definition}
+
+
+%============================================================
+% Sum of Independent Gamma Random Variables
+%============================================================
+
+\begin{proposition}{Sum of Independent Gamma Random Variables}
+{sum-independent-gamma}
+
+Let
+\[
+X\sim Gamma(\alpha,\lambda),
+\qquad
+Y\sim Gamma(\beta,\lambda),
+\]
+where $X$ and $Y$ are independent and $\lambda$ is the common
+rate parameter.
+
+Then
+\[
+\boxed{
+X+Y\sim Gamma(\alpha+\beta,\lambda).
+}
+\]
+
+\end{proposition}
+
+\begin{proof}
+
+Let
+\[
+Z=X+Y.
+\]
+
+Since $X$ and $Y$ are independent, the density of $Z$ is given by
+the convolution of the densities of $X$ and $Y$:
+\[
+f_Z(z)
+=
+\int_{-\infty}^{\infty}
+f_X(x)f_Y(z-x)\,dx.
+\]
+
+Since $X>0$ and $Y>0$, for $z>0$ we must have
+\(
+x>0
+\qquad\text{and}\qquad
+z-x>0.
+\)
+
+Thus
+\[
+0<x<z.
+\]
+
+Therefore,
+\[
+f_Z(z)
+=
+\int_0^z
+f_X(x)f_Y(z-x)\,dx.
+\]
+
+Substituting the Gamma densities,
+\[
+\begin{aligned}
+f_Z(z)
+&=
+\int_0^z
+\frac{\lambda^\alpha}{\Gamma(\alpha)}
+x^{\alpha-1}e^{-\lambda x}
+\frac{\lambda^\beta}{\Gamma(\beta)}
+(z-x)^{\beta-1}e^{-\lambda(z-x)}
+\,dx\\
+&=
+\frac{\lambda^{\alpha+\beta}}
+{\Gamma(\alpha)\Gamma(\beta)}
+\int_0^z
+x^{\alpha-1}(z-x)^{\beta-1}
+e^{-\lambda x}e^{-\lambda(z-x)}
+\,dx.
+\end{aligned}
+\]
+
+But
+\[
+e^{-\lambda x}e^{-\lambda(z-x)}
+=
+e^{-\lambda z}.
+\]
+
+Hence
+\[
+f_Z(z)
+=
+\frac{\lambda^{\alpha+\beta}e^{-\lambda z}}
+{\Gamma(\alpha)\Gamma(\beta)}
+\int_0^z
+x^{\alpha-1}(z-x)^{\beta-1}\,dx.
+\]
+
+We now evaluate the integral
+\[
+I
+=
+\int_0^z
+x^{\alpha-1}(z-x)^{\beta-1}\,dx.
+\]
+
+Make the substitution
+\(
+u=\frac{x}{z}.
+\)
+
+Then
+\(
+x=zu,
+\qquad
+dx=z\,du,
+\)
+and
+\(
+z-x=z(1-u).
+\)
+
+When $x=0$, $u=0$, and when $x=z$, $u=1$. Therefore,
+\[
+\begin{aligned}
+I
+&=
+\int_0^1
+(zu)^{\alpha-1}
+\bigl(z(1-u)\bigr)^{\beta-1}
+z\,du\\
+&=
+z^{\alpha+\beta-1}
+\int_0^1
+u^{\alpha-1}(1-u)^{\beta-1}\,du.
+\end{aligned}
+\]
+
+Recall the Beta function:
+\[
+B(\alpha,\beta)
+=
+\int_0^1
+u^{\alpha-1}(1-u)^{\beta-1}\,du.
+\]
+
+The Beta--Gamma identity gives
+\[
+B(\alpha,\beta)
+=
+\frac{\Gamma(\alpha)\Gamma(\beta)}
+{\Gamma(\alpha+\beta)}.
+\]
+
+Consequently,
+\[
+I
+=
+z^{\alpha+\beta-1}
+\frac{\Gamma(\alpha)\Gamma(\beta)}
+{\Gamma(\alpha+\beta)}.
+\]
+
+Substituting this into the expression for $f_Z(z)$,
+\[
+\begin{aligned}
+f_Z(z)
+&=
+\frac{\lambda^{\alpha+\beta}e^{-\lambda z}}
+{\Gamma(\alpha)\Gamma(\beta)}
+z^{\alpha+\beta-1}
+\frac{\Gamma(\alpha)\Gamma(\beta)}
+{\Gamma(\alpha+\beta)}\\
+&=
+\frac{\lambda^{\alpha+\beta}}
+{\Gamma(\alpha+\beta)}
+z^{\alpha+\beta-1}e^{-\lambda z},
+\qquad z>0.
+\end{aligned}
+\]
+
+Also,
+\[
+f_Z(z)=0,
+\qquad z\leq0.
+\]
+
+But this is precisely the density of
+\[
+Gamma(\alpha+\beta,\lambda).
+\]
+
+Therefore,
+\[
+\boxed{
+X+Y\sim Gamma(\alpha+\beta,\lambda).
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Final Note
+%============================================================
+
+
+
+Recall the Carathéodory Extension Theorem.
+
+
+
+%============================================================
+% End of Lecture
+%============================================================
+
+\lectureend
