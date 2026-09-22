@@ -1,0 +1,998 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{13}
+{Monday, 21 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%============================================================
+% Kolmogorov Extension Theorem
+%============================================================
+
+\section{Kolmogorov Extension Theorem}
+
+\begin{theorem}{Kolmogorov's Extension Theorem}
+{kolmogorov-extension-theorem}
+
+For every $n\geq1$, let
+\(
+\mu_n
+\)
+be a probability measure on
+\(
+\left(\mathbb{R}^n,\mathcal{B}(\mathbb{R}^n)\right).
+\)
+
+Suppose that the family
+\(
+\{\mu_n:n\geq1\}
+\)
+is consistent in the following sense: for every $n\geq1$ and every
+Borel set
+\(
+B\in\mathcal{B}(\mathbb{R}^n),
+\)
+we have
+\[
+\mu_{n+1}(B\times\mathbb{R})
+=
+\mu_n(B).
+\]
+
+Then there exists a unique probability measure
+\(
+\mathbb{P}
+\)
+on
+\(
+\left(
+\mathbb{R}^{\mathbb{N}},
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}
+\right)
+\)
+such that
+\[
+\mathbb{P}
+\left(
+B\times\mathbb{R}^{\mathbb{N}\setminus\{1,\ldots,n\}}
+\right)
+=
+\mu_n(B)
+\]
+for every
+\[
+B\in\mathcal{B}(\mathbb{R}^n).
+\]
+
+Equivalently, for every finite-dimensional rectangle
+\[
+B=(a_1,b_1]\times\cdots\times(a_n,b_n],
+\]
+we have
+\[
+\mathbb{P}
+\left\{
+\omega\in\mathbb{R}^{\mathbb{N}}:
+\omega_i\in(a_i,b_i],
+\ 1\leq i\leq n
+\right\}
+=
+\mu_n(B).
+\]
+
+\end{theorem}
+
+
+\begin{remark}
+
+The spaces $\mathbb{R}$ and $\mathbb{N}$ in the above formulation
+cannot simply be replaced by arbitrary spaces without additional
+assumptions.
+
+More generally, the theorem can be formulated for suitable measurable
+spaces. In particular, the relevant generalization is closely related
+to standard Borel spaces.
+
+A proof of the theorem can be found in Durrett, Theorem 2.1.21.
+
+\end{remark}
+
+
+%============================================================
+% Proof
+%============================================================
+
+\subsection{Proof of the Kolmogorov Extension Theorem}
+
+\begin{proof}
+
+We divide the proof into several steps.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 1: The elementary rectangles.}
+
+Let $\mathcal{S}$ be the collection of subsets of
+$\mathbb{R}^{\mathbb{N}}$ of the form
+\[
+A=
+\left\{
+\omega\in\mathbb{R}^{\mathbb{N}}:
+\omega_i\in(a_i,b_i],
+\quad
+1\leq i\leq n
+\right\},
+\]
+where
+\[
+-\infty\leq a_i<b_i\leq\infty.
+\]
+
+Equivalently,
+\[
+A=
+(a_1,b_1]\times\cdots\times(a_n,b_n]
+\times\mathbb{R}\times\mathbb{R}\times\cdots.
+\]
+
+The collection $\mathcal{S}$ is a semialgebra of subsets of
+$\mathbb{R}^{\mathbb{N}}$.
+
+Indeed, the intersection of two such sets is again of the same
+form, after taking the larger of the two dimensions.
+
+Moreover, the difference of two such rectangles can be written as a
+finite disjoint union of rectangles of the same type.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 2: Definition of $\mathbb{P}$ on $\mathcal{S}$.}
+
+For
+\[
+A=
+\left\{
+\omega:
+\omega_i\in(a_i,b_i],
+\quad
+1\leq i\leq n
+\right\},
+\]
+define
+\[
+\boxed{
+\mathbb{P}(A)
+=
+\mu_n
+\left(
+(a_1,b_1]\times\cdots\times(a_n,b_n]
+\right).
+}
+\tag{1}
+\]
+
+We first show that this definition is well-defined.
+
+Suppose that the same set is regarded as a subset determined by the
+first $m$ coordinates, where $m>n$. Then it is represented by
+\[
+(a_1,b_1]\times\cdots\times(a_n,b_n]
+\times\mathbb{R}^{m-n}.
+\]
+
+By consistency,
+\[
+\mu_m
+\left(
+(a_1,b_1]\times\cdots\times(a_n,b_n]
+\times\mathbb{R}^{m-n}
+\right)
+=
+\mu_n
+\left(
+(a_1,b_1]\times\cdots\times(a_n,b_n]
+\right).
+\]
+
+Indeed, this follows by applying
+\[
+\mu_{k+1}(B\times\mathbb{R})
+=
+\mu_k(B)
+\]
+successively for
+\[
+k=n,n+1,\ldots,m-1.
+\]
+
+Thus the value in (1) does not depend on the number of coordinates
+used to describe the set.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 3: Finite additivity.}
+
+Suppose
+\[
+A=A_1\sqcup\cdots\sqcup A_k,
+\]
+where
+\[
+A,A_1,\ldots,A_k\in\mathcal{S}.
+\]
+
+There exists an integer $N$ such that all these sets depend only on
+the first $N$ coordinates.
+
+Hence there are rectangles
+\[
+R,R_1,\ldots,R_k\subseteq\mathbb{R}^N
+\]
+such that
+\[
+A
+=
+R\times
+\mathbb{R}^{\mathbb{N}\setminus\{1,\ldots,N\}},
+\]
+and similarly
+\[
+A_j
+=
+R_j\times
+\mathbb{R}^{\mathbb{N}\setminus\{1,\ldots,N\}}.
+\]
+
+Moreover,
+\[
+R=R_1\sqcup\cdots\sqcup R_k.
+\]
+
+Since $\mu_N$ is a probability measure,
+\[
+\mu_N(R)
+=
+\sum_{j=1}^k\mu_N(R_j).
+\]
+
+Therefore,
+\[
+\mathbb{P}(A)
+=
+\sum_{j=1}^k\mathbb{P}(A_j).
+\]
+
+Thus $\mathbb{P}$ is finitely additive on $\mathcal{S}$.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 4: Continuity lemma.}
+
+Let $\mathcal{A}$ be the algebra generated by $\mathcal{S}$.
+
+We claim that if
+\[
+B_n\in\mathcal{A},
+\qquad
+B_n\downarrow\varnothing,
+\]
+then
+\[
+\boxed{
+\mathbb{P}(B_n)\downarrow0.
+}
+\tag{2}
+\]
+
+Suppose, to the contrary, that
+\[
+\mathbb{P}(B_n)\downarrow\delta
+\]
+for some
+\[
+\delta>0.
+\]
+
+Since each $B_n$ belongs to $\mathcal{A}$, it can be written as a
+finite disjoint union of finite-dimensional rectangles. Thus, after
+representing all rectangles using the first $n$ coordinates, we may
+write
+\[
+B_n
+=
+\bigcup_{k=1}^{K_n}
+\left\{
+\omega:
+\omega_i\in(a_i^k,b_i^k],
+\quad
+1\leq i\leq n
+\right\}.
+\tag{3}
+\]
+
+For every $n$, choose a finite union $C_n\subseteq B_n$ of bounded
+closed rectangles such that
+\[
+\boxed{
+\mathbb{P}(B_n\setminus C_n)
+\leq
+\frac{\delta}{2^{n+1}}.
+}
+\tag{4}
+\]
+
+Such an approximation is possible because $\mu_n$ is a probability
+measure on $\mathbb{R}^n$.
+
+Now define
+\[
+D_n=\bigcap_{m=1}^nC_m.
+\]
+
+Since
+\[
+C_m\subseteq B_m
+\]
+and
+\[
+B_n\subseteq B_m
+\qquad
+(m\leq n),
+\]
+we have
+\[
+D_n\subseteq B_n.
+\]
+
+Furthermore,
+\[
+B_n\setminus D_n
+\subseteq
+\bigcup_{m=1}^n(B_m\setminus C_m).
+\]
+
+Therefore, by subadditivity,
+\[
+\begin{aligned}
+\mathbb{P}(B_n\setminus D_n)
+&\leq
+\sum_{m=1}^n
+\mathbb{P}(B_m\setminus C_m)\\
+&\leq
+\sum_{m=1}^n
+\frac{\delta}{2^{m+1}}\\
+&<
+\frac{\delta}{2}.
+\end{aligned}
+\]
+
+Since
+\[
+\mathbb{P}(B_n)\geq\delta,
+\]
+we obtain
+\[
+\begin{aligned}
+\mathbb{P}(D_n)
+&=
+\mathbb{P}(B_n)
+-
+\mathbb{P}(B_n\setminus D_n)\\
+&\geq
+\delta-\frac{\delta}{2}\\
+&=
+\frac{\delta}{2}.
+\end{aligned}
+\]
+
+Thus
+\[
+\boxed{
+\mathbb{P}(D_n)\geq\frac{\delta}{2}>0.
+}
+\tag{5}
+\]
+
+In particular,
+\[
+D_n\neq\varnothing
+\]
+for every $n$.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 5: Finite-dimensional compactness argument.}
+
+Since $D_n$ depends only on the first $n$ coordinates, there exists
+a set
+\[
+D_n^*\subseteq\mathbb{R}^n
+\]
+such that
+\[
+D_n
+=
+D_n^*
+\times
+\mathbb{R}
+\times\mathbb{R}\times\cdots.
+\]
+
+The set $D_n^*$ is a finite union of bounded closed rectangles and
+hence is compact.
+
+For each $n$, choose
+\[
+\omega^{(n)}\in D_n.
+\]
+
+Write
+\[
+\omega^{(n)}
+=
+\left(
+\omega^{(n)}_1,
+\omega^{(n)}_2,\ldots
+\right).
+\]
+
+Since
+\[
+D_n\subseteq D_1,
+\]
+we have
+\[
+\omega^{(n)}_1\in D_1^*.
+\]
+
+By compactness of $D_1^*$, there exists a subsequence such that
+\[
+\omega^{(n)}_1\longrightarrow\theta_1
+\]
+for some
+\[
+\theta_1\in D_1^*.
+\]
+
+Next, since
+\[
+D_n\subseteq D_2
+\qquad(n\geq2),
+\]
+we have
+\[
+(\omega^{(n)}_1,\omega^{(n)}_2)\in D_2^*.
+\]
+
+Using compactness of $D_2^*$, we can extract a further subsequence
+such that
+\[
+\omega^{(n)}_2\longrightarrow\theta_2.
+\]
+
+The first coordinate still converges to $\theta_1$ because we have
+only passed to a subsequence.
+
+Continuing inductively, we obtain
+\[
+\theta_1,\theta_2,\ldots
+\]
+such that, for every $k$,
+\[
+\boxed{
+(\theta_1,\ldots,\theta_k)\in D_k^*.
+}
+\tag{6}
+\]
+
+This is the diagonal-subsequence argument.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 6: Contradiction.}
+
+Define
+\[
+\theta
+=
+(\theta_1,\theta_2,\ldots)
+\in\mathbb{R}^{\mathbb{N}}.
+\]
+
+By (6),
+\[
+(\theta_1,\ldots,\theta_k)\in D_k^*,
+\]
+and therefore
+\[
+\theta\in D_k
+\]
+for every $k$.
+
+Consequently,
+\[
+\theta\in
+\bigcap_{k=1}^{\infty}D_k.
+\]
+
+Since
+\[
+D_k\subseteq B_k,
+\]
+we obtain
+\[
+\theta\in
+\bigcap_{k=1}^{\infty}B_k.
+\]
+
+Hence
+\[
+\bigcap_{k=1}^{\infty}B_k\neq\varnothing,
+\]
+which contradicts
+\[
+B_k\downarrow\varnothing.
+\]
+
+Therefore
+\[
+\mathbb{P}(B_n)\downarrow0.
+\]
+
+This proves the continuity property (2).
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 7: Countable additivity.}
+
+Suppose
+\[
+A=\bigsqcup_{i=1}^{\infty}A_i,
+\qquad
+A,A_i\in\mathcal{S}.
+\]
+
+Define
+\[
+B_n
+=
+A\setminus\bigcup_{i=1}^nA_i.
+\]
+
+Then
+\[
+B_n\downarrow\varnothing.
+\]
+
+Also,
+\[
+A
+=
+A_1\sqcup\cdots\sqcup A_n\sqcup B_n.
+\]
+
+By finite additivity,
+\[
+\mathbb{P}(A)
+=
+\sum_{i=1}^n\mathbb{P}(A_i)
++
+\mathbb{P}(B_n).
+\]
+
+By the continuity property,
+\[
+\mathbb{P}(B_n)\longrightarrow0.
+\]
+
+Therefore,
+\[
+\mathbb{P}(A)
+=
+\lim_{n\to\infty}
+\sum_{i=1}^n\mathbb{P}(A_i)
+=
+\sum_{i=1}^{\infty}\mathbb{P}(A_i).
+\]
+
+Thus $\mathbb{P}$ is countably additive.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 8: Extension to the product $\sigma$-field.}
+
+We have
+\[
+\mathbb{P}(\mathbb{R}^{\mathbb{N}})
+=
+\mu_1(\mathbb{R})
+=
+1.
+\]
+
+Thus $\mathbb{P}$ is a finite measure on the algebra generated by
+$\mathcal{S}$.
+
+By the Carath\'eodory Extension Theorem, $\mathbb{P}$ extends to a
+measure on
+\[
+\sigma(\mathcal{S}).
+\]
+
+But
+\[
+\sigma(\mathcal{S})
+=
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}.
+\]
+
+Therefore there exists a probability measure
+\[
+\mathbb{P}
+\]
+on
+\[
+\left(
+\mathbb{R}^{\mathbb{N}},
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}
+\right)
+\]
+having the prescribed finite-dimensional distributions.
+
+Thus existence is proved.
+
+%------------------------------------------------------------
+\medskip
+\noindent
+\textbf{Step 9: Uniqueness.}
+
+Suppose that $\mathbb{P}$ and $\mathbb{Q}$ are two probability
+measures on
+\[
+\left(
+\mathbb{R}^{\mathbb{N}},
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}
+\right)
+\]
+having the prescribed finite-dimensional distributions.
+
+Then
+\[
+\mathbb{P}(A)=\mathbb{Q}(A)
+\]
+for every finite-dimensional rectangle
+\[
+A\in\mathcal{S}.
+\]
+
+Define
+\[
+\mathcal{L}
+=
+\left\{
+A:
+\mathbb{P}(A)=\mathbb{Q}(A)
+\right\}.
+\]
+
+We show that $\mathcal{L}$ is a $\lambda$-system.
+
+First,
+\[
+\mathbb{P}(\Omega)
+=
+\mathbb{Q}(\Omega)
+=
+1,
+\]
+so
+\[
+\Omega\in\mathcal{L}.
+\]
+
+Suppose
+\[
+A,B\in\mathcal{L},
+\qquad
+A\subseteq B.
+\]
+
+Then
+\[
+\mathbb{P}(B\setminus A)
+=
+\mathbb{P}(B)-\mathbb{P}(A)
+\]
+and
+\[
+\mathbb{Q}(B\setminus A)
+=
+\mathbb{Q}(B)-\mathbb{Q}(A).
+\]
+
+Since
+\[
+\mathbb{P}(A)=\mathbb{Q}(A)
+\]
+and
+\[
+\mathbb{P}(B)=\mathbb{Q}(B),
+\]
+we obtain
+\[
+\mathbb{P}(B\setminus A)
+=
+\mathbb{Q}(B\setminus A).
+\]
+
+Hence
+\[
+B\setminus A\in\mathcal{L}.
+\]
+
+Finally, suppose
+\[
+A_n\uparrow A
+\]
+with
+\[
+A_n\in\mathcal{L}.
+\]
+
+By continuity from below,
+\[
+\begin{aligned}
+\mathbb{P}(A)
+&=
+\lim_{n\to\infty}\mathbb{P}(A_n)\\
+&=
+\lim_{n\to\infty}\mathbb{Q}(A_n)\\
+&=
+\mathbb{Q}(A).
+\end{aligned}
+\]
+
+Thus
+\[
+A\in\mathcal{L}.
+\]
+
+Therefore $\mathcal{L}$ is a $\lambda$-system.
+
+Since $\mathcal{S}$ is a $\pi$-system and
+\[
+\mathcal{S}\subseteq\mathcal{L},
+\]
+the $\pi$-$\lambda$ theorem gives
+\[
+\sigma(\mathcal{S})\subseteq\mathcal{L}.
+\]
+
+But
+\[
+\sigma(\mathcal{S})
+=
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}.
+\]
+
+Hence
+\[
+\mathbb{P}(A)=\mathbb{Q}(A)
+\]
+for every
+\[
+A\in
+\mathcal{B}(\mathbb{R})^{\otimes\mathbb{N}}.
+\]
+
+Therefore
+\[
+\mathbb{P}=\mathbb{Q}.
+\]
+
+Thus the extension is unique.
+
+\end{proof}
+
+
+%============================================================
+% Remarks on the General Formulation
+%============================================================
+
+\subsection{Remarks on the General Formulation}
+
+\begin{remark}
+
+The space
+\(
+(\mathbb{R},\mathcal{B}(\mathbb{R}))
+\)
+may be replaced by a measurable space that is Borel isomorphic to it.
+
+The general theory of probability measures on metric spaces provides
+a broader setting for such extension results.
+
+See, for example, the discussion of probability measures on metric
+spaces in Parthasarathy.
+
+\end{remark}
+
+
+%============================================================
+% Transition to Laws of Large Numbers
+%============================================================
+
+\section{Weak and Strong Laws of Large Numbers}
+
+\subsection{Introduction}
+
+We now move to the main limit theorems of probability theory,
+beginning with the Weak Law of Large Numbers and the Strong Law of
+Large Numbers.
+
+Let
+\[
+X_1,X_2,\ldots
+\]
+be random variables and define the partial sums
+\[
+S_n
+=
+X_1+\cdots+X_n.
+\]
+
+The quantities
+\[
+\frac{S_n}{n}
+\]
+represent the empirical average of the random variables.
+
+\begin{observation}
+
+Under suitable assumptions, the Weak Law of Large Numbers gives
+convergence of the empirical average in probability, while the Strong
+Law of Large Numbers gives almost sure convergence.
+
+In the identically distributed case, the limiting quantity is
+typically
+\(
+\quad\mathbb{E}(X_1).
+\)
+
+\end{observation}
+
+
+%============================================================
+% Example: A Sequence of Random Variables
+%============================================================
+
+\subsection{Example on the Product Space}
+
+\begin{example}{A Sequence of Random Variables on a Product Space}
+{sequence-random-variables-product-space}
+
+Consider the probability space
+\[
+\left(
+[0,1]^{\mathbb{N}},
+\mathcal{B}([0,1])^{\otimes\mathbb{N}},
+\mathbb{P}
+\right).
+\]
+
+For
+\[
+\omega=(\omega_1,\omega_2,\ldots)
+\in[0,1]^{\mathbb{N}},
+\]
+define
+\[
+X_i(\omega)
+=
+\begin{cases}
+H, & \omega_i<\omega_1,\\[4pt]
+T, & \omega_i\geq\omega_1.
+\end{cases}
+\]
+
+Thus each $X_i$ is a random variable defined on the product
+probability space.
+
+\end{example}
+
+
+%============================================================
+% Stationary Sequences and Ergodic Theorem
+%============================================================
+
+\subsection{Stationary Sequences}
+
+\begin{definition}{Stationary Sequence of Random Variables}
+{stationary-sequence}
+
+A sequence of random variables
+\(
+X_1,X_2,\ldots
+\)
+is called \emph{stationary} if, for every
+\(
+n\geq1
+\qquad\text{and}\qquad
+k\geq0,
+\)
+we have
+\[
+(X_1,X_2,\ldots,X_n)
+\overset{d}{=}
+(X_{1+k},X_{2+k},\ldots,X_{n+k}).
+\]
+
+Here
+\(
+\overset{d}{=}
+\)
+means equality in distribution.
+
+\end{definition}
+
+
+\subsection{Ergodic Theorem}
+
+\begin{observation}
+
+Suppose that
+\(
+X_1,X_2,\ldots
+\)
+is a stationary sequence satisfying
+\(
+\mathbb{E}(|X_1|)<\infty.
+\)
+
+Under the assumptions of the ergodic theorem, the empirical averages
+\[
+\frac{S_n}{n},
+\qquad where \quad S_n=X_1+\cdots+X_n,
+\]
+converge almost surely to a limiting random variable.
+
+The theorem also identifies the limiting random variable in terms of
+the invariant $\sigma$-field.
+
+\end{observation}
+
+
+%============================================================
+% Final Note
+%============================================================
+
+\begin{profnote}
+
+The Kolmogorov Extension Theorem is the basic tool for constructing
+probability measures on infinite product spaces from consistent
+finite-dimensional distributions.
+
+The next part of the course develops the Weak and Strong Laws of
+Large Numbers and then moves toward stationary processes and the
+Ergodic Theorem.
+
+\end{profnote}
+
+
+%============================================================
+% End of Lecture
+%============================================================
+
+\lectureend
