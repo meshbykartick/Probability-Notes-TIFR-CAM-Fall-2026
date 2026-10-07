@@ -1,0 +1,1029 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 15
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{15}
+{Monday, 28 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%============================================================
+% Tails and the Behaviour of S_n
+%============================================================
+
+\section{Tails and the Behaviour of Sums}
+
+\subsection{How Does \(S_n/n\) Behave for Large \(n\)?}
+
+Let
+\(
+X_1,X_2,\ldots
+\)
+be a sequence of random variables and define
+\[
+S_n=X_1+\cdots+X_n.
+\]
+
+A fundamental question is:
+
+\begin{question}{Behaviour of the Empirical Average}
+{behaviour-empirical-average}
+
+How does
+\(
+\frac{S_n}{n}
+\)
+behave as $n\to\infty$?
+
+\end{question}
+
+The answer is strongly influenced by the tail behaviour of the
+random variables. In particular, the quantity
+\(
+\mathbb{P}(|X|>t),
+\qquad t\to\infty,
+\)
+plays an important role.
+
+\begin{observation}
+
+The behaviour of the tails
+\[
+\mathbb{P}(|X|>t)
+\]
+for large $t$ determines how frequently very large values of $X$
+occur.
+
+Random variables whose tails decay slowly are often referred to as
+having \emph{heavy tails}.
+
+\end{observation}
+
+
+%============================================================
+% A General Normalization
+%============================================================
+
+\subsection{Normalization of Partial Sums}
+
+For suitable sequences of random variables, one may seek a sequence
+of positive numbers $b_n$ such that
+\(
+b_n\longrightarrow\infty
+\)
+and
+\[
+\frac{S_n}{b_n}\xrightarrow{P}0.
+\]
+
+The appropriate normalization depends on the tail behaviour of the
+random variables.
+
+This motivates the study of weak laws for triangular arrays and
+appropriate choices of the normalization sequence $b_n$.
+
+
+%============================================================
+% Fair Games
+%============================================================
+
+\section{Fair Games and Pricing}
+
+\subsection{Pricing an Independent Game}
+
+Suppose a casino game has winnings represented by a random variable
+$X$.
+
+If a sequence of people independently plays the same game, the
+winnings give rise to an i.i.d. sequence
+\[
+X_1,X_2,\ldots,
+\qquad
+X_i\overset{d}{=}X.
+\]
+
+Let
+\[
+S_n=X_1+\cdots+X_n.
+\]
+
+We now ask:
+
+\begin{question}{How Should the Casino Price the Game?}
+{pricing-casino-game}
+
+Suppose
+\(
+\mathbb{E}(|X|)<\infty.
+\)
+
+Then the expected winning per game is
+\(
+\mu=\mathbb{E}(X).
+\)
+
+If the casino charges a price $\mu'$ per game, how should $\mu'$
+be chosen?
+
+\end{question}
+
+
+\subsection{Three Possible Pricing Scenarios}
+
+Suppose
+\[
+\mu' > \mu.
+\]
+
+Then, on average, the casino makes money.
+
+However, the price is higher than the expected winning and may therefore
+be viewed as non-competitive.
+
+\medskip
+
+If
+\[
+\mu'<\mu,
+\]
+then the casino loses money on average.
+
+\medskip
+
+The natural fair price is therefore
+\[
+\boxed{
+\mu'=\mu=\mathbb{E}(X).
+}
+\]
+
+When
+\[
+\mathbb{E}(|X|)<\infty,
+\]
+the Weak Law of Large Numbers gives
+\[
+\frac{S_n}{n}
+\xrightarrow{P}
+\mu.
+\]
+
+Thus the total net loss of the casino after $n$ games, when the price
+per game is $\mu$, is
+\[
+n\mu-S_n.
+\]
+
+\begin{observation}
+
+The Weak Law tells us that
+\[
+\frac{n\mu-S_n}{n}
+=
+\mu-\frac{S_n}{n}
+\xrightarrow{P}0.
+\]
+
+Thus
+\[
+n\mu-S_n=o_P(n).
+\]
+
+The question is whether the casino's net loss
+\(
+n\mu-S_n
+\)
+can nevertheless become large and positive.
+
+\end{observation}
+
+
+%============================================================
+% Finite Variance Case
+%============================================================
+
+\subsection{What Happens When the Variance Is Finite?}
+
+Suppose additionally that
+\[
+\operatorname{Var}(X)=\sigma^2<\infty.
+\]
+
+Then the Central Limit Theorem gives
+\[
+\frac{S_n-n\mu}{\sqrt{n}}
+\xrightarrow{d}
+N(0,\sigma^2).
+\]
+
+Equivalently,
+\[
+\frac{n\mu-S_n}{\sqrt{n}}
+\xrightarrow{d}
+N(0,\sigma^2).
+\]
+
+Thus, in the finite-variance case, the fluctuations of the total
+winnings around their mean are typically of order
+\[
+\sqrt{n}.
+\]
+
+The limiting normal distribution is symmetric about zero, so the
+positive and negative fluctuations are balanced asymptotically in the
+sense described by the Central Limit Theorem.
+
+\begin{question}{The Finite-Expectation Case}
+{finite-expectation-case}
+
+What happens if we only assume
+\(
+X\in L^1
+\)
+and do not assume
+\(
+X\in L^2?
+\)
+
+\end{question}
+
+
+%============================================================
+% St. Petersburg Game
+%============================================================
+
+\section{The St.\ Petersburg Game}
+
+\subsection{Description of the Game}
+
+Consider the following game.
+
+A fair coin is tossed repeatedly until the first head appears.
+
+Let
+\(
+N
+\)
+denote the number of tosses required to obtain the first head.
+
+The winnings are defined by
+\[
+X=2^N.
+\]
+
+Since the first head occurs on the $k$-th toss exactly when the first
+$k-1$ tosses are tails and the $k$-th toss is a head,
+\[
+\mathbb{P}(N=k)
+=
+\left(\frac12\right)^k.
+\]
+
+Consequently,
+\[
+\boxed{
+\mathbb{P}(X=2^k)=2^{-k},
+\qquad k\geq1.
+}
+\]
+
+\subsection{The Expected Winning}
+
+We have
+\[
+\begin{aligned}
+\mathbb{E}(X)
+&=
+\sum_{k=1}^{\infty}
+2^k\mathbb{P}(X=2^k)\\
+&=
+\sum_{k=1}^{\infty}
+2^k2^{-k}\\
+&=
+\sum_{k=1}^{\infty}1\\
+&=\infty.
+\end{aligned}
+\]
+
+Therefore,
+\[
+\boxed{
+\mathbb{E}(X)=\infty.
+}
+\]
+
+Thus the usual fair-price prescription
+\(
+\text{price}=\mathbb{E}(X)
+\)
+does not give a finite price.
+
+\begin{observation}
+
+The St.\ Petersburg game illustrates the difficulty caused by a
+heavy-tailed distribution.
+
+Although extremely large winnings are rare, they are sufficiently
+large to make the expectation infinite.
+
+\end{observation}
+
+
+%============================================================
+% Two Ways to Modify the Game
+%============================================================
+
+\subsection{Two Ways to Make the Game Finite}
+
+There are at least two natural ways to modify the game.
+
+\begin{enumerate}
+
+    \item \textbf{Cap the winnings.}
+
+    Impose an upper bound on the amount that can be won.
+
+    \item \textbf{Limit the number of plays.}
+
+    Instead of considering infinitely many independent plays, consider
+    only a finite number of plays and determine an appropriate price
+    for them.
+
+\end{enumerate}
+
+We now consider the second approach.
+
+
+%============================================================
+% Pricing n Independent Plays
+%============================================================
+
+\section{Pricing \(n\) Independent St.\ Petersburg Games}
+
+\subsection{The Total Winning}
+
+Let
+\[
+X_{n,1},X_{n,2},\ldots,X_{n,n}
+\]
+be independent copies of the St.\ Petersburg random variable $X$.
+
+Thus
+\[
+X_{n,k}\overset{d}{=}X,
+\qquad
+1\leq k\leq n.
+\]
+
+Define
+\[
+S_n
+=
+\sum_{k=1}^nX_{n,k}.
+\]
+
+We want to understand the correct scale of $S_n$.
+
+\begin{question}{Pricing \(n\) Independent St.\ Petersburg Games}
+{pricing-n-st-petersburg-games}
+
+How should one price $n$ independent plays of the St.\ Petersburg game?
+
+\end{question}
+
+
+%============================================================
+% Weak Law for the Triangular Array
+%============================================================
+
+\subsection{Applying the Weak Law for Triangular Arrays}
+
+We use the Weak Law for triangular arrays.
+
+We seek a sequence $b_n\to\infty$ such that
+
+\begin{align}
+n\mathbb{P}(X>b_n)
+&\longrightarrow0,
+\tag{1}
+\\
+b_n^{-2}
+n\mathbb{E}
+\left[
+X^2\mathbf{1}_{\{X\leq b_n\}}
+\right]
+&\longrightarrow0.
+\tag{2}
+\end{align}
+
+These are precisely the two conditions needed to apply the triangular
+array weak law with
+\(
+X_{n,k}=X_{k}
+\)
+and
+\(
+b_n
+\)
+as the normalization.
+
+\subsection{The Tail Probability}
+
+Let
+\[
+L_n
+=
+\left\lfloor
+\log_2 b_n
+\right\rfloor.
+\]
+
+Then
+\[
+2^{L_n}\leq b_n<2^{L_n+1}.
+\]
+
+Therefore,
+\[
+X>b_n
+\]
+implies
+\[
+X=2^k
+\]
+with
+\[
+k>L_n.
+\]
+
+Hence
+\[
+\begin{aligned}
+\mathbb{P}(X>b_n)
+&=
+\sum_{k=L_n+1}^{\infty}2^{-k}\\
+&=
+2^{-L_n}.
+\end{aligned}
+\]
+
+Since
+\[
+2^{L_n}\leq b_n<2^{L_n+1},
+\]
+we obtain
+\[
+\boxed{
+\frac1{b_n}
+<
+\mathbb{P}(X>b_n)
+\leq
+\frac{2}{b_n}.
+}
+\tag{3}
+\]
+
+\subsection{Choice of \(b_n\)}
+
+Choose
+\[
+\boxed{
+b_n=n2^{k(n)},
+}
+\]
+where
+\[
+k(n)\longrightarrow\infty.
+\]
+
+Then, by (3),
+\[
+\mathbb{P}(X>b_n)
+\leq
+\frac{2}{b_n}.
+\]
+
+Therefore,
+\[
+n\mathbb{P}(X>b_n)
+\leq
+\frac{2n}{b_n}
+=
+\frac{2}{2^{k(n)}}
+\longrightarrow0.
+\]
+
+Thus condition (1) is satisfied.
+
+\subsection{The Truncated Second Moment}
+
+Let
+\[
+L_n
+=
+\left\lfloor
+\log_2 b_n
+\right\rfloor.
+\]
+
+Then
+\[
+\begin{aligned}
+\mathbb{E}
+\left[
+X^2\mathbf{1}_{\{X\leq b_n\}}
+\right]
+&=
+\sum_{k=1}^{L_n}
+(2^k)^2\mathbb{P}(X=2^k)\\
+&=
+\sum_{k=1}^{L_n}
+2^{2k}2^{-k}\\
+&=
+\sum_{k=1}^{L_n}2^k\\
+&=
+2^{L_n+1}-2.
+\end{aligned}
+\]
+
+Since
+\[
+2^{L_n}\leq b_n,
+\]
+we have
+\[
+2^{L_n+1}\leq2b_n.
+\]
+
+Therefore,
+\[
+\mathbb{E}
+\left[
+X^2\mathbf{1}_{\{X\leq b_n\}}
+\right]
+\leq
+2b_n.
+\]
+
+Consequently,
+\[
+\begin{aligned}
+b_n^{-2}n
+\mathbb{E}
+\left[
+X^2\mathbf{1}_{\{X\leq b_n\}}
+\right]
+&\leq
+\frac{2n}{b_n}\\
+&=
+\frac{2}{2^{k(n)}}\\
+&\longrightarrow0.
+\end{aligned}
+\]
+
+Thus condition (2) is also satisfied.
+
+\subsection{Conclusion from the Weak Law}
+
+The Weak Law for triangular arrays therefore gives
+\[
+\frac{S_n-a_n}{b_n}
+\xrightarrow{P}0,
+\]
+where
+\[
+a_n
+=
+n\mathbb{E}
+\left[
+X\mathbf{1}_{\{X\leq b_n\}}
+\right].
+\]
+
+Now
+\[
+\begin{aligned}
+\mathbb{E}
+\left[
+X\mathbf{1}_{\{X\leq b_n\}}
+\right]
+&=
+\sum_{k=1}^{L_n}
+2^k2^{-k}\\
+&=
+\sum_{k=1}^{L_n}1\\
+&=
+L_n.
+\end{aligned}
+\]
+
+Hence
+\[
+a_n
+=
+nL_n
+=
+n
+\left\lfloor
+\log_2 b_n
+\right\rfloor.
+\]
+
+Therefore,
+\[
+\boxed{
+\frac{
+S_n-
+n\left\lfloor\log_2b_n\right\rfloor
+}{b_n}
+\xrightarrow{P}0.
+}
+\tag{4}
+\]
+
+
+%============================================================
+% Finding the Natural Price
+%============================================================
+
+\section{The Natural Scale of the St.\ Petersburg Game}
+
+\subsection{Choosing \(b_n\) for \(S_n/b_n\to1\)}
+
+Ideally, we would like to choose $b_n$ such that
+\[
+\boxed{
+\frac{S_n}{b_n}
+\xrightarrow{P}1.
+}
+\]
+
+Equivalently, for every $\varepsilon>0$,
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{b_n}-1
+\right|
+>\varepsilon
+\right)
+\longrightarrow0.
+\]
+
+Using (4), it is enough to choose $b_n$ such that
+\[
+\frac{
+n\left\lfloor\log_2b_n\right\rfloor
+}{b_n}
+\longrightarrow1.
+\]
+
+Thus we require
+\[
+\boxed{
+\frac{
+n\left\lfloor\log_2b_n\right\rfloor
+}{b_n}
+\longrightarrow1.
+}
+\tag{5}
+\]
+
+Now take
+\[
+b_n=n2^{k(n)}.
+\]
+
+Then
+\[
+\frac{
+n\left\lfloor\log_2b_n\right\rfloor
+}{b_n}
+=
+\frac{
+\left\lfloor
+\log_2n+k(n)
+\right\rfloor
+}{
+2^{k(n)}
+}.
+\]
+
+Therefore, we want
+\[
+\frac{
+\log_2n+k(n)
+}{
+2^{k(n)}
+}
+\longrightarrow1.
+\]
+
+A natural choice is
+\[
+\boxed{
+k(n)=\log_2\log_2 n.
+}
+\]
+
+Indeed,
+\[
+2^{k(n)}
+=
+\log_2 n,
+\]
+and therefore
+\[
+\frac{
+\log_2n+\log_2\log_2n
+}{
+\log_2n
+}
+\longrightarrow1.
+\]
+
+Thus we may choose
+\[
+\boxed{
+b_n
+=
+n\log_2n.
+}
+\]
+
+Consequently,
+\[
+\boxed{
+\frac{S_n}{n\log_2n}
+\xrightarrow{P}1.
+}
+\]
+
+\begin{observation}
+
+The natural scale of the total winnings in $n$ independent
+St.\ Petersburg games is therefore
+\[
+n\log_2n.
+\]
+
+Hence the natural price per game grows like
+\[
+\boxed{
+\log_2n.
+}
+\]
+
+This is very different from the ordinary finite-expectation case,
+where the natural price is a fixed number $\mathbb{E}(X)$.
+
+\end{observation}
+
+
+%============================================================
+% Almost Sure Convergence
+%============================================================
+
+\section{From Convergence in Probability to Almost Sure Convergence}
+
+\subsection{A Bernoulli Example}
+
+Let
+\[
+X_1,X_2,\ldots
+\]
+be i.i.d. Bernoulli random variables with
+\[
+X_i\sim\operatorname{Ber}\left(\frac12\right).
+\]
+
+Define
+\[
+S_n=X_1+\cdots+X_n.
+\]
+
+The Weak Law gives
+\[
+\frac{S_n}{n}
+\xrightarrow{P}
+\frac12.
+\]
+
+We now ask whether
+\[
+\frac{S_n}{n}
+\longrightarrow
+\frac12
+\]
+almost surely.
+
+\begin{question}{Almost Sure Convergence}
+{almost-sure-convergence-bernoulli}
+
+Does
+\[
+\frac{S_n}{n}
+\longrightarrow
+\frac12
+\]
+almost surely?
+
+\end{question}
+
+
+\subsection{Exponential Probability Bounds}
+
+For every $\varepsilon>0$, Hoeffding's inequality gives
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\right)
+\leq
+2e^{-2n\varepsilon^2}.
+\]
+
+In particular, there exists a constant $c>0$ such that
+\[
+\boxed{
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\right)
+\leq
+2e^{-cn}.
+}
+\tag{6}
+\]
+
+\subsection{Borel--Cantelli Argument}
+
+Define
+\[
+A_n
+=
+\left\{
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\right\}.
+\]
+
+From (6),
+\[
+\mathbb{P}(A_n)
+\leq
+2e^{-cn}.
+\]
+
+Therefore,
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)
+\leq
+2\sum_{n=1}^{\infty}e^{-cn}
+<\infty.
+\]
+
+Hence, by the first Borel--Cantelli lemma,
+\[
+\mathbb{P}(A_n\text{ infinitely often})=0.
+\]
+
+Equivalently,
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\text{ infinitely often}
+\right)
+=0.
+\]
+
+Thus, for every $\varepsilon>0$,
+\[
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+\leq\varepsilon
+\]
+eventually almost surely.
+
+Since this holds for every $\varepsilon>0$,
+\[
+\boxed{
+\frac{S_n}{n}
+\longrightarrow
+\frac12
+\qquad\text{almost surely}.
+}
+\]
+
+\begin{observation}
+
+This illustrates an important principle:
+
+\[
+\text{exponentially small deviation probabilities}
+\quad+\quad
+\text{Borel--Cantelli}
+\]
+
+\[\quad\Longrightarrow\quad
+\text{almost sure convergence}.
+\]
+
+\end{observation}
+
+
+%============================================================
+% Contradiction Formulation
+%============================================================
+
+\subsection{Equivalent Contradiction Argument}
+
+Suppose, for contradiction, that
+\[
+\frac{S_n}{n}
+\not\longrightarrow
+\frac12
+\qquad\text{almost surely}.
+\]
+
+Then
+\[
+\mathbb{P}
+\left(
+\frac{S_n}{n}
+\not\longrightarrow
+\frac12
+\right)
+>0.
+\]
+
+Equivalently, there exist
+\[
+\theta>0
+\qquad\text{and}\qquad
+\varepsilon>0
+\]
+such that
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\text{ infinitely often}
+\right)
+>\theta.
+\]
+
+But the Borel--Cantelli argument above gives
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|
+>\varepsilon
+\text{ infinitely often}
+\right)
+=0,
+\]
+which is a contradiction.
+
+Therefore,
+\[
+\boxed{
+\frac{S_n}{n}
+\longrightarrow
+\frac12
+\qquad\text{almost surely}.
+}
+\]
+
+
+%============================================================
+% Summary
+%============================================================
+
+
+
+%============================================================
+% End of Lecture
+%============================================================
+
+\lectureend

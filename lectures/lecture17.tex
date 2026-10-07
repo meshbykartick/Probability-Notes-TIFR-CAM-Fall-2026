@@ -1,0 +1,1297 @@
+
+\lecture
+{17}
+{Wednesday, 7 October 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+% ============================================================
+\section{Subsequence Characterization of Convergence in Probability}
+% ============================================================
+
+\begin{theorem}
+{Subsequence Characterization of Convergence in Probability}
+{subsequence-characterization-convergence-probability}
+
+Let $X,X_1,X_2,\ldots$ be random variables. Then
+\[
+    X_n \xrightarrow{P} X
+\]
+if and only if every subsequence $(X_{n_k})$ has a further
+subsequence $(X_{n_{k_j}})$ such that
+\[
+    X_{n_{k_j}} \xrightarrow{\mathrm{a.s.}} X.
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+We prove the two implications separately.
+
+\medskip
+
+\noindent
+\textbf{($\Rightarrow$) Suppose that $X_n\xrightarrow{P}X$.}
+
+We have to prove that every subsequence of $(X_n)$ has a further
+subsequence which converges to $X$ almost surely.
+
+Let
+\[
+    (X_{n_k})
+\]
+be an arbitrary subsequence of $(X_n)$.
+
+Since
+\[
+    X_n\xrightarrow{P}X,
+\]
+by definition, for every $\varepsilon>0$,
+\[
+    \mathbb P(|X_n-X|>\varepsilon)\longrightarrow0.
+\]
+
+We shall construct a further subsequence
+\[
+    X_{n_{k_1}},X_{n_{k_2}},\ldots
+\]
+such that
+\[
+    \mathbb P\left(
+        |X_{n_{k_j}}-X|>\frac{1}{2^j}
+    \right)
+    <\frac{1}{2^j}
+\]
+for every $j\geq1$.
+
+To see that this is possible, first choose $k_1$ such that
+\[
+    \mathbb P\left(
+        |X_{n_{k_1}}-X|>1
+    \right)<\frac12.
+\]
+This is possible because
+\[
+    \mathbb P(|X_n-X|>1)\longrightarrow0.
+\]
+
+Having chosen $k_1,\ldots,k_{j-1}$, choose $k_j>k_{j-1}$ such that
+\[
+    \mathbb P\left(
+        |X_{n_{k_j}}-X|>\frac{1}{2^j}
+    \right)
+    <\frac{1}{2^j}.
+\]
+Again, this is possible because
+\[
+    \mathbb P\left(
+        |X_n-X|>\frac{1}{2^j}
+    \right)
+    \longrightarrow0.
+\]
+
+Thus we have constructed a further subsequence satisfying
+\[
+    \mathbb P\left(
+        |X_{n_{k_j}}-X|>\frac{1}{2^j}
+    \right)
+    <\frac{1}{2^j}.
+\]
+
+Define the events
+\[
+    A_j
+    =
+    \left\{
+        |X_{n_{k_j}}-X|>\frac{1}{2^j}
+    \right\}.
+\]
+
+Then
+\[
+    \sum_{j=1}^{\infty}\mathbb P(A_j)
+    \leq
+    \sum_{j=1}^{\infty}\frac{1}{2^j}
+    =1<\infty.
+\]
+
+Therefore, by the first Borel--Cantelli lemma,
+\[
+    \mathbb P(A_j\text{ i.o.})=0.
+\]
+
+Hence, with probability one, only finitely many of the events $A_j$
+occur.
+
+Thus, for almost every $\omega$, there exists $J=J(\omega)$ such that
+for all $j\geq J$,
+\[
+    |X_{n_{k_j}}(\omega)-X(\omega)|
+    \leq\frac{1}{2^j}.
+\]
+
+Since
+\[
+    \frac{1}{2^j}\longrightarrow0,
+\]
+we obtain
+\[
+    X_{n_{k_j}}(\omega)\longrightarrow X(\omega)
+\]
+for almost every $\omega$.
+
+Therefore,
+\[
+    \boxed{
+    X_{n_{k_j}}\xrightarrow{\mathrm{a.s.}}X.
+    }
+\]
+
+Since the original subsequence $(X_{n_k})$ was arbitrary, every
+subsequence has a further subsequence which converges almost surely
+to $X$.
+
+\medskip
+
+\noindent
+\textbf{($\Leftarrow$) Suppose that every subsequence of $(X_n)$ has
+a further subsequence which converges almost surely to $X$.}
+
+We prove that
+\[
+    X_n\xrightarrow{P}X.
+\]
+
+Suppose, to the contrary, that
+\[
+    X_n\not\xrightarrow{P}X.
+\]
+
+By the definition of convergence in probability, this means that there
+exists some $\varepsilon_0>0$ for which
+\[
+    \mathbb P(|X_n-X|>\varepsilon_0)
+\]
+does not converge to $0$.
+
+Therefore, there exists some $\delta>0$ and a subsequence
+\[
+    X_{n_k}
+\]
+such that
+\[
+    \mathbb P(|X_{n_k}-X|>\varepsilon_0)
+    \geq\delta
+\]
+for every $k\geq1$.
+
+Indeed, if no such $\delta$ and subsequence existed, then
+\[
+    \mathbb P(|X_n-X|>\varepsilon_0)\longrightarrow0,
+\]
+which would contradict our assumption.
+
+By the hypothesis of the theorem, this subsequence $(X_{n_k})$ has a
+further subsequence
+\[
+    X_{n_{k_j}}
+\]
+such that
+\[
+    X_{n_{k_j}}\xrightarrow{\mathrm{a.s.}}X.
+\]
+
+We now show that almost sure convergence implies convergence in
+probability.
+
+Since
+\[
+    X_{n_{k_j}}\xrightarrow{\mathrm{a.s.}}X,
+\]
+for almost every $\omega$,
+\[
+    |X_{n_{k_j}}(\omega)-X(\omega)|
+    \longrightarrow0.
+\]
+
+Fix $\varepsilon_0>0$ and define
+\[
+    B_m
+    =
+    \bigcup_{j=m}^{\infty}
+    \left\{
+        |X_{n_{k_j}}-X|>\varepsilon_0
+    \right\}.
+\]
+
+The events satisfy
+\[
+    B_1\supseteq B_2\supseteq B_3\supseteq\cdots.
+\]
+
+Moreover, since
+\[
+    X_{n_{k_j}}\xrightarrow{\mathrm{a.s.}}X,
+\]
+only finitely many of the events
+\[
+    \left\{
+        |X_{n_{k_j}}-X|>\varepsilon_0
+    \right\}
+\]
+occur almost surely. Hence
+\[
+    \mathbb P\left(\bigcap_{m=1}^{\infty}B_m\right)=0.
+\]
+
+By continuity of probability from above,
+\[
+    \mathbb P(B_m)
+    \longrightarrow
+    \mathbb P\left(\bigcap_{m=1}^{\infty}B_m\right)
+    =0.
+\]
+
+But for every $j\geq m$,
+\[
+    \left\{
+        |X_{n_{k_j}}-X|>\varepsilon_0
+    \right\}
+    \subseteq B_m.
+\]
+
+Therefore,
+\[
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    \leq \mathbb P(B_m).
+\]
+
+For fixed $m$, this holds for every $j\geq m$. Hence
+\[
+    \limsup_{j\to\infty}
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    \leq \mathbb P(B_m).
+\]
+
+Letting $m\to\infty$, we get
+\[
+    \limsup_{j\to\infty}
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    =0.
+\]
+
+Thus
+\[
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    \longrightarrow0.
+\]
+
+However, $(X_{n_{k_j}})$ is a further subsequence of $(X_{n_k})$, and
+we constructed $(X_{n_k})$ so that
+\[
+    \mathbb P(|X_{n_k}-X|>\varepsilon_0)
+    \geq\delta
+\]
+for every $k$.
+
+Consequently,
+\[
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    \geq\delta
+\]
+for every $j$,
+which contradicts
+\[
+    \mathbb P(|X_{n_{k_j}}-X|>\varepsilon_0)
+    \longrightarrow0.
+\]
+
+This contradiction shows that our assumption
+\[
+    X_n\not\xrightarrow{P}X
+\]
+was false. Therefore,
+\[
+    \boxed{
+    X_n\xrightarrow{P}X.
+    }
+\]
+
+Hence,
+\[
+    \boxed{
+    X_n\xrightarrow{P}X
+    \quad\Longleftrightarrow\quad
+    \text{every subsequence of $(X_n)$ has a further subsequence
+    converging a.s. to $X$.}
+    }
+\]
+
+\end{proof}
+
+
+% ============================================================
+\section{Infinite First Moment}
+% ============================================================
+
+\begin{theorem}
+{Durrett's Theorem 2.3.8}
+{durrett-theorem-2-3-8}
+
+Let $X_1,X_2,\ldots$ be independent and identically distributed random
+variables such that
+\[
+    \mathbb{E}|X_i|=\infty.
+\]
+
+Then
+\[
+    \mathbb{P}\bigl(|X_n|\geq n \text{ i.o.}\bigr)=1.
+\]
+
+Consequently, if
+\[
+    S_n=X_1+\cdots+X_n,
+\]
+then
+\[
+    \mathbb{P}\left(
+        \lim_{n\to\infty}\frac{S_n}{n}
+        \text{ exists in }(-\infty,\infty)
+    \right)=0.
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+We divide the proof into two parts.
+
+\medskip
+
+\noindent
+\textbf{Part I: Proving that $|X_n|\geq n$ infinitely often almost surely.}
+
+For any nonnegative random variable $Y$, the tail-integral formula gives
+\[
+    \mathbb{E}Y
+    =
+    \int_0^\infty \mathbb{P}(Y>x)\,dx.
+\]
+
+Applying this with $Y=|X_1|$, we obtain
+\[
+    \mathbb{E}|X_1|
+    =
+    \int_0^\infty
+    \mathbb{P}(|X_1|>x)\,dx.
+\]
+
+Now divide the integral into intervals $[n,n+1)$:
+\[
+\begin{aligned}
+    \mathbb{E}|X_1|
+    &=
+    \sum_{n=0}^\infty
+    \int_n^{n+1}
+    \mathbb{P}(|X_1|>x)\,dx.
+\end{aligned}
+\]
+
+Since the function
+\[
+    x\longmapsto\mathbb{P}(|X_1|>x)
+\]
+is nonincreasing, for $x\in[n,n+1)$ we have
+\[
+    \mathbb{P}(|X_1|>x)
+    \leq
+    \mathbb{P}(|X_1|>n).
+\]
+
+Therefore,
+\[
+\begin{aligned}
+    \mathbb{E}|X_1|
+    &\leq
+    \sum_{n=0}^\infty
+    \int_n^{n+1}
+    \mathbb{P}(|X_1|>n)\,dx
+    \\
+    &=
+    \sum_{n=0}^\infty
+    \mathbb{P}(|X_1|>n).
+\end{aligned}
+\]
+
+But by assumption,
+\[
+    \mathbb{E}|X_1|=\infty.
+\]
+
+Hence
+\[
+    \sum_{n=0}^\infty
+    \mathbb{P}(|X_1|>n)
+    =\infty.
+\]
+
+Since the random variables $X_1,X_2,\ldots$ are identically distributed,
+\[
+    \sum_{n=1}^\infty
+    \mathbb{P}(|X_n|>n)
+    =
+    \sum_{n=1}^\infty
+    \mathbb{P}(|X_1|>n)
+    =\infty.
+\]
+
+Define the events
+\[
+    A_n=\{|X_n|>n\}.
+\]
+
+Because $X_1,X_2,\ldots$ are independent, the events
+$A_1,A_2,\ldots$ are independent.
+
+Therefore, by the second Borel--Cantelli lemma,
+\[
+    \sum_{n=1}^\infty\mathbb{P}(A_n)=\infty
+    \quad\Longrightarrow\quad
+    \mathbb{P}(A_n\text{ i.o.})=1.
+\]
+
+Consequently,
+\[
+    \mathbb{P}\bigl(|X_n|>n\text{ i.o.}\bigr)=1.
+\]
+
+Since
+\[
+    \{|X_n|>n\text{ i.o.}\}
+    \subseteq
+    \{|X_n|\geq n\text{ i.o.}\},
+\]
+we obtain
+\[
+    \boxed{
+    \mathbb{P}\bigl(|X_n|\geq n\text{ i.o.}\bigr)=1.
+    }
+    \]
+
+
+\medskip
+
+\noindent
+\textbf{Part II: Proving that $S_n/n$ cannot converge to a finite limit.}
+
+Let
+\[
+    C
+    =
+    \left\{
+        \omega:
+        \lim_{n\to\infty}\frac{S_n(\omega)}{n}
+        \text{ exists in }(-\infty,\infty)
+    \right\}.
+\]
+
+We will prove that
+\[
+    \mathbb{P}(C)=0.
+\]
+
+Suppose, for contradiction, that
+\[
+    \omega\in C.
+\]
+
+Then, by definition, there exists some finite real number $L=L(\omega)$
+such that
+\[
+    \frac{S_n(\omega)}{n}\longrightarrow L.
+\]
+
+In particular, the sequence $S_n(\omega)/n$ is bounded. Hence there
+exists a finite constant $M=M(\omega)$ such that
+\[
+    \left|\frac{S_n(\omega)}{n}\right|\leq M
+\]
+for all sufficiently large $n$.
+
+We now consider the difference between two consecutive terms:
+\[
+    \frac{S_n}{n}
+    -
+    \frac{S_{n+1}}{n+1}.
+\]
+
+Since
+\[
+    S_{n+1}=S_n+X_{n+1},
+\]
+we have
+\[
+\begin{aligned}
+    \frac{S_n}{n}
+    -
+    \frac{S_{n+1}}{n+1}
+    &=
+    \frac{S_n}{n}
+    -
+    \frac{S_n+X_{n+1}}{n+1}
+    \\
+    &=
+    \frac{(n+1)S_n-n(S_n+X_{n+1})}
+         {n(n+1)}
+    \\
+    &=
+    \frac{S_n-nX_{n+1}}
+         {n(n+1)}
+    \\
+    &=
+    \frac{S_n}{n(n+1)}
+    -
+    \frac{X_{n+1}}{n+1}.
+\end{aligned}
+\]
+
+Thus
+\[
+    \boxed{
+    \frac{S_n}{n}
+    -
+    \frac{S_{n+1}}{n+1}
+    =
+    \frac{S_n}{n(n+1)}
+    -
+    \frac{X_{n+1}}{n+1}.
+    }
+\]
+
+Because $\omega\in C$,
+\[
+    \frac{S_n(\omega)}{n}\longrightarrow L.
+\]
+
+Therefore,
+\[
+    \frac{S_n(\omega)}{n(n+1)}
+    =
+    \frac{1}{n+1}
+    \frac{S_n(\omega)}{n}
+    \longrightarrow0.
+\]
+
+Hence
+\[
+    \boxed{
+    \frac{S_n(\omega)}{n(n+1)}
+    \longrightarrow0.
+    }
+\]
+
+Now define
+\[
+    A
+    =
+    \left\{
+        \omega:
+        |X_n(\omega)|\geq n
+        \text{ infinitely often}
+    \right\}.
+\]
+
+From Part I,
+\[
+    \mathbb{P}(A)=1.
+\]
+
+Suppose now that
+\[
+    \omega\in A\cap C.
+\]
+
+Since $\omega\in A$,
+\[
+    |X_n(\omega)|\geq n
+\]
+for infinitely many $n$.
+
+Replacing $n$ by $n+1$, this means
+\[
+    |X_{n+1}(\omega)|\geq n+1
+\]
+for infinitely many $n$.
+
+Consequently, for infinitely many $n$,
+\[
+    \frac{|X_{n+1}(\omega)|}{n+1}\geq1.
+\]
+
+Using the identity above and the reverse triangle inequality,
+\[
+\begin{aligned}
+\left|
+    \frac{S_n(\omega)}{n}
+    -
+    \frac{S_{n+1}(\omega)}{n+1}
+\right|
+&=
+\left|
+    \frac{S_n(\omega)}{n(n+1)}
+    -
+    \frac{X_{n+1}(\omega)}{n+1}
+\right|
+\\
+&\geq
+\frac{|X_{n+1}(\omega)|}{n+1}
+-
+\frac{|S_n(\omega)|}{n(n+1)}.
+\end{aligned}
+\]
+
+For infinitely many $n$,
+\[
+    \frac{|X_{n+1}(\omega)|}{n+1}\geq1.
+\]
+
+Moreover,
+\[
+    \frac{|S_n(\omega)|}{n(n+1)}
+    \longrightarrow0.
+\]
+
+Therefore, for all sufficiently large $n$ among those infinitely many
+indices,
+\[
+    \frac{|S_n(\omega)|}{n(n+1)}
+    <\frac13.
+\]
+
+Hence, infinitely often,
+\[
+\begin{aligned}
+\left|
+    \frac{S_n(\omega)}{n}
+    -
+    \frac{S_{n+1}(\omega)}{n+1}
+\right|
+&\geq
+1-\frac13
+\\
+&=\frac23.
+\end{aligned}
+\]
+
+Thus
+\[
+    \boxed{
+    \left|
+    \frac{S_n(\omega)}{n}
+    -
+    \frac{S_{n+1}(\omega)}{n+1}
+    \right|
+    >\frac23
+    \quad\text{i.o.}
+    }
+\]
+
+However, this contradicts $\omega\in C$.
+
+Indeed, if
+\[
+    \frac{S_n(\omega)}{n}\longrightarrow L,
+\]
+then also
+\[
+    \frac{S_{n+1}(\omega)}{n+1}\longrightarrow L.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+\left|
+    \frac{S_n(\omega)}{n}
+    -
+    \frac{S_{n+1}(\omega)}{n+1}
+\right|
+&\leq
+\left|
+    \frac{S_n(\omega)}{n}-L
+\right|
++
+\left|
+    \frac{S_{n+1}(\omega)}{n+1}-L
+\right|
+\\
+&\longrightarrow0.
+\end{aligned}
+\]
+
+Thus the difference must converge to $0$, which is impossible if it is
+larger than $2/3$ infinitely often.
+
+We have therefore proved that
+\[
+    A\cap C=\varnothing.
+\]
+
+Since
+\[
+    \mathbb{P}(A)=1,
+\]
+we have
+\[
+    \mathbb{P}(A^c)=0.
+\]
+
+Because
+\[
+    C\subseteq A^c,
+\]
+it follows that
+\[
+    \mathbb{P}(C)
+    \leq
+    \mathbb{P}(A^c)
+    =0.
+\]
+
+Hence
+\[
+    \boxed{
+    \mathbb{P}\left(
+        \lim_{n\to\infty}\frac{S_n}{n}
+        \text{ exists in }(-\infty,\infty)
+    \right)=0.
+    }
+\]
+
+This completes the proof.
+
+\end{proof}
+
+
+% ============================================================
+\section{Strong Law for Pairwise Independent Events}
+% ============================================================
+
+\begin{theorem}
+{Strong Law for Pairwise Independent Events}
+{strong-law-pairwise-independent-events}
+
+If $A_1,A_2,\ldots$ are pairwise independent and
+\[
+    \sum_{n=1}^{\infty}\mathbb P(A_n)=\infty,
+\]
+then
+\[
+    \boxed{
+    \frac{\displaystyle\sum_{m=1}^{n}\mathbf{1}_{A_m}}
+         {\displaystyle\sum_{m=1}^{n}\mathbb P(A_m)}
+    \xrightarrow{\mathrm{a.s.}}1.
+    }
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+Let
+\[
+    X_m=\mathbf{1}_{A_m},
+\]
+and define
+\[
+    S_n=X_1+\cdots+X_n
+    =
+    \sum_{m=1}^{n}\mathbf{1}_{A_m}.
+\]
+
+Since the events $A_m$ are pairwise independent, the random variables
+$X_m=\mathbf{1}_{A_m}$ are pairwise independent. Hence they are
+uncorrelated, and therefore
+\[
+    \operatorname{Var}(S_n)
+    =
+    \sum_{m=1}^{n}\operatorname{Var}(X_m).
+\]
+
+Now $X_m\in\{0,1\}$, so
+\[
+    X_m^2=X_m.
+\]
+
+Therefore,
+\[
+    \mathbb E(X_m^2)=\mathbb E(X_m)
+\]
+and hence
+\[
+\begin{aligned}
+    \operatorname{Var}(X_m)
+    &=
+    \mathbb E(X_m^2)
+    -
+    \bigl(\mathbb E X_m\bigr)^2
+    \\
+    &=
+    \mathbb E(X_m)
+    -
+    \bigl(\mathbb E X_m\bigr)^2
+    \\
+    &\leq
+    \mathbb E(X_m).
+\end{aligned}
+\]
+
+Thus
+\[
+\begin{aligned}
+    \operatorname{Var}(S_n)
+    &=
+    \sum_{m=1}^{n}\operatorname{Var}(X_m)
+    \\
+    &\leq
+    \sum_{m=1}^{n}\mathbb E(X_m)
+    \\
+    &=
+    \mathbb E(S_n).
+\end{aligned}
+\]
+
+Since
+\[
+    \mathbb E(X_m)
+    =
+    \mathbb P(A_m),
+\]
+we have
+\[
+    \boxed{
+    \mathbb E(S_n)
+    =
+    \sum_{m=1}^{n}\mathbb P(A_m).
+    }
+\]
+
+By assumption,
+\[
+    \sum_{m=1}^{\infty}\mathbb P(A_m)=\infty,
+\]
+and hence
+\[
+    \mathbb E(S_n)\longrightarrow\infty.
+\]
+
+We now use Chebyshev's inequality. For every $\delta>0$,
+\[
+\begin{aligned}
+    \mathbb P\left(
+        |S_n-\mathbb E S_n|
+        >
+        \delta\mathbb E S_n
+    \right)
+    &\leq
+    \frac{\operatorname{Var}(S_n)}
+         {\delta^2(\mathbb E S_n)^2}
+    \\
+    &\leq
+    \frac{\mathbb E S_n}
+         {\delta^2(\mathbb E S_n)^2}
+    \\
+    &=
+    \frac{1}
+         {\delta^2\mathbb E S_n}.
+\end{aligned}
+\]
+
+Thus
+\[
+    \boxed{
+    \mathbb P\left(
+        |S_n-\mathbb E S_n|
+        >
+        \delta\mathbb E S_n
+    \right)
+    \leq
+    \frac{1}{\delta^2\mathbb E S_n}
+    \longrightarrow0.
+    }
+\]
+
+Therefore,
+\[
+    \frac{S_n}{\mathbb E S_n}
+    \xrightarrow{P}1.
+\]
+
+That is, we have convergence in probability.
+
+To obtain almost sure convergence, we use a suitable subsequence.
+
+\medskip
+
+\noindent
+\textbf{Construction of the subsequence.}
+
+Since
+\[
+    \mathbb E S_n\longrightarrow\infty,
+\]
+for each $k\geq1$ define
+\[
+    n_k
+    =
+    \inf\left\{
+        n:\mathbb E S_n\geq k^2
+    \right\}.
+\]
+
+This is well-defined because $\mathbb E S_n\to\infty$.
+
+By the definition of $n_k$,
+\[
+    \mathbb E S_{n_k}\geq k^2.
+\]
+
+Furthermore, since $n_k$ is the first index for which
+$\mathbb E S_n\geq k^2$, we have
+\[
+    \mathbb E S_{n_k-1}<k^2.
+\]
+
+Since
+\[
+    \mathbb E X_m=\mathbb P(A_m)\leq1,
+\]
+we have
+\[
+    \mathbb E S_{n_k}
+    =
+    \mathbb E S_{n_k-1}
+    +
+    \mathbb E X_{n_k}
+    <
+    k^2+1.
+\]
+
+Consequently,
+\[
+    \boxed{
+    k^2
+    \leq
+    \mathbb E S_{n_k}
+    <
+    k^2+1.
+    }
+\]
+
+For convenience, define
+\[
+    T_k=S_{n_k}.
+\]
+
+Applying the previous Chebyshev estimate with $n=n_k$ gives
+\[
+\begin{aligned}
+    \mathbb P\left(
+        |T_k-\mathbb E T_k|
+        >
+        \delta\mathbb E T_k
+    \right)
+    &\leq
+    \frac{1}
+         {\delta^2\mathbb E T_k}.
+\end{aligned}
+\]
+
+Since
+\[
+    \mathbb E T_k=\mathbb E S_{n_k}\geq k^2,
+\]
+we obtain
+\[
+    \boxed{
+    \mathbb P\left(
+        |T_k-\mathbb E T_k|
+        >
+        \delta\mathbb E T_k
+    \right)
+    \leq
+    \frac{1}{\delta^2k^2}.
+    }
+\]
+
+Therefore,
+\[
+\begin{aligned}
+    \sum_{k=1}^{\infty}
+    \mathbb P\left(
+        |T_k-\mathbb E T_k|
+        >
+        \delta\mathbb E T_k
+    \right)
+    &\leq
+    \frac{1}{\delta^2}
+    \sum_{k=1}^{\infty}\frac1{k^2}
+    \\
+    &<\infty.
+\end{aligned}
+\]
+
+By the first Borel--Cantelli lemma,
+\[
+    \mathbb P\left(
+        |T_k-\mathbb E T_k|
+        >
+        \delta\mathbb E T_k
+        \text{ i.o.}
+    \right)=0.
+\]
+
+Thus, almost surely,
+\[
+    |T_k-\mathbb E T_k|
+    \leq
+    \delta\mathbb E T_k
+\]
+for all sufficiently large $k$.
+
+Equivalently,
+\[
+    1-\delta
+    \leq
+    \frac{T_k}{\mathbb E T_k}
+    \leq
+    1+\delta
+\]
+eventually almost surely.
+
+Since $\delta>0$ is arbitrary, we conclude that
+\[
+    \boxed{
+    \frac{T_k}{\mathbb E T_k}
+    \xrightarrow{\mathrm{a.s.}}1.
+    }
+\]
+
+\medskip
+
+\noindent
+\textbf{Interpolation between the subsequence points.}
+
+It remains to prove that
+\[
+    \frac{S_n}{\mathbb E S_n}
+    \xrightarrow{\mathrm{a.s.}}1
+\]
+for the full sequence $n$, not only for the subsequence $n_k$.
+
+Since
+\[
+    \mathbb E S_n
+    =
+    \sum_{m=1}^{n}\mathbb P(A_m)
+\]
+is nondecreasing in $n$, and $S_n$ is also nondecreasing because
+$X_m=\mathbf{1}_{A_m}\geq0$, we have, whenever
+\[
+    n_k\leq n<n_{k+1},
+\]
+that
+\[
+    T_k
+    =
+    S_{n_k}
+    \leq
+    S_n
+    \leq
+    S_{n_{k+1}}
+    =
+    T_{k+1}.
+\]
+
+Also,
+\[
+    \mathbb E T_k
+    =
+    \mathbb E S_{n_k}
+    \leq
+    \mathbb E S_n
+    \leq
+    \mathbb E S_{n_{k+1}}
+    =
+    \mathbb E T_{k+1}.
+\]
+
+Therefore,
+\[
+    \frac{T_k}{\mathbb E T_{k+1}}
+    \leq
+    \frac{S_n}{\mathbb E S_n}
+    \leq
+    \frac{T_{k+1}}{\mathbb E T_k}.
+\]
+
+We rewrite the two bounds as
+\[
+\begin{aligned}
+    \frac{T_k}{\mathbb E T_{k+1}}
+    &=
+    \frac{\mathbb E T_k}
+         {\mathbb E T_{k+1}}
+    \frac{T_k}{\mathbb E T_k},
+    \\[6pt]
+    \frac{T_{k+1}}{\mathbb E T_k}
+    &=
+    \frac{T_{k+1}}
+         {\mathbb E T_{k+1}}
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}.
+\end{aligned}
+\]
+
+Thus
+\[
+    \boxed{
+    \frac{\mathbb E T_k}
+         {\mathbb E T_{k+1}}
+    \frac{T_k}{\mathbb E T_k}
+    \leq
+    \frac{S_n}{\mathbb E S_n}
+    \leq
+    \frac{T_{k+1}}
+         {\mathbb E T_{k+1}}
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}.
+    }
+\]
+
+We already know that
+\[
+    \frac{T_k}{\mathbb E T_k}
+    \xrightarrow{\mathrm{a.s.}}1
+\]
+and
+\[
+    \frac{T_{k+1}}{\mathbb E T_{k+1}}
+    \xrightarrow{\mathrm{a.s.}}1.
+\]
+
+It therefore remains only to show that
+\[
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}
+    \longrightarrow1.
+\]
+
+From the construction of $n_k$,
+\[
+    k^2
+    \leq
+    \mathbb E T_k
+    <
+    k^2+1
+\]
+and
+\[
+    (k+1)^2
+    \leq
+    \mathbb E T_{k+1}
+    <
+    (k+1)^2+1.
+\]
+
+Hence
+\[
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}
+    \leq
+    \frac{(k+1)^2+1}{k^2}.
+\]
+
+But
+\[
+    \frac{(k+1)^2+1}{k^2}
+    =
+    \frac{k^2+2k+2}{k^2}
+    =
+    1+\frac{2}{k}+\frac{2}{k^2}
+    \longrightarrow1.
+\]
+
+Also,
+\[
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}
+    \geq1,
+\]
+because $\mathbb E T_k$ is nondecreasing.
+
+Therefore,
+\[
+    \boxed{
+    \frac{\mathbb E T_{k+1}}
+         {\mathbb E T_k}
+    \longrightarrow1.
+    }
+\]
+
+Consequently,
+\[
+    \frac{\mathbb E T_k}
+         {\mathbb E T_{k+1}}
+    \longrightarrow1.
+\]
+
+Hence, almost surely,
+\[
+    \frac{T_k}{\mathbb E T_{k+1}}
+    \longrightarrow1
+\]
+and
+\[
+    \frac{T_{k+1}}{\mathbb E T_k}
+    \longrightarrow1.
+\]
+
+Therefore, by the squeeze theorem,
+\[
+    \boxed{
+    \frac{S_n}{\mathbb E S_n}
+    \xrightarrow{\mathrm{a.s.}}1.
+    }
+\]
+
+Finally, since
+\[
+    S_n=\sum_{m=1}^{n}\mathbf{1}_{A_m}
+\]
+and
+\[
+    \mathbb E S_n
+    =
+    \sum_{m=1}^{n}\mathbb P(A_m),
+\]
+we obtain
+\[
+    \boxed{
+    \frac{\displaystyle\sum_{m=1}^{n}\mathbf{1}_{A_m}}
+         {\displaystyle\sum_{m=1}^{n}\mathbb P(A_m)}
+    \xrightarrow{\mathrm{a.s.}}1.
+    }
+\]
+
+\end{proof}
+
+
+% ============================================================
+\lectureend
+% ============================================================

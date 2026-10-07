@@ -1,0 +1,1210 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 14
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{14}
+{Friday, 25 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%============================================================
+% Weak Law of Large Numbers
+%============================================================
+
+\section{Weak Law of Large Numbers}
+
+\subsection{Weak Law Under a Uniform Variance Bound}
+
+Suppose that
+\(
+X_1,X_2,\ldots,X_n,\ldots
+\)
+are uncorrelated random variables satisfying
+\(
+\mathbb{E}(X_i)=\mu
+\)
+and
+\(
+\operatorname{Var}(X_i)\leq c
+\)
+for some constant $c>0$ and all $i$.
+
+Let
+\[
+S_n=X_1+\cdots+X_n.
+\]
+
+Then
+\(
+\mathbb{E}(S_n)=n\mu
+\)
+and, since the random variables are uncorrelated,
+\[
+\operatorname{Var}(S_n)
+=
+\sum_{i=1}^n\operatorname{Var}(X_i)
+\leq nc.
+\]
+
+Consequently,
+\[
+\begin{aligned}
+\mathbb{E}
+\left[
+\left(
+\frac{S_n}{n}-\mu
+\right)^2
+\right]
+&=
+\frac{1}{n^2}
+\operatorname{Var}(S_n)\\
+&\leq
+\frac{c}{n}
+\longrightarrow0.
+\end{aligned}
+\]
+
+Hence
+\[
+\boxed{
+\frac{S_n}{n}\longrightarrow\mu
+\quad\text{in }L^2.
+}
+\]
+
+Since convergence in $L^2$ implies convergence in probability,
+we also have
+\[
+\boxed{
+\frac{S_n}{n}\xrightarrow{P}\mu.
+}
+\]
+
+\begin{observation}
+
+The uniform variance bound
+\(
+\operatorname{Var}(X_i)\leq c
+\)
+is a strong assumption.
+
+Our goal is to obtain a Weak Law of Large Numbers under weaker
+conditions.
+
+\end{observation}
+
+
+%============================================================
+% Truncation
+%============================================================
+
+\section{Truncation}
+
+\subsection{Truncated Random Variables}
+
+A standard way to remove the strong variance assumption is to
+truncate the random variables.
+
+For a sequence of random variables $X_1,X_2,\ldots$, define
+\[
+\overline{X}_i
+=
+X_i\mathbf{1}_{\{|X_i|\leq i\}}.
+\]
+
+More generally, for a truncation level $b_n>0$, define
+\[
+\overline{X}_{n,k}
+=
+X_{n,k}
+\mathbf{1}_{\{|X_{n,k}|\leq b_n\}}.
+\]
+
+The idea is that the truncated variables have better controlled
+second moments, while the probability that truncation actually
+changes the variables can be made small.
+
+We are interested in the relationship between
+\(
+\frac1n\sum_{i=1}^n\overline{X}_i
+\)
+and
+\(
+\frac1n\sum_{i=1}^nX_i.
+\)
+
+This leads naturally to the Weak Law for triangular arrays.
+
+
+%============================================================
+% Weak Law for Triangular Arrays
+%============================================================
+
+\section{Weak Law for Triangular Arrays}
+
+\subsection{Statement}
+
+\begin{theorem}{Weak Law for Triangular Arrays}
+{weak-law-triangular-arrays}
+
+For each $n\geq1$, let
+\(
+X_{n,k},
+\qquad
+1\leq k\leq n,
+\)
+be independent random variables.
+
+Let
+\(
+b_n>0,
+\qquad
+b_n\longrightarrow\infty,
+\)
+and define the truncated variables
+\[
+\overline{X}_{n,k}
+=
+X_{n,k}
+\mathbf{1}_{\{|X_{n,k}|\leq b_n\}}.
+\]
+
+Suppose that, as $n\to\infty$,
+
+\begin{align}
+\sum_{k=1}^n
+\mathbb{P}(|X_{n,k}|>b_n)
+&\longrightarrow0,
+\tag{i}
+\\
+b_n^{-2}
+\sum_{k=1}^n
+\mathbb{E}\left[\overline{X}_{n,k}^{\,2}\right]
+&\longrightarrow0.
+\tag{ii}
+\end{align}
+
+Let
+\[
+S_n
+=
+X_{n,1}+\cdots+X_{n,n}
+\]
+and define
+\[
+a_n
+=
+\sum_{k=1}^n
+\mathbb{E}\left[\overline{X}_{n,k}\right].
+\]
+
+Then
+\[
+\boxed{
+\frac{S_n-a_n}{b_n}
+\xrightarrow{P}0.
+}
+\]
+
+\end{theorem}
+
+
+\subsection{Proof}
+
+\begin{proof}
+
+Define
+\[
+\overline{S}_n
+=
+\overline{X}_{n,1}
++\cdots+
+\overline{X}_{n,n}.
+\]
+
+We shall show that, for every $\varepsilon>0$,
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+\longrightarrow0.
+\]
+
+Since
+\[
+S_n-a_n
+=
+(S_n-\overline{S}_n)
++
+(\overline{S}_n-a_n),
+\]
+we have
+\[
+\left\{
+\left|
+\frac{S_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right\}
+\subseteq
+\{S_n\neq\overline{S}_n\}
+\cup
+\left\{
+\left|
+\frac{\overline{S}_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right\}.
+\]
+
+Hence, by the union bound,
+\begin{equation}
+\mathbb{P}
+\left(
+\left|
+\frac{S_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+\leq
+\mathbb{P}(S_n\neq\overline{S}_n)
++
+\mathbb{P}
+\left(
+\left|
+\frac{\overline{S}_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right).
+\tag{1}
+\end{equation}
+
+\medskip
+
+\noindent
+\textbf{Step 1: Probability that truncation changes the sum.}
+
+If
+\[
+|X_{n,k}|\leq b_n,
+\]
+then
+\[
+\overline{X}_{n,k}
+=
+X_{n,k}
+\mathbf{1}_{\{|X_{n,k}|\leq b_n\}}
+=
+X_{n,k}.
+\]
+
+Therefore,
+\[
+\{S_n\neq\overline{S}_n\}
+\subseteq
+\bigcup_{k=1}^n
+\{\overline{X}_{n,k}\neq X_{n,k}\}.
+\]
+
+Moreover,
+\[
+\{\overline{X}_{n,k}\neq X_{n,k}\}
+\subseteq
+\{|X_{n,k}|>b_n\}.
+\]
+
+Hence
+\[
+\{S_n\neq\overline{S}_n\}
+\subseteq
+\bigcup_{k=1}^n
+\{|X_{n,k}|>b_n\}.
+\]
+
+Consequently,
+\[
+\begin{aligned}
+\mathbb{P}(S_n\neq\overline{S}_n)
+&\leq
+\mathbb{P}
+\left(
+\bigcup_{k=1}^n
+\{|X_{n,k}|>b_n\}
+\right)\\
+&\leq
+\sum_{k=1}^n
+\mathbb{P}(|X_{n,k}|>b_n).
+\end{aligned}
+\]
+
+By assumption~\textnormal{(i)},
+\[
+\boxed{
+\mathbb{P}(S_n\neq\overline{S}_n)
+\longrightarrow0.
+}
+\tag{2}
+\]
+
+\medskip
+
+\noindent
+\textbf{Step 2: Control of the truncated sum.}
+
+By linearity of expectation,
+\[
+\begin{aligned}
+\mathbb{E}(\overline{S}_n)
+&=
+\mathbb{E}
+\left[
+\sum_{k=1}^n\overline{X}_{n,k}
+\right]\\
+&=
+\sum_{k=1}^n
+\mathbb{E}(\overline{X}_{n,k})\\
+&=
+a_n.
+\end{aligned}
+\]
+
+Thus
+\[
+\overline{S}_n-a_n
+=
+\overline{S}_n-\mathbb{E}(\overline{S}_n).
+\]
+
+Therefore, by Chebyshev's inequality,
+\[
+\begin{aligned}
+\mathbb{P}
+\left(
+\left|
+\frac{\overline{S}_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+&=
+\mathbb{P}
+\left(
+|\overline{S}_n-\mathbb{E}(\overline{S}_n)|
+>
+\varepsilon b_n
+\right)\\
+&\leq
+\frac{
+\operatorname{Var}(\overline{S}_n)
+}{
+\varepsilon^2b_n^2
+}.
+\end{aligned}
+\tag{3}
+\]
+
+Since the $X_{n,k}$ are independent, the truncated random variables
+$\overline{X}_{n,k}$ are also independent. Hence
+\[
+\operatorname{Var}(\overline{S}_n)
+=
+\sum_{k=1}^n
+\operatorname{Var}(\overline{X}_{n,k}).
+\]
+
+For any random variable $Y$,
+\[
+\operatorname{Var}(Y)
+=
+\mathbb{E}(Y^2)-(\mathbb{E}Y)^2
+\leq
+\mathbb{E}(Y^2).
+\]
+
+Therefore,
+\[
+\operatorname{Var}(\overline{X}_{n,k})
+\leq
+\mathbb{E}
+\left[
+\overline{X}_{n,k}^{\,2}
+\right].
+\]
+
+Substituting this into (3), we obtain
+\[
+\begin{aligned}
+\mathbb{P}
+\left(
+\left|
+\frac{\overline{S}_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+&\leq
+\frac{1}{\varepsilon^2b_n^2}
+\sum_{k=1}^n
+\operatorname{Var}(\overline{X}_{n,k})\\
+&\leq
+\frac{1}{\varepsilon^2b_n^2}
+\sum_{k=1}^n
+\mathbb{E}
+\left[
+\overline{X}_{n,k}^{\,2}
+\right]\\
+&=
+\frac{1}{\varepsilon^2}
+\left[
+b_n^{-2}
+\sum_{k=1}^n
+\mathbb{E}
+\left[
+\overline{X}_{n,k}^{\,2}
+\right]
+\right].
+\end{aligned}
+\]
+
+By assumption~\textnormal{(ii)},
+\[
+\boxed{
+\mathbb{P}
+\left(
+\left|
+\frac{\overline{S}_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+\longrightarrow0.
+}
+\tag{4}
+\]
+
+\medskip
+
+\noindent
+\textbf{Step 3: Conclusion.}
+
+Combining (1), (2), and (4), we obtain
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n-a_n}{b_n}
+\right|
+>\varepsilon
+\right)
+\longrightarrow0.
+\]
+
+Since this holds for every $\varepsilon>0$,
+\[
+\boxed{
+\frac{S_n-a_n}{b_n}
+\xrightarrow{P}0.
+}
+\]
+
+Hence the proof is complete.
+
+\end{proof}
+
+
+%============================================================
+% Weak Law for i.i.d. Random Variables
+%============================================================
+
+\section{A Weak Law Under a Tail Condition}
+
+\subsection{Truncated Weak Law of Large Numbers}
+
+\begin{theorem}{Weak Law of Large Numbers Under a Tail Condition}
+{weak-law-tail-condition}
+
+Let
+\(
+X_1,X_2,\ldots
+\)
+be i.i.d. random variables satisfying
+\[
+x\mathbb{P}(|X_1|>x)
+\longrightarrow0
+\qquad
+\text{as }x\to\infty.
+\]
+
+Let
+\(
+S_n
+=
+X_1+\cdots+X_n
+\)
+and define
+\(
+\mu_n
+=
+\mathbb{E}
+\left[
+X_1
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right].
+\)
+
+Then
+\[
+\boxed{
+\frac{S_n}{n}-\mu_n
+\xrightarrow{P}0.
+}
+\]
+
+\end{theorem}
+
+
+\subsection{Proof}
+
+\begin{proof}
+
+We apply Theorem Weak Law For Triangular Arryasto the triangular
+array
+\[
+X_{n,k}=X_k,
+\qquad
+1\leq k\leq n,
+\]
+with
+\[
+b_n=n.
+\]
+
+Since
+\[
+X_1,X_2,\ldots
+\]
+are i.i.d., the variables
+\[
+X_{n,1},\ldots,X_{n,n}
+\]
+are independent for every $n$.
+
+\medskip
+
+\noindent
+\textbf{Verification of condition (i).}
+
+We have
+\[
+\begin{aligned}
+\sum_{k=1}^n
+\mathbb{P}(|X_{n,k}|>b_n)
+&=
+\sum_{k=1}^n
+\mathbb{P}(|X_k|>n)\\
+&=
+n\mathbb{P}(|X_1|>n).
+\end{aligned}
+\]
+
+By assumption,
+\[
+x\mathbb{P}(|X_1|>x)
+\longrightarrow0.
+\]
+
+Taking $x=n$, we obtain
+\[
+n\mathbb{P}(|X_1|>n)
+\longrightarrow0.
+\]
+
+Hence
+\[
+\boxed{
+\sum_{k=1}^n
+\mathbb{P}(|X_{n,k}|>b_n)
+\longrightarrow0.
+}
+\tag{1}
+\]
+
+\medskip
+
+\noindent
+\textbf{Verification of condition (ii).}
+
+We have
+\[
+\begin{aligned}
+b_n^{-2}
+\sum_{k=1}^n
+\mathbb{E}
+\left[
+X_{n,k}^2
+\mathbf{1}_{\{|X_{n,k}|\leq b_n\}}
+\right]
+&=
+\frac{1}{n^2}
+\sum_{k=1}^n
+\mathbb{E}
+\left[
+X_k^2
+\mathbf{1}_{\{|X_k|\leq n\}}
+\right]\\
+&=
+\frac{1}{n}
+\mathbb{E}
+\left[
+X_1^2
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right].
+\end{aligned}
+\tag{2}
+\]
+
+It remains to show that
+\[
+\frac{1}{n}
+\mathbb{E}
+\left[
+X_1^2
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right]
+\longrightarrow0.
+\tag{3}
+\]
+
+Put
+\[
+Y=|X_1|.
+\]
+
+Then
+\[
+\mathbb{E}
+\left[
+X_1^2
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right]
+=
+\mathbb{E}
+\left[
+Y^2
+\mathbf{1}_{\{Y\leq n\}}
+\right].
+\]
+
+Since
+\[
+Y^2\mathbf{1}_{\{Y\leq n\}}
+\leq
+Y^2\wedge n^2,
+\]
+we have
+\[
+\mathbb{E}
+\left[
+Y^2\mathbf{1}_{\{Y\leq n\}}
+\right]
+\leq
+\mathbb{E}(Y^2\wedge n^2).
+\]
+
+Using the tail-integral formula,
+\[
+\mathbb{E}(Y^2\wedge n^2)
+=
+\int_0^{n^2}
+\mathbb{P}(Y^2>t)\,dt.
+\]
+
+Making the substitution
+\[
+t=x^2,
+\qquad
+dt=2x\,dx,
+\]
+gives
+\[
+\mathbb{E}(Y^2\wedge n^2)
+=
+2\int_0^n
+x\mathbb{P}(Y>x)\,dx.
+\]
+
+Consequently,
+\[
+\frac1n
+\mathbb{E}
+\left[
+X_1^2
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right]
+\leq
+\frac2n
+\int_0^n
+x\mathbb{P}(|X_1|>x)\,dx.
+\tag{4}
+\]
+
+By assumption,
+\[
+x\mathbb{P}(|X_1|>x)
+\longrightarrow0.
+\]
+
+Let $\varepsilon>0$. There exists $M>0$ such that
+\[
+x\mathbb{P}(|X_1|>x)
+<
+\varepsilon
+\qquad
+\text{for all }x\geq M.
+\]
+
+For $n>M$,
+\[
+\begin{aligned}
+\frac1n
+\int_0^n
+x\mathbb{P}(|X_1|>x)\,dx
+&=
+\frac1n
+\int_0^M
+x\mathbb{P}(|X_1|>x)\,dx\\
+&\quad+
+\frac1n
+\int_M^n
+x\mathbb{P}(|X_1|>x)\,dx\\
+&\leq
+\frac1n
+\int_0^M
+x\mathbb{P}(|X_1|>x)\,dx\\
+&\quad+
+\frac{\varepsilon(n-M)}{n}.
+\end{aligned}
+\]
+
+As $n\to\infty$, the first term tends to $0$, while
+\[
+\frac{\varepsilon(n-M)}{n}
+\leq\varepsilon.
+\]
+
+Hence
+\[
+\limsup_{n\to\infty}
+\frac1n
+\int_0^n
+x\mathbb{P}(|X_1|>x)\,dx
+\leq\varepsilon.
+\]
+
+Since $\varepsilon>0$ is arbitrary,
+\[
+\frac1n
+\int_0^n
+x\mathbb{P}(|X_1|>x)\,dx
+\longrightarrow0.
+\]
+
+It follows from (4) that
+\[
+\frac1n
+\mathbb{E}
+\left[
+X_1^2
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right]
+\longrightarrow0.
+\]
+
+Thus condition (ii) is satisfied.
+
+\medskip
+
+Therefore, by Theorem~\ref{weak-law-triangular-arrays},
+\[
+\frac{S_n-a_n}{n}
+\xrightarrow{P}0,
+\]
+where
+\[
+a_n
+=
+\sum_{k=1}^n
+\mathbb{E}
+\left[
+X_k
+\mathbf{1}_{\{|X_k|\leq n\}}
+\right].
+\]
+
+Since the $X_k$ are identically distributed,
+\[
+\begin{aligned}
+a_n
+&=
+n
+\mathbb{E}
+\left[
+X_1
+\mathbf{1}_{\{|X_1|\leq n\}}
+\right]\\
+&=
+n\mu_n.
+\end{aligned}
+\]
+
+Consequently,
+\[
+\frac{S_n-a_n}{n}
+=
+\frac{S_n-n\mu_n}{n}
+=
+\frac{S_n}{n}-\mu_n.
+\]
+
+Therefore,
+\[
+\boxed{
+\frac{S_n}{n}-\mu_n
+\xrightarrow{P}0.
+}
+\]
+
+The proof is complete.
+
+\end{proof}
+
+
+\begin{remark}
+
+The condition
+\[
+x\mathbb{P}(|X_1|>x)\longrightarrow0
+\]
+is the tail condition used above to obtain the weak law with the
+truncated mean $\mu_n$.
+
+\end{remark}
+
+
+%============================================================
+% Tail Conditions and Moments
+%============================================================
+
+\section{Tail Conditions and Moment Conditions}
+
+\subsection{A Tail Condition Implies Lower Moments}
+
+\begin{theorem}{Tail Condition and Fractional Moments}
+{tail-condition-fractional-moments}
+
+Let $X$ be a random variable.
+
+If
+\[
+x\mathbb{P}(|X|>x)
+\longrightarrow0
+\qquad
+\text{as }x\to\infty,
+\]
+then
+\[
+X\in L^{1-\varepsilon}
+\qquad
+\text{for every }0<\varepsilon<1.
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+Suppose that
+\[
+x\mathbb{P}(|X|>x)
+\longrightarrow0.
+\]
+
+We prove that
+\[
+X\in L^p
+\qquad
+\text{for every }0<p<1.
+\]
+
+Using the tail-integral formula, for $p>0$,
+\[
+\mathbb{E}|X|^p
+=
+p\int_0^\infty
+x^{p-1}
+\mathbb{P}(|X|>x)\,dx.
+\]
+
+Since
+\[
+x\mathbb{P}(|X|>x)
+\longrightarrow0,
+\]
+there exists $M>0$ such that
+\[
+x\mathbb{P}(|X|>x)\leq1
+\qquad
+\text{for all }x\geq M.
+\]
+
+Therefore,
+\[
+\mathbb{P}(|X|>x)
+\leq
+\frac1x,
+\qquad
+x\geq M.
+\]
+
+Split the integral at $M$:
+\[
+\begin{aligned}
+\mathbb{E}|X|^p
+&=
+p\int_0^M
+x^{p-1}
+\mathbb{P}(|X|>x)\,dx\\
+&\quad+
+p\int_M^\infty
+x^{p-1}
+\mathbb{P}(|X|>x)\,dx.
+\end{aligned}
+\]
+
+For the first integral,
+\[
+\begin{aligned}
+p\int_0^M
+x^{p-1}
+\mathbb{P}(|X|>x)\,dx
+&\leq
+p\int_0^M x^{p-1}\,dx\\
+&=
+M^p
+<
+\infty.
+\end{aligned}
+\]
+
+For the second integral,
+\[
+\begin{aligned}
+p\int_M^\infty
+x^{p-1}
+\mathbb{P}(|X|>x)\,dx
+&\leq
+p\int_M^\infty x^{p-2}\,dx\\
+&=
+\frac{p}{1-p}M^{p-1}\\
+&<\infty,
+\end{aligned}
+\]
+because
+\[
+0<p<1.
+\]
+
+Therefore,
+\[
+\mathbb{E}|X|^p<\infty.
+\]
+
+Hence
+\[
+X\in L^p
+\qquad
+\text{for every }0<p<1.
+\]
+
+Taking
+\[
+p=1-\varepsilon,
+\]
+we obtain
+\[
+\boxed{
+X\in L^{1-\varepsilon}
+\qquad
+\text{for every }0<\varepsilon<1.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Integrability Implies the Tail Condition
+%============================================================
+
+\subsection{Integrability Implies the Tail Condition}
+
+\begin{theorem}{Integrability Implies Vanishing Tail}
+{integrability-tail-condition}
+
+Let $X$ be a random variable.
+
+If
+\[
+X\in L^1,
+\]
+then
+\[
+\boxed{
+x\mathbb{P}(|X|>x)
+\longrightarrow0
+\qquad
+\text{as }x\to\infty.
+}
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+Suppose that
+\[
+X\in L^1.
+\]
+
+Then
+\[
+\mathbb{E}|X|<\infty.
+\]
+
+On the event
+\[
+\{|X|>x\},
+\]
+we have
+\[
+x<|X|.
+\]
+
+Therefore,
+\[
+x\mathbf{1}_{\{|X|>x\}}
+\leq
+|X|\mathbf{1}_{\{|X|>x\}}.
+\]
+
+Taking expectations,
+\[
+x\mathbb{P}(|X|>x)
+\leq
+\mathbb{E}
+\left[
+|X|\mathbf{1}_{\{|X|>x\}}
+\right].
+\]
+
+For every $\omega$,
+\[
+|X(\omega)|
+\mathbf{1}_{\{|X(\omega)|>x\}}
+\longrightarrow0
+\qquad
+\text{as }x\to\infty.
+\]
+
+Moreover,
+\[
+0\leq
+|X|\mathbf{1}_{\{|X|>x\}}
+\leq
+|X|,
+\]
+and
+\[
+\mathbb{E}|X|<\infty.
+\]
+
+Therefore, by the dominated convergence theorem,
+\[
+\mathbb{E}
+\left[
+|X|\mathbf{1}_{\{|X|>x\}}
+\right]
+\longrightarrow0.
+\]
+
+Consequently,
+\[
+0\leq
+x\mathbb{P}(|X|>x)
+\leq
+\mathbb{E}
+\left[
+|X|\mathbf{1}_{\{|X|>x\}}
+\right]
+\longrightarrow0.
+\]
+
+Hence
+\[
+\boxed{
+x\mathbb{P}(|X|>x)
+\longrightarrow0.
+}
+\]
+
+The proof is complete.
+
+\end{proof}
+
+
+%============================================================
+% Relation Between the Two Conditions
+%============================================================
+
+\subsection{Relation Between Tail and Moment Conditions}
+
+\begin{observation}
+
+The two preceding results give the implications
+\[
+X\in L^1
+\quad\Longrightarrow\quad
+x\mathbb{P}(|X|>x)\longrightarrow0,
+\]
+while
+\[
+x\mathbb{P}(|X|>x)\longrightarrow0
+\quad\Longrightarrow\quad
+X\in L^p
+\quad\text{for every }0<p<1.
+\]
+
+Thus the tail condition lies between integrability and the collection
+of fractional moment conditions:
+\[
+L^1
+\quad\Longrightarrow\quad
+\left\{
+x\mathbb{P}(|X|>x)\to0
+\right\}
+\quad\Longrightarrow\quad
+\bigcap_{0<p<1}L^p.
+\]
+
+\end{observation}
+
+
+%============================================================
+% End of Lecture
+%============================================================
+
+\lectureend

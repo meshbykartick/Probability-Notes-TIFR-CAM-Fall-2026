@@ -1,0 +1,1174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lecture 16
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lecture
+{16}
+{Wednesday, 30 September 2026}
+{Introduction to Probability}
+{Dr. Nishant Chandgotia}
+
+
+%============================================================
+% Strong Law for Bernoulli Random Variables
+%============================================================
+
+\section{Strong Law of Large Numbers}
+
+\subsection{Strong Law for Bernoulli Random Variables}
+
+Let
+\[
+X_1,X_2,\ldots
+\overset{\mathrm{i.i.d.}}{\sim}
+\operatorname{Ber}\left(\frac12\right),
+\]
+and define
+\[
+S_n=X_1+\cdots+X_n.
+\]
+
+We want to prove that
+\[
+\boxed{
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+\frac12.
+}
+\]
+
+Fix $\varepsilon>0$ and define the events
+\[
+A_n
+=
+\left\{
+\left|
+\frac{S_n}{n}-\frac12
+\right|>\varepsilon
+\right\}.
+\]
+
+For Bernoulli random variables, Hoeffding's inequality gives the
+exponential tail estimate
+\[
+\mathbb{P}(A_n)
+=
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|>\varepsilon
+\right)
+\leq
+C'e^{-Cn},
+\]
+for some constants $C,C'>0$ depending on $\varepsilon$.
+
+Therefore,
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)
+\leq
+C'\sum_{n=1}^{\infty}e^{-Cn}
+<\infty.
+\]
+
+Hence, by the first Borel--Cantelli lemma,
+\[
+\boxed{
+\mathbb{P}(A_n\text{ i.o.})=0.
+}
+\]
+
+Equivalently, with probability one, only finitely many of the events
+$A_n$ occur.
+
+Thus, for almost every $\omega$, there exists
+\[
+N=N(\omega,\varepsilon)
+\]
+such that
+\[
+\left|
+\frac{S_n(\omega)}{n}-\frac12
+\right|
+\leq\varepsilon
+\qquad
+\text{for all }n\geq N.
+\]
+
+Since $\varepsilon>0$ was arbitrary,
+\[
+\boxed{
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+\frac12.
+}
+\]
+
+
+%============================================================
+% Stronger Tail Estimate
+%============================================================
+
+\subsection{A Stronger Tail Estimate}
+
+The above argument can be written in a slightly stronger form.
+
+For every $n$,
+\[
+\begin{aligned}
+&\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right)
+\\
+&\qquad=
+\mathbb{P}
+\left(
+\bigcup_{k=n+1}^{\infty}A_k
+\right)\\
+&\qquad\leq
+\sum_{k=n+1}^{\infty}
+\mathbb{P}(A_k),
+\end{aligned}
+\]
+where the last inequality follows from the union bound.
+
+Using
+\[
+\mathbb{P}(A_k)\leq C'e^{-Ck},
+\]
+we obtain
+\[
+\begin{aligned}
+&\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right)
+\\
+&\qquad\leq
+C'\sum_{k=n+1}^{\infty}e^{-Ck}\\
+&\qquad=
+C'
+\frac{e^{-C(n+1)}}{1-e^{-C}}.
+\end{aligned}
+\]
+
+Define
+\[
+C''
+=
+\frac{C'e^{-C}}{1-e^{-C}}.
+\]
+
+Then
+\[
+\boxed{
+\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right)
+\leq
+C''e^{-Cn}.
+}
+\]
+
+Since
+\[
+C''e^{-Cn}\longrightarrow0,
+\]
+we obtain
+\[
+\boxed{
+\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right)
+\longrightarrow0.
+}
+\]
+
+Now observe that
+\[
+\begin{aligned}
+&
+\left\{
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ infinitely often}
+\right\}
+\\
+&\qquad=
+\bigcap_{n=1}^{\infty}
+\left\{
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right\}.
+\end{aligned}
+\]
+
+The events on the right-hand side form a decreasing sequence.
+Therefore, by continuity of probability from above,
+\[
+\begin{aligned}
+&
+\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ i.o.}
+\right)
+\\
+&\qquad=
+\lim_{n\to\infty}
+\mathbb{P}
+\left(
+\left|
+\frac{S_k}{k}-\frac12
+\right|>\varepsilon
+\text{ for some }k>n
+\right)\\
+&\qquad=0.
+\end{aligned}
+\]
+
+Thus,
+\[
+\boxed{
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}-\frac12
+\right|>\varepsilon
+\text{ i.o.}
+\right)=0.
+}
+\]
+
+Since this holds for every $\varepsilon>0$, we conclude that
+\[
+\boxed{
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+\frac12.
+}
+\]
+
+
+%============================================================
+% Borel--Cantelli Lemmas
+%============================================================
+
+\section{Borel--Cantelli Lemmas}
+
+Let $(A_n)_{n\geq1}$ be a sequence of events.
+
+We say that $A_n$ occurs \emph{infinitely often}, abbreviated as
+``$A_n$ i.o.'', if infinitely many of the events $A_n$ occur.
+
+The event that $A_n$ occurs infinitely often is denoted by
+\[
+\{A_n\text{ i.o.}\}.
+\]
+
+We have
+\[
+\boxed{
+\{A_n\text{ i.o.}\}
+=
+\bigcap_{m=1}^{\infty}
+\bigcup_{n=m}^{\infty}A_n.
+}
+\]
+
+Indeed,
+\[
+\omega\in\{A_n\text{ i.o.}\}
+\]
+if and only if, for every $m\geq1$, there exists some $n\geq m$
+such that
+\[
+\omega\in A_n.
+\]
+
+Equivalently,
+\[
+\{A_n\text{ i.o.}\}
+=
+\limsup_{n\to\infty}A_n.
+\]
+
+Similarly,
+\[
+\boxed{
+\{A_n\text{ eventually}\}
+=
+\bigcup_{m=1}^{\infty}
+\bigcap_{n=m}^{\infty}A_n.
+}
+\]
+
+That is, $A_n$ occurs eventually if there exists some $m$ such that
+$A_n$ occurs for every $n\geq m$.
+
+
+%============================================================
+% First Borel--Cantelli
+%============================================================
+
+\subsection{First Borel--Cantelli Lemma}
+
+\begin{theorem}{First Borel--Cantelli Lemma}
+{first-borel-cantelli}
+
+Let $(A_n)_{n\geq1}$ be a sequence of events. If
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty,
+\]
+then
+\[
+\boxed{
+\mathbb{P}(A_n\text{ i.o.})=0.
+}
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+Recall that
+\[
+\{A_n\text{ i.o.}\}
+=
+\bigcap_{m=1}^{\infty}
+\bigcup_{n=m}^{\infty}A_n.
+\]
+
+For each $m\geq1$, define
+\[
+B_m
+=
+\bigcup_{n=m}^{\infty}A_n.
+\]
+
+Then
+\[
+B_1\supseteq B_2\supseteq B_3\supseteq\cdots
+\]
+and
+\[
+\{A_n\text{ i.o.}\}
+=
+\bigcap_{m=1}^{\infty}B_m.
+\]
+
+By the union bound,
+\[
+\mathbb{P}(B_m)
+=
+\mathbb{P}
+\left(
+\bigcup_{n=m}^{\infty}A_n
+\right)
+\leq
+\sum_{n=m}^{\infty}\mathbb{P}(A_n).
+\]
+
+Since
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty,
+\]
+the tail of this convergent series tends to zero. Hence
+\[
+\sum_{n=m}^{\infty}\mathbb{P}(A_n)
+\longrightarrow0.
+\]
+
+Therefore,
+\[
+\mathbb{P}(B_m)\longrightarrow0.
+\]
+
+Since $(B_m)$ is a decreasing sequence of events, continuity of
+probability from above gives
+\[
+\begin{aligned}
+\mathbb{P}(A_n\text{ i.o.})
+&=
+\mathbb{P}
+\left(
+\bigcap_{m=1}^{\infty}B_m
+\right)\\
+&=
+\lim_{m\to\infty}\mathbb{P}(B_m)\\
+&=0.
+\end{aligned}
+\]
+
+Thus
+\[
+\boxed{
+\mathbb{P}(A_n\text{ i.o.})=0.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Second Borel--Cantelli
+%============================================================
+
+\subsection{Second Borel--Cantelli Lemma}
+
+\begin{theorem}{Second Borel--Cantelli Lemma}
+{second-borel-cantelli}
+
+Let $(A_n)_{n\geq1}$ be a sequence of independent events. If
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)=\infty,
+\]
+then
+\[
+\boxed{
+\mathbb{P}(A_n\text{ i.o.})=1.
+}
+\]
+
+\end{theorem}
+
+
+\begin{proof}
+
+We prove that the complementary event has probability zero.
+
+The event that only finitely many of the $A_n$ occur is
+\[
+\{A_n\text{ only finitely often}\}
+=
+\bigcup_{m=1}^{\infty}
+\bigcap_{n=m}^{\infty}A_n^c.
+\]
+
+For each $m$, define
+\[
+C_m
+=
+\bigcap_{n=m}^{\infty}A_n^c.
+\]
+
+Then
+\[
+C_1\subseteq C_2\subseteq C_3\subseteq\cdots.
+\]
+
+Hence, by continuity of probability from below,
+\[
+\mathbb{P}
+\left(
+\bigcup_{m=1}^{\infty}C_m
+\right)
+=
+\lim_{m\to\infty}\mathbb{P}(C_m).
+\]
+
+Now, for any integer $N\geq m$,
+\[
+C_m
+\subseteq
+\bigcap_{n=m}^{N}A_n^c.
+\]
+
+Therefore,
+\[
+\mathbb{P}(C_m)
+\leq
+\mathbb{P}
+\left(
+\bigcap_{n=m}^{N}A_n^c
+\right).
+\]
+
+Since the events $A_n$ are independent, their complements are also
+independent. Thus
+\[
+\begin{aligned}
+\mathbb{P}
+\left(
+\bigcap_{n=m}^{N}A_n^c
+\right)
+&=
+\prod_{n=m}^{N}
+\mathbb{P}(A_n^c)\\
+&=
+\prod_{n=m}^{N}
+\left(1-\mathbb{P}(A_n)\right).
+\end{aligned}
+\]
+
+Using the elementary inequality
+\[
+1-x\leq e^{-x},
+\qquad
+0\leq x\leq1,
+\]
+we obtain
+\[
+\begin{aligned}
+\mathbb{P}(C_m)
+&\leq
+\prod_{n=m}^{N}
+e^{-\mathbb{P}(A_n)}\\
+&=
+\exp
+\left(
+-\sum_{n=m}^{N}\mathbb{P}(A_n)
+\right).
+\end{aligned}
+\]
+
+Since
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)=\infty,
+\]
+we have
+\[
+\sum_{n=m}^{N}\mathbb{P}(A_n)
+\longrightarrow\infty
+\qquad
+\text{as }N\to\infty.
+\]
+
+Consequently,
+\[
+\exp
+\left(
+-\sum_{n=m}^{N}\mathbb{P}(A_n)
+\right)
+\longrightarrow0.
+\]
+
+Hence
+\[
+\mathbb{P}(C_m)=0.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+\mathbb{P}
+(A_n\text{ only finitely often})
+&=
+\mathbb{P}
+\left(
+\bigcup_{m=1}^{\infty}C_m
+\right)\\
+&=
+\lim_{m\to\infty}\mathbb{P}(C_m)\\
+&=0.
+\end{aligned}
+\]
+
+Since
+\[
+\{A_n\text{ i.o.}\}^c
+=
+\{A_n\text{ only finitely often}\},
+\]
+we obtain
+\[
+\mathbb{P}(A_n\text{ i.o.})
+=
+1-
+\mathbb{P}(A_n\text{ only finitely often})
+=
+1.
+\]
+
+Thus
+\[
+\boxed{
+\mathbb{P}(A_n\text{ i.o.})=1.
+}
+\]
+
+\end{proof}
+
+
+%============================================================
+% Comparison of the Two Lemmas
+%============================================================
+
+\subsection{Comparison of the Two Borel--Cantelli Lemmas}
+
+The two Borel--Cantelli lemmas can be summarized as follows.
+
+\begin{theorem}{Borel--Cantelli Summary}
+{borel-cantelli-summary}
+
+For a sequence of events $(A_n)_{n\geq1}$,
+
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)<\infty
+\quad\Longrightarrow\quad
+\mathbb{P}(A_n\text{ i.o.})=0.
+\]
+
+If, in addition, the events are independent, then
+\[
+\sum_{n=1}^{\infty}\mathbb{P}(A_n)=\infty
+\quad\Longrightarrow\quad
+\mathbb{P}(A_n\text{ i.o.})=1.
+\]
+
+\end{theorem}
+
+\begin{observation}
+
+Independence is \emph{not} required for the first Borel--Cantelli
+lemma, whereas independence is required for the second Borel--Cantelli
+lemma.
+
+\end{observation}
+
+
+%============================================================
+% Strong Law with Fourth Moments
+%============================================================
+
+\section{Strong Law Under a Fourth-Moment Assumption}
+
+\subsection{Statement of the Result}
+
+\begin{theorem}{Strong Law with Finite Fourth Moment}
+{strong-law-fourth-moment}
+
+Let
+\(
+X_1,X_2,\ldots
+\)
+be independent and identically distributed random variables satisfying
+\(
+\mathbb{E}[X_1]=\mu
+\)
+and
+\[
+\mathbb{E}[X_1^4]<\infty.
+\]
+
+If
+\[
+S_n=X_1+\cdots+X_n,
+\]
+then
+\[
+\boxed{
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+\mu.
+}
+\]
+
+\end{theorem}
+
+
+\subsection{Proof}
+
+\begin{proof}
+
+By replacing $X_i$ by $X_i-\mu$, it is enough to prove the result
+when
+\[
+\mu=0.
+\]
+
+Thus assume
+\[
+\mathbb{E}[X_i]=0
+\]
+and
+\[
+\mathbb{E}[X_i^4]<\infty.
+\]
+
+We shall prove that
+\[
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+0.
+\]
+
+Consider the fourth moment of $S_n$:
+\[
+\mathbb{E}(S_n^4)
+=
+\mathbb{E}
+\left[
+\left(
+\sum_{i=1}^{n}X_i
+\right)^4
+\right].
+\]
+
+Expanding the fourth power gives
+\[
+S_n^4
+=
+\sum_{i_1,i_2,i_3,i_4=1}^{n}
+X_{i_1}X_{i_2}X_{i_3}X_{i_4}.
+\]
+
+Because the $X_i$ are independent and
+\[
+\mathbb{E}[X_i]=0,
+\]
+any term containing an index that appears only once has expectation
+zero.
+
+The only nonzero contributions are therefore of the following two
+types:
+
+\begin{enumerate}
+    \item all four indices are equal;
+    \item two distinct indices each occur twice.
+\end{enumerate}
+
+For the first type,
+\[
+\sum_{i=1}^{n}
+\mathbb{E}[X_i^4]
+=
+n\mathbb{E}[X_1^4].
+\]
+
+For the second type, choose two distinct indices $i\neq j$.
+The corresponding term is
+\[
+X_i^2X_j^2.
+\]
+
+For each pair $\{i,j\}$ there are
+\[
+\frac{4!}{2!2!}=6
+\]
+ways to arrange the indices. Hence the contribution is
+\[
+6
+\sum_{1\leq i<j\leq n}
+\mathbb{E}[X_i^2X_j^2].
+\]
+
+By independence,
+\[
+\mathbb{E}[X_i^2X_j^2]
+=
+\mathbb{E}[X_i^2]
+\mathbb{E}[X_j^2].
+\]
+
+Since the variables are identically distributed,
+\[
+\mathbb{E}[X_i^2X_j^2]
+=
+\left(
+\mathbb{E}[X_1^2]
+\right)^2.
+\]
+
+Therefore,
+\[
+\begin{aligned}
+\mathbb{E}[S_n^4]
+&=
+n\mathbb{E}[X_1^4]
++
+6\binom{n}{2}
+\left(
+\mathbb{E}[X_1^2]
+\right)^2\\
+&=
+n\mathbb{E}[X_1^4]
++
+3n(n-1)
+\left(
+\mathbb{E}[X_1^2]
+\right)^2.
+\end{aligned}
+\]
+
+Hence there exists a constant $C<\infty$ such that
+\[
+\boxed{
+\mathbb{E}[S_n^4]\leq Cn^2.
+}
+\]
+
+\medskip
+
+Now apply Markov's inequality to the nonnegative random variable
+$S_n^4$. For every $\varepsilon>0$,
+\[
+\begin{aligned}
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}
+\right|>\varepsilon
+\right)
+&=
+\mathbb{P}
+\left(
+|S_n|>\varepsilon n
+\right)\\
+&=
+\mathbb{P}
+\left(
+S_n^4>\varepsilon^4n^4
+\right)\\
+&\leq
+\frac{\mathbb{E}[S_n^4]}
+{\varepsilon^4n^4}.
+\end{aligned}
+\]
+
+Using
+\[
+\mathbb{E}[S_n^4]\leq Cn^2,
+\]
+we obtain
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}
+\right|>\varepsilon
+\right)
+\leq
+\frac{C}{\varepsilon^4n^2}.
+\]
+
+Therefore,
+\[
+\sum_{n=1}^{\infty}
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}
+\right|>\varepsilon
+\right)
+\leq
+\frac{C}{\varepsilon^4}
+\sum_{n=1}^{\infty}\frac1{n^2}
+<\infty.
+\]
+
+By the first Borel--Cantelli lemma,
+\[
+\mathbb{P}
+\left(
+\left|
+\frac{S_n}{n}
+\right|>\varepsilon
+\text{ i.o.}
+\right)
+=0.
+\]
+
+Thus, for every $\varepsilon>0$,
+\[
+\left|
+\frac{S_n}{n}
+\right|
+\leq\varepsilon
+\qquad
+\text{eventually almost surely}.
+\]
+
+Hence
+\[
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+0.
+\]
+
+Returning to the original variables, write
+\[
+X_i=(X_i-\mu)+\mu.
+\]
+
+Then
+\[
+\frac{S_n}{n}
+=
+\frac1n
+\sum_{i=1}^{n}(X_i-\mu)
++\mu.
+\]
+
+The first term converges almost surely to $0$. Therefore,
+\[
+\boxed{
+\frac{S_n}{n}
+\xrightarrow{\mathrm{a.s.}}
+\mu.
+}
+\]
+
+\end{proof}
+
+
+
+
+
+\lectureend
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quiz 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quiz}
+
+Let
+\(
+X_1,X_2,\ldots
+\)
+be i.i.d.\ real-valued random variables and let
+\(
+S_n=X_1+\cdots+X_n.
+\)
+
+Suppose that there is a sequence of constants
+\(
+a_n\in\mathbb{R}
+\)
+such that
+\[
+\frac{S_n}{n}-a_n
+\xrightarrow{P}
+0.
+\]
+
+Prove that
+\[
+\boxed{
+x\mathbb{P}(|X_1|>x)
+\longrightarrow0
+\qquad\text{as }x\to\infty.
+}
+\]
+
+\begin{enumerate}
+
+    %--------------------------------------------------------
+    % Part (a)
+    %--------------------------------------------------------
+
+    \item[(a)]
+    Let
+    \(
+    X_1',X_2',\ldots
+    \)
+    be an independent copy of the sequence $(X_i)_{i\geq1}$ and set
+    \[
+    Y_i=X_i-X_i'.
+    \]
+
+    Show that the $Y_i$'s are i.i.d.\ and symmetric, and that
+    \[
+    \frac1n\sum_{i=1}^nY_i
+    \xrightarrow{P}
+    0.
+    \]
+
+    %--------------------------------------------------------
+    % Part (b)
+    %--------------------------------------------------------
+
+    \item[(b)] \textbf{A maximal inequality.}
+
+    Let
+    \[
+    T_k=Y_1+\cdots+Y_k,
+    \qquad
+    1\leq k\leq n.
+    \]
+
+    Fix $t>0$.
+
+    \begin{enumerate}
+
+        \item[(i)]
+        Define the first crossing time
+        \[
+        \tau
+        =
+        \min\{k:T_k>t\},
+        \]
+        with $\tau=\infty$ if the set is empty.
+
+        On the event $\{\tau\leq n\}$, consider the transformation
+        which reflects all the increments after the first crossing:
+        \[
+        (Y_1,\ldots,Y_\tau,Y_{\tau+1},\ldots,Y_n)
+        \longmapsto
+        (Y_1,\ldots,Y_\tau,-Y_{\tau+1},\ldots,-Y_n).
+        \]
+
+        Explain why this transformation preserves probabilities.
+
+        \item[(ii)]
+        If $\widetilde{T}_n$ denotes the endpoint after reflection,
+        show that
+        \[
+        \widetilde{T}_n
+        =
+        2T_\tau-T_n.
+        \]
+
+        Deduce that
+        \[
+        \mathbb{P}
+        \left(
+        \max_{1\leq k\leq n}T_k>t
+        \right)
+        \leq
+        2\mathbb{P}(T_n>t).
+        \]
+
+        \item[(iii)]
+        Apply the same argument to $-T_k$ to show that
+        \[
+        \mathbb{P}
+        \left(
+        \max_{1\leq k\leq n}|T_k|>t
+        \right)
+        \leq
+        2\mathbb{P}(|T_n|>t).
+        \]
+
+        \item[(iv)]
+        Show that
+        \[
+        \max_{1\leq i\leq n}|Y_i|>2t
+        \quad\Longrightarrow\quad
+        \max_{1\leq k\leq n}|T_k|>t.
+        \]
+
+        Conclude that
+        \[
+        \mathbb{P}
+        \left(
+        \max_{1\leq i\leq n}|Y_i|>2t
+        \right)
+        \leq
+        2\mathbb{P}
+        \left(
+        \left|
+        \sum_{i=1}^nY_i
+        \right|
+        >t
+        \right).
+        \]
+
+    \end{enumerate}
+
+    %--------------------------------------------------------
+    % Part (c)
+    %--------------------------------------------------------
+
+    \item[(c)]
+    Put
+    \[
+    p_n
+    =
+    \mathbb{P}(|Y_1|>\varepsilon n).
+    \]
+
+    Show that
+    \[
+    \mathbb{P}
+    \left(
+    \max_{1\leq i\leq n}|Y_i|>\varepsilon n
+    \right)
+    =
+    1-(1-p_n)^n.
+    \]
+
+    Deduce that
+    \[
+    n\mathbb{P}
+    \left(
+    |X_1-X_1'|>\varepsilon n
+    \right)
+    \longrightarrow0.
+    \]
+
+    %--------------------------------------------------------
+    % Part (d)
+    %--------------------------------------------------------
+
+    \item[(d)]
+    Show that there exists $M<\infty$ such that
+    \[
+    \mathbb{P}(|X_1'|\leq M)\geq\frac12.
+    \]
+
+    Show that, for $x>2M$,
+    \[
+    \{
+    |X_1|>x,\ |X_1'|\leq M
+    \}
+    \subseteq
+    \{
+    |X_1-X_1'|>x/2
+    \}.
+    \]
+
+    Hence prove that
+    \[
+    \leq
+    2\mathbb{P}
+    \left(
+    |X_1-X_1'|>\frac{x}{2}
+    \right),
+    \qquad x>2M.
+    \]
+
+    %--------------------------------------------------------
+    % Part (e)
+    %--------------------------------------------------------
+
+    \item[(e)]
+    Combine the preceding parts to conclude that
+    \[
+    x\mathbb{P}(|X_1|>x)
+    \longrightarrow0
+    \qquad\text{as }x\to\infty.
+    \]
+
+\end{enumerate}
+
+\end{quiz}
+
+
+
+
+
